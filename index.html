@@ -44,8 +44,8 @@ nav.hidden{transform:translateY(-100%);opacity:0;}
 .nav-links a{color:var(--grey);text-decoration:none;font-weight:600;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;cursor:pointer;}
 .nav-links a:hover{color:var(--white);}
 .search-bar{display:flex;align-items:center;background:rgba(255,255,255,0.06);border:1px solid var(--border);padding:0 12px;height:36px;gap:8px;}
-.search-bar input{background:none;border:none;outline:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;width:200px;-webkit-text-fill-color:var(--white);caret-color:var(--white);}
-.search-bar input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #0a0a0a inset;-webkit-text-fill-color:var(--white)!important;}
+.search-bar input{background:none;border:none;outline:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;width:200px;}
+.search-bar input:-webkit-autofill{-webkit-box-shadow:0 0 0 1000px #111 inset;-webkit-text-fill-color:var(--white)!important;}
 .search-bar input::placeholder{color:#3a3a3a;}
 .nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
 .btn{padding:7px 16px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;white-space:nowrap;}
@@ -54,26 +54,19 @@ nav.hidden{transform:translateY(-100%);opacity:0;}
 .btn-purple{background:var(--purple);color:#fff;box-shadow:0 0 14px var(--purpleGlow);}
 .btn-purple:hover{background:var(--purple2);}
 .btn-sm{padding:5px 12px;font-size:11px;}
-.btn-danger{background:var(--danger);color:#fff;}
-.btn-danger:hover{background:#c53030;}
-
-/* USER AREA */
 .user-area{display:flex;align-items:center;gap:6px;}
-.notif-btn{position:relative;width:34px;height:34px;background:rgba(255,255,255,0.06);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--grey);transition:all .2s;flex-shrink:0;}
-.notif-btn:hover{border-color:var(--border2);color:var(--white);}
-.notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:var(--purple2);border-radius:50%;border:1.5px solid var(--dark);display:none;}
 .avatar-btn{width:32px;height:32px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s;flex-shrink:0;}
 .avatar-btn:hover{border-color:var(--purple2);}
 .user-name-btn{background:none;border:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;cursor:pointer;padding:4px 6px;transition:color .2s;}
 .user-name-btn:hover{color:var(--purple2);}
 .logout-btn{background:none;border:1px solid var(--border);color:var(--grey);padding:4px 10px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;}
 .logout-btn:hover{border-color:var(--danger);color:var(--danger);}
-.admin-badge{background:var(--warn);color:#000;font-size:9px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:2px 6px;text-transform:uppercase;cursor:pointer;}
+.admin-badge{background:var(--warn);color:#000;font-size:9px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;padding:2px 7px;text-transform:uppercase;cursor:pointer;border:none;}
 .admin-badge:hover{background:#fbbf24;}
 
-/* SECTION TABS */
+/* SECTION TABS — sticky відносно nav */
 .section-tabs{position:sticky;top:62px;z-index:400;background:var(--navbg);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 32px;backdrop-filter:blur(20px);}
-.stab{padding:14px 18px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--grey);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
+.stab{padding:13px 18px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--grey);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
 .stab:hover{color:var(--white);}
 .stab.active{color:var(--white);border-bottom-color:var(--purple2);}
 .stab-div{width:1px;height:18px;background:var(--border);margin:0 4px;}
@@ -86,15 +79,15 @@ nav.hidden{transform:translateY(-100%);opacity:0;}
 .adv-filter-btn{margin-left:auto;display:flex;align-items:center;gap:6px;padding:5px 13px;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--grey);font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;}
 .adv-filter-btn:hover{border-color:var(--purple2);color:var(--white);}
 
-/* ADV FILTER PANEL */
-.adv-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:600;display:none;align-items:flex-start;justify-content:center;padding-top:140px;}
+/* ADV FILTER */
+.adv-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.75);z-index:600;display:none;align-items:flex-start;justify-content:center;padding-top:150px;}
 .adv-panel.open{display:flex;}
-.adv-box{background:var(--dark);border:1px solid var(--border);padding:28px;width:100%;max-width:720px;animation:fadeUp .2s forwards;}
-.adv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-bottom:18px;}
+.adv-box{background:var(--dark);border:1px solid var(--border);padding:26px;width:100%;max-width:700px;animation:fadeUp .2s forwards;}
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-bottom:16px;}
 .adv-sec-title{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
 .adv-chips{display:flex;flex-wrap:wrap;gap:5px;}
 .adv-chip{padding:3px 10px;background:transparent;border:1px solid var(--border);color:var(--grey);font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .2s;}
-.adv-chip:hover{border-color:var(--border2);color:var(--white);}
+.adv-chip:hover{color:var(--white);}
 .adv-chip.active{background:var(--purple);color:#fff;border-color:var(--purple);}
 .price-range{display:flex;align-items:center;gap:8px;}
 .price-input{flex:1;background:#0c0c0c;border:1px solid var(--border);color:var(--white);padding:7px 10px;font-family:'Rajdhani',sans-serif;font-size:13px;outline:none;}
@@ -123,15 +116,15 @@ nav.hidden{transform:translateY(-100%);opacity:0;}
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px;}
 .sec-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;}
 
-/* LISTING GRID */
+/* GRID */
 .listing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
 .lcard{background:var(--card);padding:20px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden;}
 .lcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--purple2));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
 .lcard:hover{background:var(--card2);}
 .lcard:hover::before{transform:scaleX(1);}
-.lcard-imgs{width:100%;height:140px;background:var(--card2);margin-bottom:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:2px;}
-.lcard-img{width:100%;height:100%;object-fit:cover;}
-.lcard-img-placeholder{font-size:32px;color:var(--border2);}
+.lcard-imgs{width:100%;height:140px;background:var(--card2);margin-bottom:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.lcard-imgs img{width:100%;height:100%;object-fit:cover;}
+.lcard-img-ph{font-size:30px;color:var(--border2);}
 .lcard-cat{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--purple2);margin-bottom:8px;}
 .lcard-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:5px;line-height:1.1;}
 .lcard-desc{font-size:12px;color:var(--grey);line-height:1.5;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
@@ -143,23 +136,23 @@ nav.hidden{transform:translateY(-100%);opacity:0;}
 .badge-hot{color:var(--danger);border-color:var(--danger);}
 .badge-new{color:var(--success);border-color:var(--success);}
 .badge-sale{color:var(--purple2);border-color:var(--purple2);}
-.empty-state{padding:60px;text-align:center;background:var(--card);color:var(--grey);font-size:14px;letter-spacing:1px;grid-column:1/-1;}
-.empty-state .eicon{font-size:36px;margin-bottom:10px;}
+.empty-state{padding:60px;text-align:center;background:var(--card);color:var(--grey);font-size:14px;grid-column:1/-1;}
+.empty-state .ei{font-size:36px;margin-bottom:10px;}
 
 /* OVERLAYS */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:800;display:none;align-items:center;justify-content:center;padding:20px;}
 .overlay.open{display:flex;}
-.modal{background:var(--dark);border:1px solid var(--border);width:100%;max-width:500px;padding:38px;position:relative;animation:fadeUp .3s forwards;max-height:92vh;overflow-y:auto;}
-.modal-wide{max-width:680px;}
+.modal{background:var(--dark);border:1px solid var(--border);width:100%;max-width:500px;padding:36px;position:relative;animation:fadeUp .3s forwards;max-height:92vh;overflow-y:auto;}
+.modal-wide{max-width:660px;}
 .modal::-webkit-scrollbar{width:4px;}
 .modal::-webkit-scrollbar-thumb{background:var(--border2);}
 .mclose{position:absolute;top:14px;right:18px;background:none;border:none;color:var(--grey);font-size:22px;cursor:pointer;}
 .mclose:hover{color:var(--white);}
-.mtabs{display:flex;gap:0;margin-bottom:26px;border-bottom:1px solid var(--border);}
+.mtabs{display:flex;margin-bottom:26px;border-bottom:1px solid var(--border);}
 .mtab{padding:9px 20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--grey);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
 .mtab.active{color:var(--white);border-bottom-color:var(--purple2);}
 .mtitle{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;margin-bottom:4px;}
-.msub{font-size:12px;color:var(--grey);margin-bottom:24px;}
+.msub{font-size:12px;color:var(--grey);margin-bottom:22px;}
 .fgroup{margin-bottom:12px;}
 .flabel{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:4px;font-family:'Share Tech Mono',monospace;}
 .finput{width:100%;background:#0c0c0c;border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;outline:none;transition:border-color .2s;}
@@ -169,6 +162,7 @@ nav.hidden{transform:translateY(-100%);opacity:0;}
 select.finput{cursor:pointer;}
 textarea.finput{resize:vertical;font-family:'Rajdhani',sans-serif;}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
 .divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--grey);font-size:10px;letter-spacing:2px;text-transform:uppercase;}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
 .btn-google{width:100%;padding:10px;background:transparent;border:1px solid var(--border);color:var(--white);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;}
@@ -176,51 +170,51 @@ textarea.finput{resize:vertical;font-family:'Rajdhani',sans-serif;}
 .btn-google svg{width:17px;height:17px;flex-shrink:0;}
 .btn-submit{width:100%;padding:12px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;cursor:pointer;margin-top:6px;transition:background .2s;box-shadow:0 0 18px var(--purpleGlow);}
 .btn-submit:hover{background:var(--purple2);}
+.info-box{padding:10px 13px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);font-size:12px;color:var(--purple2);line-height:1.6;margin-bottom:14px;}
+.warn-box{padding:10px 13px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);font-size:11px;color:#f59e0b;line-height:1.6;margin-bottom:12px;}
 
 /* PHOTO UPLOAD */
-.photo-upload-area{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
-.photo-upload-btn{width:100%;height:90px;border:2px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;gap:5px;font-size:12px;color:var(--grey);letter-spacing:1px;background:transparent;}
+.photo-upload-btn{width:100%;height:80px;border:2px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;gap:4px;font-size:12px;color:var(--grey);letter-spacing:1px;background:transparent;margin-bottom:8px;}
 .photo-upload-btn:hover{border-color:var(--purple2);color:var(--white);}
 .photo-preview-row{display:flex;gap:8px;flex-wrap:wrap;}
-.photo-thumb{width:70px;height:70px;object-fit:cover;border:1px solid var(--border);position:relative;display:inline-block;}
-.photo-thumb-wrap{position:relative;display:inline-block;}
-.photo-thumb-del{position:absolute;top:-6px;right:-6px;background:var(--danger);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.warn-box{padding:11px 13px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);font-size:11px;color:#f59e0b;line-height:1.6;margin-bottom:12px;}
+.photo-thumb-wrap{position:relative;}
+.photo-thumb{width:64px;height:64px;object-fit:cover;border:1px solid var(--border);}
+.photo-del{position:absolute;top:-6px;right:-6px;background:var(--danger);color:#fff;border:none;border-radius:50%;width:17px;height:17px;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 
 /* PRODUCT MODAL */
 .pd-badge{display:inline-block;padding:2px 9px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--purple);color:var(--purple2);margin-bottom:12px;}
-.pd-imgs{width:100%;height:180px;background:var(--card2);margin-bottom:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:2px;}
+.pd-imgs{width:100%;height:190px;background:var(--card2);margin-bottom:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .pd-imgs img{width:100%;height:100%;object-fit:cover;}
 .pd-title{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;line-height:1;margin-bottom:8px;}
-.pd-price{font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:2px;margin-bottom:5px;}
+.pd-price{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:2px;margin-bottom:5px;}
 .pd-price em{font-size:14px;color:var(--grey);font-style:normal;font-family:'Share Tech Mono',monospace;margin-left:4px;}
-.pd-desc{font-size:13px;color:var(--grey);line-height:1.7;margin-bottom:18px;border-top:1px solid var(--border);padding-top:13px;}
+.pd-desc{font-size:13px;color:var(--grey);line-height:1.7;margin-bottom:18px;border-top:1px solid var(--border);padding-top:12px;}
 .pd-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
 .pd-label{color:var(--grey);font-weight:600;}
 .pd-val{font-weight:700;}
-.pd-contacts{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0 16px;}
+.pd-contacts{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px;}
 .contact-chip{padding:5px 12px;border:1px solid var(--border);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--grey);font-family:'Share Tech Mono',monospace;}
-.btn-message{width:100%;padding:11px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;cursor:pointer;transition:background .2s;box-shadow:0 0 18px var(--purpleGlow);}
+.btn-message{width:100%;padding:11px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;cursor:pointer;transition:background .2s;box-shadow:0 0 16px var(--purpleGlow);}
 .btn-message:hover{background:var(--purple2);}
 
 /* PROFILE PANEL */
-.side-panel{position:fixed;top:0;right:0;width:370px;height:100vh;background:var(--dark);border-left:1px solid var(--border);z-index:700;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;overflow:hidden;}
+.side-panel{position:fixed;top:0;right:0;width:360px;height:100vh;background:var(--dark);border-left:1px solid var(--border);z-index:700;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;}
 .side-panel.open{transform:translateX(0);}
-.sp-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.sp-head{padding:17px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
 .sp-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;}
 .sp-close{background:none;border:none;color:var(--grey);font-size:20px;cursor:pointer;}
 .sp-close:hover{color:var(--white);}
 .sp-body{flex:1;overflow-y:auto;padding:22px;}
-.sp-avatar{width:56px;height:56px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:26px;margin-bottom:14px;}
+.sp-avatar{width:54px;height:54px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:24px;margin-bottom:12px;}
 .sp-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;margin-bottom:2px;}
 .sp-meta{font-size:11px;color:var(--grey);margin-bottom:16px;}
-.sp-divider{height:1px;background:var(--border);margin:16px 0;}
+.sp-divider{height:1px;background:var(--border);margin:14px 0;}
 .sp-sec{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:10px;}
 .sp-btn{width:100%;padding:10px 13px;background:var(--card);border:1px solid var(--border);color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:left;display:flex;align-items:center;gap:9px;transition:all .2s;margin-bottom:7px;}
 .sp-btn:hover{background:var(--card2);border-color:var(--border2);}
 .sp-btn.purple{background:var(--purple);border-color:var(--purple);box-shadow:0 0 14px var(--purpleGlow);}
 .sp-btn.purple:hover{background:var(--purple2);}
-.sp-stat-row{display:flex;gap:1px;background:var(--border);margin-bottom:18px;}
+.sp-stat-row{display:flex;gap:1px;background:var(--border);margin-bottom:16px;}
 .sp-stat{flex:1;background:var(--card);padding:12px;text-align:center;}
 .sp-stat-num{font-family:'Bebas Neue',sans-serif;font-size:24px;}
 .sp-stat-lbl{font-size:9px;color:var(--grey);letter-spacing:1.5px;text-transform:uppercase;}
@@ -228,93 +222,91 @@ textarea.finput{resize:vertical;font-family:'Rajdhani',sans-serif;}
 /* PIXДЖЕР */
 .msg-panel{position:fixed;top:0;right:0;width:400px;height:100vh;background:var(--dark);border-left:1px solid var(--border);z-index:700;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;}
 .msg-panel.open{transform:translateX(0);}
-.msg-head{padding:17px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.msg-head-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:3px;}
+.msg-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.msg-head-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;}
 .msg-close{background:none;border:none;color:var(--grey);font-size:20px;cursor:pointer;}
 .msg-close:hover{color:var(--white);}
 .msg-content{flex:1;overflow:hidden;display:flex;flex-direction:column;}
 .chat-list-view{flex:1;overflow-y:auto;}
-.chat-item{padding:14px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:11px;}
+.chat-item{padding:13px 20px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:11px;}
 .chat-item:hover{background:var(--card);}
-.chat-av{width:34px;height:34px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;flex-shrink:0;}
+.chat-av{width:34px;height:34px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;flex-shrink:0;}
 .chat-info{flex:1;min-width:0;}
-.chat-name{font-size:13px;font-weight:700;letter-spacing:.5px;}
+.chat-name{font-size:13px;font-weight:700;}
 .chat-preview{font-size:11px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
 .chat-time{font-size:10px;color:var(--grey2);flex-shrink:0;}
-.chat-unread{background:var(--purple2);color:#fff;font-size:9px;font-family:'Bebas Neue',sans-serif;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0 4px;}
-/* CHAT VIEW */
+.chat-unread{background:var(--purple2);color:#fff;font-size:9px;font-family:'Bebas Neue',sans-serif;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0 4px;}
 .chat-view{display:flex;flex-direction:column;height:100%;}
-.chat-view-head{padding:13px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.chat-back-btn{background:none;border:none;color:var(--grey);cursor:pointer;font-size:17px;padding:2px 4px;}
+.chat-view-head{padding:12px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.chat-back-btn{background:none;border:none;color:var(--grey);cursor:pointer;font-size:18px;padding:2px 5px;transition:color .2s;}
 .chat-back-btn:hover{color:var(--white);}
 .chat-view-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;}
-.chat-messages{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:10px;}
+.chat-messages{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:10px;}
 .msg-bbl{max-width:76%;padding:9px 13px;font-size:13px;line-height:1.5;word-break:break-word;}
 .msg-bbl.out{background:var(--purple);align-self:flex-end;}
 .msg-bbl.in{background:var(--card2);border:1px solid var(--border);align-self:flex-start;}
-.msg-bbl .mt{font-size:9px;color:rgba(255,255,255,.45);margin-top:4px;text-align:right;}
+.msg-bbl .mt{font-size:9px;color:rgba(255,255,255,.4);margin-top:4px;text-align:right;}
 .chat-input-row{padding:12px 20px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0;}
 .chat-input{flex:1;background:var(--card);border:1px solid var(--border);color:var(--white);padding:9px 12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;outline:none;transition:border-color .2s;}
 .chat-input:focus{border-color:var(--purple2);}
 .chat-send{padding:9px 14px;background:var(--purple);border:none;color:#fff;cursor:pointer;font-size:15px;transition:background .2s;}
 .chat-send:hover{background:var(--purple2);}
-.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--grey);}
-.chat-empty .icon{font-size:36px;}
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--grey);padding:20px;text-align:center;}
 
-/* ADMIN PANEL */
+/* COMPLETE PROFILE MODAL */
+.complete-modal{background:var(--dark);border:1px solid var(--purple);width:100%;max-width:480px;padding:36px;position:relative;animation:fadeUp .3s forwards;}
+.complete-modal .mtitle{color:var(--purple2);}
+
+/* ADMIN */
 .admin-panel{position:fixed;inset:0;background:var(--bg);z-index:900;display:none;flex-direction:column;overflow:hidden;}
 .admin-panel.open{display:flex;}
-.admin-head{padding:0 28px;height:56px;background:var(--dark);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
-.admin-head-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--warn);}
+.admin-head{padding:0 28px;height:54px;background:var(--dark);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.admin-head-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--warn);}
 .admin-body{display:flex;flex:1;overflow:hidden;}
-.admin-sidebar{width:220px;background:var(--dark);border-right:1px solid var(--border);padding:16px;flex-shrink:0;overflow-y:auto;}
-.admin-nav-item{width:100%;padding:10px 13px;background:transparent;border:none;color:var(--grey);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:left;display:flex;align-items:center;gap:9px;transition:all .2s;margin-bottom:5px;border-left:2px solid transparent;}
+.admin-sidebar{width:210px;background:var(--dark);border-right:1px solid var(--border);padding:14px;flex-shrink:0;overflow-y:auto;}
+.admin-nav-item{width:100%;padding:10px 12px;background:transparent;border:none;color:var(--grey);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:left;display:flex;align-items:center;gap:8px;margin-bottom:5px;border-left:2px solid transparent;transition:all .2s;}
 .admin-nav-item:hover{color:var(--white);background:var(--card);}
 .admin-nav-item.active{color:var(--white);background:var(--card);border-left-color:var(--purple2);}
-.admin-content{flex:1;overflow-y:auto;padding:28px;}
+.admin-content{flex:1;overflow-y:auto;padding:26px;}
 .admin-section{display:none;}
 .admin-section.active{display:block;}
-.admin-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;margin-bottom:20px;}
-
-/* ADMIN STATS */
-.admin-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:28px;}
-.astat{background:var(--card);padding:18px;text-align:center;}
-.astat-num{font-family:'Bebas Neue',sans-serif;font-size:32px;margin-bottom:2px;}
+.admin-title{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:3px;margin-bottom:20px;}
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:26px;}
+.astat{background:var(--card);padding:16px;text-align:center;}
+.astat-num{font-family:'Bebas Neue',sans-serif;font-size:30px;margin-bottom:2px;}
 .astat-lbl{font-size:10px;color:var(--grey);letter-spacing:1.5px;text-transform:uppercase;}
-
-/* USER TABLE */
 .user-table{width:100%;border-collapse:collapse;border:1px solid var(--border);}
-.user-table th{background:var(--card2);padding:10px 14px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);font-family:'Share Tech Mono',monospace;border-bottom:1px solid var(--border);}
-.user-table td{padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+.user-table th{background:var(--card2);padding:9px 13px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);font-family:'Share Tech Mono',monospace;border-bottom:1px solid var(--border);}
+.user-table td{padding:9px 13px;border-bottom:1px solid var(--border);font-size:12px;vertical-align:middle;}
 .user-table tr:hover td{background:rgba(255,255,255,.02);}
-.role-badge{display:inline-block;padding:2px 8px;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-family:'Share Tech Mono',monospace;border:1px solid;}
+.role-badge{display:inline-block;padding:2px 7px;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;font-family:'Share Tech Mono',monospace;border:1px solid;}
 .role-admin{color:var(--warn);border-color:var(--warn);}
 .role-user{color:var(--grey);border-color:var(--border);}
 .role-banned{color:var(--danger);border-color:var(--danger);}
-.table-actions{display:flex;gap:6px;flex-wrap:wrap;}
-.ta-btn{padding:3px 10px;font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--grey);cursor:pointer;transition:all .2s;}
-.ta-btn:hover{border-color:var(--white);color:var(--white);}
+.table-actions{display:flex;gap:5px;flex-wrap:wrap;}
+.ta-btn{padding:3px 9px;font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--grey);cursor:pointer;transition:all .2s;}
 .ta-btn.red:hover{border-color:var(--danger);color:var(--danger);}
 .ta-btn.green:hover{border-color:var(--success);color:var(--success);}
-.search-admin{background:#0c0c0c;border:1px solid var(--border);color:var(--white);padding:9px 13px;font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;width:280px;margin-bottom:18px;}
+.ta-btn.yellow:hover{border-color:var(--warn);color:var(--warn);}
+.search-admin{background:#0c0c0c;border:1px solid var(--border);color:var(--white);padding:8px 13px;font-family:'Rajdhani',sans-serif;font-size:14px;outline:none;width:280px;margin-bottom:16px;}
 .search-admin:focus{border-color:var(--purple2);}
 
 /* BAN MODAL */
-.ban-modal{background:var(--dark);border:1px solid var(--border);width:100%;max-width:440px;padding:32px;position:relative;animation:fadeUp .2s forwards;}
-.ban-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;margin-bottom:4px;color:var(--danger);}
-.ban-sub{font-size:12px;color:var(--grey);margin-bottom:20px;}
-.check-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
-.check-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.5px;cursor:pointer;}
-.check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--purple2);cursor:pointer;}
+.ban-modal{background:var(--dark);border:1px solid var(--border);width:100%;max-width:420px;padding:30px;position:relative;animation:fadeUp .2s forwards;}
+.ban-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;margin-bottom:4px;color:var(--danger);}
+.ban-sub{font-size:12px;color:var(--grey);margin-bottom:18px;}
+.check-list{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
+.check-item{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;cursor:pointer;}
+.check-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--purple2);cursor:pointer;}
 
 /* INFO PAGES */
 .info-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:600;padding:80px 40px 60px;overflow-y:auto;animation:fadeUp .3s forwards;}
 .info-page.open{display:block;}
-.ip-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--grey);cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:34px;transition:color .2s;}
+.ip-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--grey);cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:32px;transition:color .2s;}
 .ip-back:hover{color:var(--white);}
-.ip-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,80px);letter-spacing:3px;line-height:.95;margin-bottom:34px;}
+.ip-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,80px);letter-spacing:3px;line-height:.95;margin-bottom:32px;}
 .ip-title span{color:var(--purple2);}
-.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:36px;}
+.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:32px;}
 .ip-card{background:var(--card);padding:24px;transition:background .2s;}
 .ip-card:hover{background:var(--card2);}
 .ip-card h3{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;margin-bottom:8px;}
@@ -325,13 +317,12 @@ textarea.finput{resize:vertical;font-family:'Rajdhani',sans-serif;}
 .rules-list li span:first-child{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--purple2);}
 
 /* TOAST */
-.toast{position:fixed;bottom:30px;right:30px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--purple2);padding:12px 18px;font-size:13px;z-index:9999;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;font-weight:600;letter-spacing:.5px;max-width:300px;}
+.toast{position:fixed;bottom:28px;right:28px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--purple2);padding:12px 18px;font-size:13px;z-index:9999;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;font-weight:600;max-width:300px;}
 .toast.show{opacity:1;transform:translateY(0);}
 .toast.err{border-left-color:var(--danger);}
 .toast.ok{border-left-color:var(--success);}
 
-/* FOOTER */
-footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+footer{padding:28px 32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;}
 .footer-logo span{color:var(--purple2);}
 .footer-links{display:flex;gap:18px;list-style:none;}
@@ -363,7 +354,7 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
   </ul>
   <div class="search-bar">
     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" placeholder="Пошук товарів..." id="searchInput" oninput="searchListings(this.value)" autocomplete="off"/>
+    <input type="text" placeholder="Пошук товарів..." id="searchInput" oninput="searchListings(this.value)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
   </div>
   <div class="nav-right" id="navRight">
     <div id="navActions">
@@ -374,7 +365,7 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
 </nav>
 
 <!-- SECTION TABS -->
-<div class="section-tabs" id="sectionTabs">
+<div class="section-tabs">
   <button class="stab active" onclick="switchSection(this,'sell')">📦 Продаж</button>
   <div class="stab-div"></div>
   <button class="stab" onclick="switchSection(this,'buy')">🛒 Купую</button>
@@ -403,14 +394,14 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
         <div class="adv-sec-title">Ціна (грн)</div>
         <div class="price-range">
           <input class="price-input" type="number" id="priceMin" placeholder="Від"/>
-          <span style="color:var(--grey);font-size:12px">—</span>
+          <span style="color:var(--grey)">—</span>
           <input class="price-input" type="number" id="priceMax" placeholder="До"/>
         </div>
       </div>
       <div>
         <div class="adv-sec-title">Марка авто</div>
         <div class="adv-chips">
-          <span class="adv-chip" onclick="toggleChip(this)">BMW</span><span class="adv-chip" onclick="toggleChip(this)">Mercedes</span><span class="adv-chip" onclick="toggleChip(this)">Audi</span><span class="adv-chip" onclick="toggleChip(this)">Toyota</span><span class="adv-chip" onclick="toggleChip(this)">Lamborghini</span><span class="adv-chip" onclick="toggleChip(this)">Ferrari</span><span class="adv-chip" onclick="toggleChip(this)">Dodge</span><span class="adv-chip" onclick="toggleChip(this)">Chevrolet</span><span class="adv-chip" onclick="toggleChip(this)">Ford</span><span class="adv-chip" onclick="toggleChip(this)">Porsche</span><span class="adv-chip" onclick="toggleChip(this)">Mazda</span><span class="adv-chip" onclick="toggleChip(this)">Honda</span>
+          <span class="adv-chip" onclick="toggleChip(this)">BMW</span><span class="adv-chip" onclick="toggleChip(this)">Mercedes</span><span class="adv-chip" onclick="toggleChip(this)">Audi</span><span class="adv-chip" onclick="toggleChip(this)">Toyota</span><span class="adv-chip" onclick="toggleChip(this)">Lamborghini</span><span class="adv-chip" onclick="toggleChip(this)">Ferrari</span><span class="adv-chip" onclick="toggleChip(this)">Dodge</span><span class="adv-chip" onclick="toggleChip(this)">Ford</span><span class="adv-chip" onclick="toggleChip(this)">Porsche</span><span class="adv-chip" onclick="toggleChip(this)">Honda</span>
         </div>
       </div>
       <div>
@@ -435,13 +426,13 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
 </div>
 
 <!-- HERO -->
-<section class="hero" id="heroSection">
+<section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">// Ukraine GTA · Офіційний маркетплейс</p>
     <h1 class="hero-title">MARKET<span class="outline">PLACE</span> <span class="purple">UG</span></h1>
-    <p class="hero-desc">Купуй, продавай і обмінюй ігрові цінності в найбільшому маркетплейсі Ukraine GTA. Безпечно. Швидко. Своїм.</p>
+    <p class="hero-desc">Купуй, продавай ігрові цінності в найбільшому маркетплейсі Ukraine GTA. Безпечно. Швидко. Своїм.</p>
     <div class="hero-cta">
       <button class="btn btn-purple btn-lg" onclick="openAuth('register')">Почати зараз</button>
       <button class="btn btn-ghost btn-lg" onclick="document.getElementById('listingsSection').scrollIntoView({behavior:'smooth'})">Переглянути лоти</button>
@@ -484,7 +475,7 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
       <button class="mtab" id="tabR" onclick="switchAuth('register')">Реєстрація</button>
     </div>
     <div id="fLogin">
-      <div class="fgroup"><label class="flabel">Email</label><input class="finput" type="email" id="lEmail" placeholder="gamer@mail.com" autocomplete="username"/></div>
+      <div class="fgroup"><label class="flabel">Email</label><input class="finput" type="email" id="lEmail" placeholder="gamer@mail.com" autocomplete="email"/></div>
       <div class="fgroup"><label class="flabel">Пароль</label><input class="finput" type="password" id="lPass" placeholder="••••••••" autocomplete="current-password"/></div>
       <button class="btn-submit" onclick="doLogin()">Увійти</button>
       <div class="divider">або</div>
@@ -498,6 +489,7 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
         <div class="fgroup"><label class="flabel">Нікнейм (сайт) *</label><input class="finput" type="text" id="rNick" placeholder="CoolPlayer" autocomplete="off"/></div>
         <div class="fgroup"><label class="flabel">Нік в грі *</label><input class="finput" type="text" id="rGame" placeholder="GTA_Nick" autocomplete="off"/></div>
       </div>
+      <div class="fgroup"><label class="flabel">ID в грі *</label><input class="finput" type="text" id="rGameId" placeholder="Наприклад: 12345" autocomplete="off"/></div>
       <div class="fgroup"><label class="flabel">Email *</label><input class="finput" type="email" id="rEmail" placeholder="gamer@mail.com" autocomplete="off"/></div>
       <div class="fgroup"><label class="flabel">Пароль * (мін. 6 символів)</label><input class="finput" type="password" id="rPass" placeholder="••••••••" autocomplete="new-password"/></div>
       <div class="frow">
@@ -514,6 +506,23 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
   </div>
 </div>
 
+<!-- COMPLETE PROFILE MODAL (після Google входу) -->
+<div class="overlay" id="completeOverlay">
+  <div class="complete-modal">
+    <div class="mtitle">Заверши профіль</div>
+    <p class="msub">Ти увійшов через Google. Заповни ігрові дані</p>
+    <div class="info-box">💡 Ці дані будуть видні покупцям та продавцям у Pixджері</div>
+    <div class="fgroup"><label class="flabel">Нікнейм (сайт) *</label><input class="finput" type="text" id="cpNick" placeholder="CoolPlayer" autocomplete="off"/></div>
+    <div class="fgroup"><label class="flabel">Нік в грі *</label><input class="finput" type="text" id="cpGame" placeholder="GTA_Nick" autocomplete="off"/></div>
+    <div class="fgroup"><label class="flabel">ID в грі *</label><input class="finput" type="text" id="cpGameId" placeholder="Наприклад: 12345" autocomplete="off"/></div>
+    <div class="frow">
+      <div class="fgroup"><label class="flabel">Discord</label><input class="finput" type="text" id="cpDiscord" placeholder="user#0000" autocomplete="off"/></div>
+      <div class="fgroup"><label class="flabel">Telegram</label><input class="finput" type="text" id="cpTG" placeholder="@username" autocomplete="off"/></div>
+    </div>
+    <button class="btn-submit" onclick="saveCompleteProfile()">Зберегти та продовжити</button>
+  </div>
+</div>
+
 <!-- PRODUCT MODAL -->
 <div class="overlay" id="pdOverlay">
   <div class="modal" id="pdModal"></div>
@@ -525,17 +534,12 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
     <button class="mclose" onclick="closeAd()">×</button>
     <div class="mtitle">Подати оголошення</div>
     <p class="msub">Розміщення безкоштовне · Видно всім гравцям</p>
-    <div class="warn-box">⚠️ КАТЕГОРИЧНО ЗАБОРОНЕНО: Продаж VIP-валюти, донат-валюти та ігрової валюти. Порушення = бан назавжди.</div>
+    <div class="warn-box">⚠️ ЗАБОРОНЕНО: VIP-валюта, донат-валюта, ігрова валюта = бан назавжди.</div>
     <div class="frow">
-      <div class="fgroup">
-        <label class="flabel">Тип *</label>
-        <select class="finput" id="adType">
-          <option value="sell">Продаю</option>
-          <option value="buy">Купую</option>
-        </select>
+      <div class="fgroup"><label class="flabel">Тип *</label>
+        <select class="finput" id="adType"><option value="sell">Продаю</option><option value="buy">Купую</option></select>
       </div>
-      <div class="fgroup">
-        <label class="flabel">Категорія *</label>
+      <div class="fgroup"><label class="flabel">Категорія *</label>
         <select class="finput" id="adCat" onchange="updateSubCat()">
           <option value="">Обери...</option>
           <option value="авто">🚗 Авто</option>
@@ -551,49 +555,29 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
       <label class="flabel">Підкатегорія</label>
       <select class="finput" id="adSubCat"></select>
     </div>
-    <div class="fgroup">
-      <label class="flabel">Назва товару *</label>
-      <input class="finput" type="text" id="adTitle" placeholder="Наприклад: BMW M5 прокачаний" autocomplete="off"/>
-    </div>
-    <div class="fgroup">
-      <label class="flabel">Опис *</label>
-      <textarea class="finput" id="adDesc" rows="4" placeholder="Детально опиши товар: стан, характеристики, умови угоди..."></textarea>
-    </div>
+    <div class="fgroup"><label class="flabel">Назва *</label><input class="finput" type="text" id="adTitle" placeholder="Наприклад: BMW M5 прокачаний" autocomplete="off"/></div>
+    <div class="fgroup"><label class="flabel">Опис *</label><textarea class="finput" id="adDesc" rows="4" placeholder="Стан, характеристики, умови угоди..."></textarea></div>
     <div class="frow">
-      <div class="fgroup">
-        <label class="flabel">Ціна (грн) *</label>
-        <input class="finput" type="number" id="adPrice" placeholder="50000"/>
-      </div>
-      <div class="fgroup">
-        <label class="flabel">Стан</label>
-        <select class="finput" id="adCondition">
-          <option value="Новий">Новий</option>
-          <option value="Б/У">Б/У</option>
-          <option value="Прокачаний">Прокачаний</option>
-        </select>
+      <div class="fgroup"><label class="flabel">Ціна (грн) *</label><input class="finput" type="number" id="adPrice" placeholder="50000"/></div>
+      <div class="fgroup"><label class="flabel">Стан</label>
+        <select class="finput" id="adCondition"><option value="Новий">Новий</option><option value="Б/У">Б/У</option><option value="Прокачаний">Прокачаний</option></select>
       </div>
     </div>
     <div class="fgroup">
       <label class="flabel">Фото (до 5 штук)</label>
-      <div class="photo-upload-area">
-        <div class="photo-upload-btn" onclick="document.getElementById('photoFileInput').click()">
-          <span style="font-size:22px">📷</span>
-          <span>Натисни щоб вибрати фото</span>
-        </div>
-        <input type="file" id="photoFileInput" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(event)"/>
-        <div class="photo-preview-row" id="photoPreviewRow"></div>
+      <div class="photo-upload-btn" onclick="document.getElementById('photoInput').click()">
+        <span style="font-size:20px">📷</span><span>Натисни щоб вибрати фото</span>
       </div>
+      <input type="file" id="photoInput" accept="image/*" multiple style="display:none" onchange="handlePhotos(event)"/>
+      <div class="photo-preview-row" id="photoRow"></div>
     </div>
-    <button class="btn-submit" onclick="submitAd()">Опублікувати оголошення</button>
+    <button class="btn-submit" id="submitAdBtn" onclick="submitAd()">Опублікувати оголошення</button>
   </div>
 </div>
 
 <!-- PROFILE PANEL -->
 <div class="side-panel" id="profilePanel">
-  <div class="sp-head">
-    <div class="sp-title">ПРОФІЛЬ</div>
-    <button class="sp-close" onclick="closeProfile()">×</button>
-  </div>
+  <div class="sp-head"><div class="sp-title">ПРОФІЛЬ</div><button class="sp-close" onclick="closeProfile()">×</button></div>
   <div class="sp-body" id="profileBody"></div>
 </div>
 
@@ -604,7 +588,7 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
     <button class="msg-close" onclick="closeMsgPanel()">×</button>
   </div>
   <div class="msg-content" id="msgContent">
-    <div class="chat-empty"><div class="icon">💬</div><span style="font-size:13px;letter-spacing:1px">Увійди щоб побачити чати</span></div>
+    <div class="chat-empty"><div style="font-size:36px">💬</div><span style="font-size:13px;letter-spacing:1px;color:var(--grey)">Увійди щоб побачити чати</span></div>
   </div>
 </div>
 
@@ -617,10 +601,10 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
     <div class="check-list">
       <label class="check-item"><input type="checkbox" id="ban_ads" checked/> Заборонити виставляти оголошення</label>
       <label class="check-item"><input type="checkbox" id="ban_msg"/> Заборонити писати у Pixджер (мут)</label>
-      <label class="check-item"><input type="checkbox" id="ban_all"/> Повний бан (заблокувати всі дії)</label>
+      <label class="check-item"><input type="checkbox" id="ban_all"/> Повний бан (всі дії)</label>
     </div>
-    <div class="fgroup"><label class="flabel">Причина блокування</label><textarea class="finput" id="banReason" rows="3" placeholder="Наприклад: Шахрайство, фейкові оголошення..."></textarea></div>
-    <button class="btn-submit" style="background:var(--danger);box-shadow:none" onclick="applyBan()">Застосувати блокування</button>
+    <div class="fgroup"><label class="flabel">Причина</label><textarea class="finput" id="banReason" rows="3" placeholder="Шахрайство, фейкові оголошення..."></textarea></div>
+    <button class="btn-submit" style="background:var(--danger);box-shadow:none;margin-top:0" onclick="applyBan()">Застосувати блокування</button>
   </div>
 </div>
 
@@ -628,16 +612,15 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
 <div class="admin-panel" id="adminPanel">
   <div class="admin-head">
     <div class="admin-head-title">⚡ АДМІН ПАНЕЛЬ · MARKETPLACE UG</div>
-    <button class="btn btn-ghost btn-sm" onclick="closeAdmin()">← Закрити панель</button>
+    <button class="btn btn-ghost btn-sm" onclick="closeAdmin()">← Закрити</button>
   </div>
   <div class="admin-body">
     <div class="admin-sidebar">
       <button class="admin-nav-item active" onclick="adminNav(this,'stats')">📊 Статистика</button>
-      <button class="admin-nav-item" onclick="adminNav(this,'users')">👥 База користувачів</button>
+      <button class="admin-nav-item" onclick="adminNav(this,'users')">👥 Користувачі</button>
       <button class="admin-nav-item" onclick="adminNav(this,'listings')">📋 Оголошення</button>
     </div>
     <div class="admin-content">
-      <!-- STATS -->
       <div class="admin-section active" id="sec-stats">
         <div class="admin-title">СТАТИСТИКА</div>
         <div class="admin-stats">
@@ -646,13 +629,11 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
           <div class="astat"><div class="astat-num" style="color:var(--danger)" id="as-banned">—</div><div class="astat-lbl">Заблокованих</div></div>
         </div>
       </div>
-      <!-- USERS -->
       <div class="admin-section" id="sec-users">
         <div class="admin-title">БАЗА КОРИСТУВАЧІВ</div>
         <input class="search-admin" type="text" placeholder="Пошук по ніку або email..." oninput="filterAdminUsers(this.value)" autocomplete="off"/>
         <div id="userTableWrap"></div>
       </div>
-      <!-- LISTINGS -->
       <div class="admin-section" id="sec-listings">
         <div class="admin-title">ОГОЛОШЕННЯ</div>
         <div id="adminListingsWrap"></div>
@@ -666,12 +647,12 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
   <button class="ip-back" onclick="hidePage('categories')">← Назад</button>
   <h1 class="ip-title">КАТЕ<span>ГОРІЇ</span></h1>
   <div class="ip-grid">
-    <div class="ip-card" onclick="filterAndGo('авто')" style="cursor:pointer"><div class="icon">🚗</div><h3>Авто</h3><p>BMW, Mercedes, Lamborghini, Ferrari та сотні інших марок. Стокові та прокачані.</p></div>
-    <div class="ip-card" onclick="filterAndGo('зброя')" style="cursor:pointer"><div class="icon">⚔️</div><h3>Зброя</h3><p>Пістолети, автомати, снайперки, боєприпаси та спорядження для бою.</p></div>
-    <div class="ip-card" onclick="filterAndGo('нерухомість')" style="cursor:pointer"><div class="icon">🏠</div><h3>Нерухомість</h3><p>Квартири, будинки, гаражі та склади в різних районах міста.</p></div>
-    <div class="ip-card" onclick="filterAndGo('бізнес')" style="cursor:pointer"><div class="icon">💼</div><h3>Бізнес</h3><p>Автомийки, ресторани, магазини — стабільний пасивний дохід.</p></div>
-    <div class="ip-card" onclick="filterAndGo('одяг')" style="cursor:pointer"><div class="icon">👕</div><h3>Одяг / Аксесуари</h3><p>Скіни, одяг, годинники, ланцюги та будь-які аксесуари персонажа.</p></div>
-    <div class="ip-card" onclick="filterAndGo('інше')" style="cursor:pointer"><div class="icon">📦</div><h3>Інше</h3><p>Послуги, унікальні предмети — все що не потрапило в інші категорії.</p></div>
+    <div class="ip-card" onclick="filterAndGo('авто')" style="cursor:pointer"><div class="icon">🚗</div><h3>Авто</h3><p>BMW, Mercedes, Lamborghini, Ferrari та сотні інших. Стокові та прокачані.</p></div>
+    <div class="ip-card" onclick="filterAndGo('зброя')" style="cursor:pointer"><div class="icon">⚔️</div><h3>Зброя</h3><p>Пістолети, автомати, снайперки, боєприпаси.</p></div>
+    <div class="ip-card" onclick="filterAndGo('нерухомість')" style="cursor:pointer"><div class="icon">🏠</div><h3>Нерухомість</h3><p>Квартири, будинки, гаражі в різних районах.</p></div>
+    <div class="ip-card" onclick="filterAndGo('бізнес')" style="cursor:pointer"><div class="icon">💼</div><h3>Бізнес</h3><p>Автомийки, ресторани — стабільний дохід.</p></div>
+    <div class="ip-card" onclick="filterAndGo('одяг')" style="cursor:pointer"><div class="icon">👕</div><h3>Одяг / Аксесуари</h3><p>Скіни, одяг, годинники, ланцюги.</p></div>
+    <div class="ip-card" onclick="filterAndGo('інше')" style="cursor:pointer"><div class="icon">📦</div><h3>Інше</h3><p>Послуги та унікальні предмети.</p></div>
   </div>
 </div>
 <div class="info-page" id="page-about">
@@ -679,32 +660,20 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
   <h1 class="ip-title">ПРО <span>НАС</span></h1>
   <div class="ip-grid">
     <div class="ip-card"><div class="icon">🎮</div><h3>Хто ми</h3><p>Marketplace UG — офіційний майданчик Ukraine GTA для торгівлі між гравцями.</p></div>
-    <div class="ip-card"><div class="icon">🛡️</div><h3>Безпека</h3><p>Угоди через Pixджер. Журнал транзакцій та система захисту від шахраїв.</p></div>
-    <div class="ip-card"><div class="icon">💬</div><h3>Pixджер</h3><p>Власний вбудований месенджер для комунікації між покупцями і продавцями.</p></div>
-    <div class="ip-card"><div class="icon">💜</div><h3>Pixle Web Studio</h3><p>Сайт розроблений Pixle Web Studio — командою веб-рішень для ігрових проектів.</p></div>
+    <div class="ip-card"><div class="icon">💬</div><h3>Pixджер</h3><p>Власний месенджер для безпечної комунікації між покупцями і продавцями.</p></div>
+    <div class="ip-card"><div class="icon">💜</div><h3>Pixle Web Studio</h3><p>Сайт розроблений Pixle Web Studio — веб-рішення для ігрових проектів.</p></div>
   </div>
 </div>
 <div class="info-page" id="page-support">
   <button class="ip-back" onclick="hidePage('support')">← Назад</button>
   <h1 class="ip-title">ТЕХ<span>ПІДТРИМКА</span></h1>
-  <div class="ip-grid" style="margin-bottom:32px">
-    <div class="ip-card"><div class="icon">💬</div><h3>Discord</h3><p>Написати в Discord сервер Ukraine GTA. Відповідаємо впродовж 30 хвилин.</p></div>
-    <div class="ip-card"><div class="icon">⚡</div><h3>Pixджер</h3><p>Якщо ти в системі — напиши через Pixджер напряму адміністратору.</p></div>
-  </div>
-  <div style="max-width:520px">
+  <div style="max-width:520px;margin-top:10px">
     <div class="fgroup"><label class="flabel">Нік в грі</label><input class="finput" type="text" id="supGame" placeholder="Підтягується з акаунту..." autocomplete="off"/></div>
     <div class="fgroup"><label class="flabel">Discord</label><input class="finput" type="text" id="supDiscord" placeholder="Підтягується з акаунту..." autocomplete="off"/></div>
     <div class="fgroup"><label class="flabel">Тема</label>
-      <select class="finput" style="background:#0c0c0c">
-        <option value="">Обери тему...</option>
-        <option>Проблема з акаунтом</option>
-        <option>Скарга на продавця</option>
-        <option>Технічна помилка</option>
-        <option>Питання щодо угоди</option>
-        <option>Інше</option>
-      </select>
+      <select class="finput" style="background:#0c0c0c"><option value="">Обери...</option><option>Проблема з акаунтом</option><option>Скарга на продавця</option><option>Технічна помилка</option><option>Питання щодо угоди</option><option>Інше</option></select>
     </div>
-    <div class="fgroup"><label class="flabel">Опис</label><textarea class="finput" rows="5" placeholder="Детально опиши ситуацію..."></textarea></div>
+    <div class="fgroup"><label class="flabel">Опис</label><textarea class="finput" rows="4" placeholder="Детально опиши ситуацію..."></textarea></div>
     <button class="btn-submit" onclick="showToast('Заявку відправлено! 👌','ok')">Відправити заявку</button>
   </div>
 </div>
@@ -713,26 +682,25 @@ footer{padding:30px 32px;border-top:1px solid var(--border);display:flex;justify
   <h1 class="ip-title">ПРА<span>ВИЛА</span></h1>
   <ul class="rules-list">
     <li><span>01</span><span>Шахрайство — постійний бан без попереджень.</span></li>
-    <li><span>02</span><span>Вся комунікація між покупцем і продавцем тільки через Pixджер.</span></li>
-    <li><span>03</span><span>Ціна в оголошенні має бути реальною. Зміна ціни після запиту — заборонена.</span></li>
-    <li><span>04</span><span>Фейкові або неіснуючі товари — бан без попередження.</span></li>
-    <li><span>05</span><span><strong style="color:var(--danger)">КАТЕГОРИЧНО ЗАБОРОНЕНО</strong>: VIP-валюта, донат-валюта та ігрова валюта.</span></li>
-    <li><span>06</span><span>Один гравець = один акаунт. Мультиакаунти блокуються.</span></li>
-    <li><span>07</span><span>Суперечки вирішуються через підтримку. Самосуд заборонений.</span></li>
-    <li><span>08</span><span>Платформа не відповідає за угоди поза межами маркетплейсу.</span></li>
+    <li><span>02</span><span>Вся комунікація тільки через Pixджер.</span></li>
+    <li><span>03</span><span>Ціна в оголошенні має бути реальною. Зміна після запиту — заборонена.</span></li>
+    <li><span>04</span><span>Фейкові товари — бан без попередження.</span></li>
+    <li><span>05</span><span><strong style="color:var(--danger)">ЗАБОРОНЕНО</strong>: VIP-валюта, донат-валюта, ігрова валюта.</span></li>
+    <li><span>06</span><span>Один гравець = один акаунт.</span></li>
+    <li><span>07</span><span>Суперечки — тільки через підтримку.</span></li>
+    <li><span>08</span><span>Платформа не відповідає за угоди поза маркетплейсом.</span></li>
   </ul>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE + LOGIC -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
   signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, collection, addDoc, query,
-  where, getDocs, orderBy, serverTimestamp, updateDoc, deleteDoc
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc,
+  query, where, getDocs, orderBy, serverTimestamp, updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -749,8 +717,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const gProvider = new GoogleAuthProvider();
-
-// Google auth — add domain to authorized domains in Firebase Console
 gProvider.setCustomParameters({ prompt: 'select_account' });
 
 let currentUser = null;
@@ -759,66 +725,97 @@ let allUsersCache = [];
 let allListingsCache = [];
 
 window._db = db;
-window._auth = auth;
+window._collection = collection;
+window._query = query;
+window._where = where;
+window._getDocs = getDocs;
+window._orderBy = orderBy;
+window._serverTimestamp = serverTimestamp;
+window._addDoc = addDoc;
+window._setDoc = setDoc;
+window._doc = doc;
 
 async function saveUser(uid, data) {
   await setDoc(doc(db,"users",uid), {...data, updatedAt: serverTimestamp()}, {merge:true});
 }
-async function loadUserData(uid) {
-  const snap = await getDoc(doc(db,"users",uid));
-  return snap.exists() ? snap.data() : null;
+async function loadUser(uid) {
+  const s = await getDoc(doc(db,"users",uid));
+  return s.exists() ? s.data() : null;
 }
 
 onAuthStateChanged(auth, async user => {
   currentUser = user;
   if (user) {
-    currentUserData = await loadUserData(user.uid);
-    updateNavLoggedIn(user, currentUserData);
-    fillSupportForm(currentUserData);
+    currentUserData = await loadUser(user.uid);
+    // Якщо зайшов через Google і немає ігрових даних — показати форму
+    if (!currentUserData?.game) {
+      document.getElementById('completeOverlay').classList.add('open');
+      if (currentUserData?.nick) document.getElementById('cpNick').value = currentUserData.nick;
+    }
+    updateNavUser(user, currentUserData);
+    fillSupport(currentUserData);
     closeAuth();
-    loadFirebaseListings();
+    loadListings();
   } else {
     currentUser = null; currentUserData = null;
     document.getElementById('navActions').innerHTML = `
       <button class="btn btn-ghost btn-sm" onclick="openAuth('login')">Увійти</button>
       <button class="btn btn-purple btn-sm" onclick="openAuth('register')">Реєстрація</button>`;
-    loadFirebaseListings();
+    loadListings();
   }
 });
 
-function updateNavLoggedIn(user, data) {
-  const init = (user.displayName||user.email||'?')[0].toUpperCase();
-  const name = user.displayName||user.email.split('@')[0];
+function updateNavUser(user, data) {
+  // Показуємо НІК В ГРІ якщо є, інакше нік з акаунту
+  const displayName = data?.game || data?.nick || user.displayName || user.email.split('@')[0];
+  const init = displayName[0].toUpperCase();
   const isAdmin = data?.role === 'admin';
   document.getElementById('navActions').innerHTML = `
     <div class="user-area">
-      ${isAdmin ? `<button class="admin-badge" onclick="openAdmin()">⚡ ADMIN</button>` : ''}
+      ${isAdmin?`<button class="admin-badge" onclick="openAdmin()">⚡ ADMIN</button>`:''}
       <div class="avatar-btn" onclick="openProfile()">${init}</div>
-      <button class="user-name-btn" onclick="openProfile()">${name}</button>
+      <button class="user-name-btn" onclick="openProfile()">${displayName}</button>
       <button class="logout-btn" onclick="doLogout()">Вийти</button>
     </div>`;
 }
 
-function fillSupportForm(data) {
+function fillSupport(data) {
   const g=document.getElementById('supGame'), d=document.getElementById('supDiscord');
-  if(g && data?.game) g.value=data.game;
-  if(d && data?.discord) d.value=data.discord;
+  if(g&&data?.game) g.value=data.game;
+  if(d&&data?.discord) d.value=data.discord;
 }
+
+// COMPLETE PROFILE (після Google)
+window.saveCompleteProfile = async () => {
+  const nick = document.getElementById('cpNick').value.trim();
+  const game = document.getElementById('cpGame').value.trim();
+  const gameId = document.getElementById('cpGameId').value.trim();
+  const discord = document.getElementById('cpDiscord').value.trim();
+  const tg = document.getElementById('cpTG').value.trim();
+  if(!nick||!game||!gameId) return showToast('Заповни нік і ID в грі','err');
+  await saveUser(currentUser.uid, {nick, game, gameId, discord, telegram:tg, role: currentUserData?.role||'user', ads:currentUserData?.ads||0, banned:false, banSettings:{}});
+  currentUserData = await loadUser(currentUser.uid);
+  document.getElementById('completeOverlay').classList.remove('open');
+  updateNavUser(currentUser, currentUserData);
+  fillSupport(currentUserData);
+  showToast(`Профіль заповнено, ${game}! 🎮`,'ok');
+};
 
 window.doRegister = async () => {
   const nick=document.getElementById('rNick').value.trim();
   const game=document.getElementById('rGame').value.trim();
+  const gameId=document.getElementById('rGameId').value.trim();
   const email=document.getElementById('rEmail').value.trim();
   const pass=document.getElementById('rPass').value;
   const discord=document.getElementById('rDiscord').value.trim();
   const tg=document.getElementById('rTG').value.trim();
-  if(!nick||!game||!email||!pass) return showToast("Заповни всі обов'язкові поля",'err');
+  if(!nick||!game||!gameId||!email||!pass) return showToast('Заповни всі обов\'язкові поля','err');
   try {
     const c = await createUserWithEmailAndPassword(auth,email,pass);
     await updateProfile(c.user,{displayName:nick});
-    await saveUser(c.user.uid,{nick,game,email,discord,telegram:tg,role:'user',ads:0,banned:false,banSettings:{}});
-    showToast(`Ласкаво просимо, ${nick}! 🎮`,'ok');
-  } catch(e){ showToast(firebaseErrMsg(e.code),'err'); }
+    await saveUser(c.user.uid,{nick,game,gameId,email,discord,telegram:tg,role:'user',ads:0,banned:false,banSettings:{}});
+    showToast(`Ласкаво просимо, ${game}! 🎮`,'ok');
+  } catch(e){ showToast(fbErr(e.code),'err'); }
 };
 
 window.doLogin = async () => {
@@ -834,47 +831,44 @@ window.doGoogle = async () => {
   try {
     const r = await signInWithPopup(auth,gProvider);
     const snap = await getDoc(doc(db,"users",r.user.uid));
-    if(!snap.exists()) await saveUser(r.user.uid,{nick:r.user.displayName,game:'',email:r.user.email,discord:'',telegram:'',role:'user',ads:0,banned:false,banSettings:{}});
-    showToast(`З поверненням, ${r.user.displayName}! 🎮`,'ok');
-  } catch(e){ showToast(firebaseErrMsg(e.code),'err'); }
+    // Новий Google юзер — створюємо базовий запис, потім просимо заповнити
+    if(!snap.exists()) {
+      await saveUser(r.user.uid,{nick:r.user.displayName||'',game:'',gameId:'',email:r.user.email,discord:'',telegram:'',role:'user',ads:0,banned:false,banSettings:{}});
+    }
+    showToast('Вхід через Google успішний!','ok');
+  } catch(e){ showToast(fbErr(e.code),'err'); }
 };
 
 window.doLogout = async () => { await signOut(auth); showToast('Ти вийшов з акаунту'); };
 
-function firebaseErrMsg(code) {
-  const msgs = {
-    'auth/email-already-in-use':'Email вже використовується',
-    'auth/weak-password':'Пароль занадто слабкий (мін. 6 символів)',
-    'auth/invalid-email':'Невірний формат email',
-    'auth/unauthorized-domain':'Домен не авторизований. Додай домен у Firebase Console → Authentication → Settings → Authorized domains',
-    'auth/popup-closed-by-user':'Вікно входу було закрито',
-    'auth/cancelled-popup-request':'Запит скасовано',
-  };
-  return msgs[code] || 'Помилка. Спробуй ще раз.';
+function fbErr(code) {
+  const m={'auth/email-already-in-use':'Email вже використовується','auth/weak-password':'Пароль занадто слабкий','auth/invalid-email':'Невірний email','auth/unauthorized-domain':'Додай домен у Firebase → Auth → Authorized domains','auth/popup-closed-by-user':'Вікно закрито','auth/cancelled-popup-request':'Запит скасовано'};
+  return m[code]||'Помилка. Спробуй ще раз.';
 }
 
 // PROFILE
 window.openProfile = () => {
   if(!currentUser) return openAuth('login');
-  const data = currentUserData||{};
-  const init = (currentUser.displayName||currentUser.email||'?')[0].toUpperCase();
-  const name = currentUser.displayName||currentUser.email.split('@')[0];
+  const data=currentUserData||{};
+  const displayName = data.game || data.nick || currentUser.displayName || '';
+  const init = displayName[0]?.toUpperCase()||'?';
   document.getElementById('profileBody').innerHTML = `
     <div class="sp-avatar">${init}</div>
-    <div class="sp-name">${name}</div>
-    <div class="sp-meta">${data.email||currentUser.email||''} · ${data.role==='admin'?'<span style="color:var(--warn)">ADMIN</span>':'Користувач'}</div>
+    <div class="sp-name">${displayName}</div>
+    <div class="sp-meta">${data.email||currentUser.email||''} · ${data.role==='admin'?'<span style="color:var(--warn)">ADMIN</span>':'Гравець'}</div>
     <div class="sp-stat-row">
       <div class="sp-stat"><div class="sp-stat-num">${data.ads||0}</div><div class="sp-stat-lbl">Оголошень</div></div>
     </div>
     <div class="sp-sec">Ігрові дані</div>
     <div class="fgroup"><label class="flabel">Нік в грі</label><input class="finput" id="editGame" value="${data.game||''}"/></div>
+    <div class="fgroup"><label class="flabel">ID в грі</label><input class="finput" id="editGameId" value="${data.gameId||''}"/></div>
     <div class="fgroup"><label class="flabel">Discord</label><input class="finput" id="editDiscord" value="${data.discord||''}"/></div>
     <div class="fgroup"><label class="flabel">Telegram</label><input class="finput" id="editTG" value="${data.telegram||''}"/></div>
-    <button class="btn-submit" style="margin-bottom:16px" onclick="saveProfile()">Зберегти зміни</button>
+    <button class="btn-submit" style="margin-bottom:14px" onclick="saveProfile()">Зберегти зміни</button>
     <div class="sp-divider"></div>
     <div class="sp-sec">Дії</div>
     <button class="sp-btn purple" onclick="closeProfile();openAd()"><span>📢</span> Подати оголошення</button>
-    <button class="sp-btn" onclick="openMsgFromProfile()"><span>💬</span> Pixджер</button>
+    <button class="sp-btn" onclick="closeProfile();openMsgPanel()"><span>💬</span> Pixджер</button>
     ${data.role==='admin'?`<button class="sp-btn" style="border-color:var(--warn);color:var(--warn)" onclick="closeProfile();openAdmin()"><span>⚡</span> Адмін панель</button>`:''}
     <div class="sp-divider"></div>
     <button class="sp-btn" style="border-color:var(--danger);color:var(--danger)" onclick="doLogout();closeProfile()"><span>🚪</span> Вийти</button>`;
@@ -884,48 +878,47 @@ window.closeProfile = () => document.getElementById('profilePanel').classList.re
 window.saveProfile = async () => {
   if(!currentUser) return;
   const game=document.getElementById('editGame').value.trim();
+  const gameId=document.getElementById('editGameId').value.trim();
   const discord=document.getElementById('editDiscord').value.trim();
   const tg=document.getElementById('editTG').value.trim();
-  await saveUser(currentUser.uid,{game,discord,telegram:tg});
-  currentUserData={...currentUserData,game,discord,telegram:tg};
-  fillSupportForm(currentUserData);
+  await saveUser(currentUser.uid,{game,gameId,discord,telegram:tg});
+  currentUserData={...currentUserData,game,gameId,discord,telegram:tg};
+  updateNavUser(currentUser,currentUserData);
+  fillSupport(currentUserData);
   showToast('Профіль оновлено ✅','ok');
 };
 
-// SUBMIT AD
+// SUBMIT AD — фото зберігаємо як base64 (без Storage, щоб не потребував білінгу)
 let adPhotos = [];
 window.openAd = () => {
   if(!currentUser) return openAuth('login');
-  const banSettings = currentUserData?.banSettings||{};
-  if(currentUserData?.banned || banSettings.ban_ads) return showToast('Тобі заборонено подавати оголошення','err');
-  adPhotos = [];
-  document.getElementById('photoPreviewRow').innerHTML = '';
+  const bs=currentUserData?.banSettings||{};
+  if(currentUserData?.banned||bs.ban_ads||bs.ban_all) return showToast('Тобі заборонено подавати оголошення','err');
+  adPhotos=[];
+  document.getElementById('photoRow').innerHTML='';
   document.getElementById('adOverlay').classList.add('open');
 };
 window.closeAd = () => document.getElementById('adOverlay').classList.remove('open');
-window.handlePhotoUpload = (e) => {
-  const files = Array.from(e.target.files);
-  const remaining = 5 - adPhotos.length;
-  const toAdd = files.slice(0,remaining);
-  toAdd.forEach(file => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      adPhotos.push(ev.target.result);
-      renderPhotoPreview();
-    };
-    reader.readAsDataURL(file);
+
+window.handlePhotos = (e) => {
+  const files=Array.from(e.target.files);
+  const rem=5-adPhotos.length;
+  files.slice(0,rem).forEach(f=>{
+    const r=new FileReader();
+    r.onload=ev=>{adPhotos.push(ev.target.result);renderPhotoPreview();};
+    r.readAsDataURL(f);
   });
-  if(files.length > remaining) showToast(`Максимум 5 фото`,'err');
+  if(files.length>rem) showToast('Максимум 5 фото','err');
   e.target.value='';
 };
 function renderPhotoPreview(){
-  document.getElementById('photoPreviewRow').innerHTML = adPhotos.map((src,i)=>`
+  document.getElementById('photoRow').innerHTML=adPhotos.map((s,i)=>`
     <div class="photo-thumb-wrap">
-      <img class="photo-thumb" src="${src}"/>
-      <button class="photo-thumb-del" onclick="removePhoto(${i})">×</button>
+      <img class="photo-thumb" src="${s}"/>
+      <button class="photo-del" onclick="removePhoto(${i})">×</button>
     </div>`).join('');
 }
-window.removePhoto = (i) => { adPhotos.splice(i,1); renderPhotoPreview(); };
+window.removePhoto=i=>{adPhotos.splice(i,1);renderPhotoPreview();};
 
 window.submitAd = async () => {
   if(!currentUser) return openAuth('login');
@@ -935,281 +928,222 @@ window.submitAd = async () => {
   const desc=document.getElementById('adDesc').value.trim();
   const price=document.getElementById('adPrice').value;
   const condition=document.getElementById('adCondition').value;
-  if(!cat||!title||!desc||!price) return showToast('Заповни всі обов\'язкові поля','err');
+  if(!cat||!title||!desc||!price) return showToast('Заповни всі поля','err');
+
+  const btn=document.getElementById('submitAdBtn');
+  btn.textContent='Публікуємо...'; btn.disabled=true;
+
   try {
+    // Стискаємо фото щоб вміщались в Firestore (< 1MB на документ)
+    const compressedPhotos = await Promise.all(adPhotos.map(src=>compressImg(src,600,0.7)));
     await addDoc(collection(db,'listings'),{
-      uid:currentUser.uid, seller:currentUser.displayName||currentUser.email.split('@')[0],
-      discord:currentUserData?.discord||'', type, cat, title, desc,
-      price:parseInt(price), condition, photos:adPhotos,
-      createdAt:serverTimestamp(), active:true
+      uid:currentUser.uid,
+      seller: currentUserData?.game || currentUserData?.nick || currentUser.displayName || 'Unknown',
+      discord:currentUserData?.discord||'',
+      type,cat,title,desc,
+      price:parseInt(price),condition,
+      photos:compressedPhotos,
+      createdAt:serverTimestamp(),active:true
     });
     await saveUser(currentUser.uid,{ads:(currentUserData?.ads||0)+1});
-    closeAd(); showToast('Оголошення опубліковано! 🎉','ok');
-    loadFirebaseListings();
-  } catch(e){ showToast(e.message,'err'); }
+    currentUserData={...currentUserData,ads:(currentUserData?.ads||0)+1};
+    closeAd();
+    showToast('Оголошення опубліковано! 🎉','ok');
+    loadListings();
+  } catch(e){
+    showToast('Помилка: '+e.message,'err');
+  } finally {
+    btn.textContent='Опублікувати оголошення'; btn.disabled=false;
+  }
 };
-window.updateSubCat = () => {
-  const cat=document.getElementById('adCat').value, grp=document.getElementById('subCatGroup'), sel=document.getElementById('adSubCat');
+
+// Стиснення фото через canvas
+function compressImg(src,maxW,quality){
+  return new Promise(res=>{
+    const img=new Image();
+    img.onload=()=>{
+      const scale=Math.min(1,maxW/img.width);
+      const w=img.width*scale, h=img.height*scale;
+      const c=document.createElement('canvas');
+      c.width=w;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      res(c.toDataURL('image/jpeg',quality));
+    };
+    img.src=src;
+  });
+}
+
+window.updateSubCat=()=>{
+  const cat=document.getElementById('adCat').value,grp=document.getElementById('subCatGroup'),sel=document.getElementById('adSubCat');
   const subs={'авто':['Легкові','Позашляховики','Суперкари','Мото','Гелікоптери','Яхти'],'зброя':['Пістолети','Автомати','Снайперки','Дробовики','Важка зброя','Боєприпаси'],'нерухомість':['Квартири','Будинки','Гаражі','Комерційна'],'бізнес':['Їжа та напої','Автосервіс','Торгівля','Розваги'],'одяг':['Верхній одяг','Взуття','Головні убори','Аксесуари','Повні скіни'],'інше':['Послуги','Унікальні предмети','Інформація']};
   if(subs[cat]){grp.style.display='block';sel.innerHTML=subs[cat].map(s=>`<option>${s}</option>`).join('');}
   else grp.style.display='none';
 };
 
-// LOAD LISTINGS
-window.loadFirebaseListings = async () => {
+// LOAD LISTINGS — тільки реальні з Firebase (БЕЗ демо!)
+window.loadListings = async () => {
   try {
-    const q = query(collection(db,'listings'),where('active','==',true));
-    const snap = await getDocs(q);
-    allListingsCache = snap.docs.map(d=>({id:d.id,...d.data()}));
-    window.FIREBASE_LISTINGS = allListingsCache;
-  } catch(e){ window.FIREBASE_LISTINGS=[]; }
+    const q=query(collection(db,'listings'),where('active','==',true));
+    const snap=await getDocs(q);
+    allListingsCache=snap.docs.map(d=>({id:d.id,...d.data()}));
+    window.FB_LISTINGS=allListingsCache;
+  } catch(e){
+    window.FB_LISTINGS=[];
+  }
   renderListings();
 };
 
 // PIXДЖЕР
-let chatsCache = [];
-window.openMsgFromProfile = () => { closeProfile(); openMsgPanel(); };
 window.openMsgPanel = () => {
-  if(!currentUser){ showToast('Спочатку увійди','err'); return; }
+  if(!currentUser){showToast('Спочатку увійди','err');return;}
   document.getElementById('msgPanel').classList.add('open');
-  renderChatListView();
+  showChatList();
 };
-window.closeMsgPanel = () => {
-  document.getElementById('msgPanel').classList.remove('open');
-};
+window.closeMsgPanel = () => document.getElementById('msgPanel').classList.remove('open');
 
-window.openChatWith = async (targetUid, targetName) => {
-  closeMsgPanel();
-  // Generate chatId
-  const ids = [currentUser.uid, targetUid].sort();
-  const chatId = ids.join('_');
-  document.getElementById('msgPanel').classList.add('open');
-  renderChatView(chatId, targetName);
-};
-
-function renderChatListView() {
-  const content = document.getElementById('msgContent');
-  if(!currentUser){ content.innerHTML=`<div class="chat-empty"><div class="icon">💬</div><span>Увійди щоб побачити чати</span></div>`; return; }
-  content.innerHTML = `<div class="chat-list-view"><div style="padding:16px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);font-family:'Share Tech Mono',monospace">Твої чати</div>
-    ${chatsCache.length===0?`<div style="padding:24px 20px;font-size:13px;color:var(--grey)">Поки немає чатів. Напиши продавцю через оголошення.</div>`:
-    chatsCache.map(c=>`
-      <div class="chat-item" onclick="renderChatView('${c.id}','${c.name}')">
-        <div class="chat-av">${c.name[0]}</div>
-        <div class="chat-info"><div class="chat-name">${c.name}</div><div class="chat-preview">${c.last||'...'}</div></div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px">
-          <div class="chat-time">${c.time||''}</div>
-          ${c.unread>0?`<div class="chat-unread">${c.unread}</div>`:''}
-        </div>
-      </div>`).join('')}
+function showChatList(){
+  const content=document.getElementById('msgContent');
+  content.innerHTML=`<div class="chat-list-view">
+    <div style="padding:12px 20px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--grey);font-family:'Share Tech Mono',monospace;border-bottom:1px solid var(--border)">Твої чати</div>
+    <div style="padding:24px 20px;font-size:13px;color:var(--grey)">Напиши продавцю через оголошення щоб розпочати чат</div>
   </div>`;
 }
 
-window.renderChatView = async (chatId, targetName) => {
-  const content = document.getElementById('msgContent');
-  // Load messages from Firestore
-  let messages = [];
+window.startChatWith = (sellerUid, sellerName, adTitle) => {
+  if(!currentUser){openAuth('login');return;}
+  const bs=currentUserData?.banSettings||{};
+  if(currentUserData?.banned||bs.ban_msg||bs.ban_all) return showToast('Тобі заборонено писати у Pixджер','err');
+  const chatId=[currentUser.uid,sellerUid].sort().join('_');
+  document.getElementById('msgPanel').classList.add('open');
+  openChatView(chatId, sellerName, adTitle);
+};
+
+window.openChatView = async (chatId, targetName, adTitle) => {
+  const content=document.getElementById('msgContent');
+  let messages=[];
   try {
-    const q = query(collection(db,`chats/${chatId}/messages`), orderBy('ts'));
-    const snap = await getDocs(q);
-    messages = snap.docs.map(d=>d.data());
+    const q=query(collection(db,`chats/${chatId}/messages`),orderBy('ts'));
+    const snap=await getDocs(q);
+    messages=snap.docs.map(d=>d.data());
   } catch(e){}
 
-  content.innerHTML = `<div class="chat-view">
+  content.innerHTML=`<div class="chat-view">
     <div class="chat-view-head">
-      <button class="chat-back-btn" onclick="renderChatListView()">←</button>
+      <button class="chat-back-btn" onclick="showChatList()">←</button>
       <div class="chat-av" style="width:28px;height:28px;font-size:12px">${targetName[0]}</div>
-      <div class="chat-view-name">${targetName}</div>
+      <div>
+        <div class="chat-view-name">${targetName}</div>
+        ${adTitle?`<div style="font-size:10px;color:var(--grey);letter-spacing:.5px">${adTitle}</div>`:''}
+      </div>
     </div>
     <div class="chat-messages" id="chatMsgs">
-      ${messages.length===0?`<div style="text-align:center;color:var(--grey);font-size:12px;margin-top:20px">Почни розмову 👋</div>`:''}
-      ${messages.map(m=>`<div class="msg-bbl ${m.uid===currentUser.uid?'out':'in'}">${m.text}<div class="mt">${m.uid===currentUser.uid?'Ти':targetName} · ${m.ts?.toDate?m.ts.toDate().toLocaleTimeString('uk',{hour:'2-digit',minute:'2-digit'}):''}</div></div>`).join('')}
+      ${messages.length===0?`<div style="text-align:center;color:var(--grey);font-size:12px;padding:20px">Початок розмови · ${adTitle||''}</div>`:''}
+      ${messages.map(m=>`<div class="msg-bbl ${m.uid===currentUser.uid?'out':'in'}">${m.text}
+        <div class="mt">${m.uid===currentUser.uid?'Ти':targetName} · ${m.ts?.toDate?m.ts.toDate().toLocaleTimeString('uk',{hour:'2-digit',minute:'2-digit'}):''}</div>
+      </div>`).join('')}
     </div>
     <div class="chat-input-row">
-      <input class="chat-input" id="chatInput${chatId}" placeholder="Написати повідомлення..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMsg('${chatId}','${targetName}')"/>
-      <button class="chat-send" onclick="sendMsg('${chatId}','${targetName}')">➤</button>
+      <input class="chat-input" id="ci_${chatId}" placeholder="Написати..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMsg('${chatId}','${targetName}','${(adTitle||'').replace(/'/g,'')}')"/>
+      <button class="chat-send" onclick="sendMsg('${chatId}','${targetName}','${(adTitle||'').replace(/'/g,'')}')">➤</button>
     </div>
   </div>`;
-  const msgs = document.getElementById('chatMsgs');
-  if(msgs) msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(()=>{const m=document.getElementById('chatMsgs');if(m)m.scrollTop=m.scrollHeight;},50);
 };
 
-window.sendMsg = async (chatId, targetName) => {
-  const banSettings = currentUserData?.banSettings||{};
-  if(currentUserData?.banned || banSettings.ban_msg) return showToast('Тобі заборонено писати в Pixджер','err');
-  const input = document.getElementById(`chatInput${chatId}`);
+window.sendMsg = async (chatId, targetName, adTitle) => {
+  const bs=currentUserData?.banSettings||{};
+  if(currentUserData?.banned||bs.ban_msg||bs.ban_all) return showToast('Тобі заборонено писати у Pixджер','err');
+  const input=document.getElementById(`ci_${chatId}`);
   if(!input) return;
-  const text = input.value.trim();
+  const text=input.value.trim();
   if(!text) return;
   try {
-    await addDoc(collection(db,`chats/${chatId}/messages`),{uid:currentUser.uid,text,ts:serverTimestamp()});
+    await addDoc(collection(db,`chats/${chatId}/messages`),{uid:currentUser.uid,sender:currentUserData?.game||currentUser.displayName||'?',text,ts:serverTimestamp()});
     await setDoc(doc(db,`chats/${chatId}`),{participants:[currentUser.uid],lastMsg:text,updatedAt:serverTimestamp()},{merge:true});
     input.value='';
-    renderChatView(chatId, targetName);
-  } catch(e){ showToast('Помилка надсилання','err'); }
+    openChatView(chatId,targetName,adTitle);
+  } catch(e){showToast('Помилка надсилання','err');}
 };
 
-// ADMIN PANEL
+// ADMIN
 window.openAdmin = async () => {
-  if(currentUserData?.role !== 'admin') return showToast('Немає доступу','err');
+  if(currentUserData?.role!=='admin') return showToast('Немає доступу','err');
   document.getElementById('adminPanel').classList.add('open');
   await loadAdminData();
 };
 window.closeAdmin = () => document.getElementById('adminPanel').classList.remove('open');
-
-async function loadAdminData() {
+async function loadAdminData(){
   try {
-    const usersSnap = await getDocs(collection(db,'users'));
-    allUsersCache = usersSnap.docs.map(d=>({uid:d.id,...d.data()}));
-    const bannedCount = allUsersCache.filter(u=>u.banned||u.banSettings?.ban_all).length;
-    document.getElementById('as-users').textContent = allUsersCache.length;
-    document.getElementById('as-ads').textContent = allListingsCache.length;
-    document.getElementById('as-banned').textContent = bannedCount;
+    const us=await getDocs(collection(db,'users'));
+    allUsersCache=us.docs.map(d=>({uid:d.id,...d.data()}));
+    document.getElementById('as-users').textContent=allUsersCache.length;
+    document.getElementById('as-ads').textContent=allListingsCache.length;
+    document.getElementById('as-banned').textContent=allUsersCache.filter(u=>u.banned||u.banSettings?.ban_all).length;
     renderUserTable(allUsersCache);
     renderAdminListings();
-  } catch(e){ showToast('Помилка завантаження даних','err'); }
+  } catch(e){showToast('Помилка завантаження','err');}
 }
-
-function renderUserTable(users) {
-  const wrap = document.getElementById('userTableWrap');
-  if(!users.length){ wrap.innerHTML='<div style="color:var(--grey);padding:20px">Немає користувачів</div>'; return; }
-  wrap.innerHTML = `<table class="user-table">
-    <thead><tr><th>Нік</th><th>Нік в грі</th><th>Email</th><th>Discord</th><th>Роль</th><th>Оголошень</th><th>Дії</th></tr></thead>
-    <tbody>${users.map(u=>{
-      const isBanned = u.banned||u.banSettings?.ban_all;
-      return `<tr>
-        <td><strong>${u.nick||'—'}</strong></td>
-        <td>${u.game||'—'}</td>
-        <td style="font-size:11px;color:var(--grey)">${u.email||'—'}</td>
-        <td style="font-size:11px;color:var(--grey)">${u.discord||'—'}</td>
-        <td><span class="role-badge ${u.role==='admin'?'role-admin':isBanned?'role-banned':'role-user'}">${u.role==='admin'?'ADMIN':isBanned?'БАН':'USER'}</span></td>
-        <td style="text-align:center">${u.ads||0}</td>
-        <td><div class="table-actions">
-          <button class="ta-btn red" onclick="openBan('${u.uid}','${(u.nick||u.email||'').replace(/'/g,'')}')" ${u.role==='admin'?'disabled':''}>Блокувати</button>
-          ${isBanned?`<button class="ta-btn green" onclick="unbanUser('${u.uid}')">Розблокувати</button>`:''}
-          <button class="ta-btn" onclick="makeAdmin('${u.uid}')" ${u.role==='admin'?'disabled':''}>Зробити Admin</button>
-        </div></td>
-      </tr>`;
-    }).join('')}</tbody>
-  </table>`;
-}
-
-window.filterAdminUsers = (q) => {
-  const filtered = allUsersCache.filter(u=>(u.nick||'').toLowerCase().includes(q.toLowerCase())||(u.email||'').toLowerCase().includes(q.toLowerCase()));
-  renderUserTable(filtered);
-};
-
-function renderAdminListings() {
-  const wrap = document.getElementById('adminListingsWrap');
-  if(!allListingsCache.length){ wrap.innerHTML='<div style="color:var(--grey);padding:20px">Немає оголошень</div>'; return; }
-  wrap.innerHTML = `<table class="user-table">
-    <thead><tr><th>Назва</th><th>Категорія</th><th>Продавець</th><th>Ціна (грн)</th><th>Тип</th><th>Дії</th></tr></thead>
-    <tbody>${allListingsCache.map(l=>`<tr>
-      <td><strong>${l.title}</strong></td>
-      <td>${l.cat}</td>
-      <td>${l.seller}</td>
-      <td>${(l.price||0).toLocaleString('uk-UA')}</td>
-      <td><span class="role-badge role-user">${l.type==='sell'?'ПРОДАЖ':'КУПУЮ'}</span></td>
+function renderUserTable(users){
+  const w=document.getElementById('userTableWrap');
+  if(!users.length){w.innerHTML='<div style="color:var(--grey);padding:16px">Немає</div>';return;}
+  w.innerHTML=`<table class="user-table"><thead><tr><th>Нік в грі</th><th>ID в грі</th><th>Email</th><th>Discord</th><th>Роль</th><th>Оголошень</th><th>Дії</th></tr></thead><tbody>
+    ${users.map(u=>{
+      const banned=u.banned||u.banSettings?.ban_all;
+      return `<tr><td><strong>${u.game||u.nick||'—'}</strong></td><td style="color:var(--grey);font-size:11px">${u.gameId||'—'}</td><td style="font-size:11px;color:var(--grey)">${u.email||'—'}</td><td style="font-size:11px;color:var(--grey)">${u.discord||'—'}</td>
+      <td><span class="role-badge ${u.role==='admin'?'role-admin':banned?'role-banned':'role-user'}">${u.role==='admin'?'ADMIN':banned?'БАН':'USER'}</span></td>
+      <td style="text-align:center">${u.ads||0}</td>
       <td><div class="table-actions">
-        <button class="ta-btn red" onclick="deleteListingAdmin('${l.id}')">Видалити</button>
-      </div></td>
-    </tr>`).join('')}</tbody>
-  </table>`;
+        <button class="ta-btn red" onclick="openBan('${u.uid}','${(u.game||u.nick||'').replace(/'/g,'')}')">Блокувати</button>
+        ${banned?`<button class="ta-btn green" onclick="unbanUser('${u.uid}')">Розблок</button>`:''}
+        <button class="ta-btn yellow" onclick="makeAdmin('${u.uid}')" ${u.role==='admin'?'disabled':''}>Адмін</button>
+      </div></td></tr>`;
+    }).join('')}
+  </tbody></table>`;
 }
+function renderAdminListings(){
+  const w=document.getElementById('adminListingsWrap');
+  if(!allListingsCache.length){w.innerHTML='<div style="color:var(--grey);padding:16px">Немає</div>';return;}
+  w.innerHTML=`<table class="user-table"><thead><tr><th>Назва</th><th>Категорія</th><th>Продавець</th><th>Ціна</th><th>Тип</th><th>Дії</th></tr></thead><tbody>
+    ${allListingsCache.map(l=>`<tr>
+      <td><strong>${l.title}</strong></td><td>${l.cat}</td><td>${l.seller}</td>
+      <td>${(l.price||0).toLocaleString('uk-UA')} грн</td>
+      <td><span class="role-badge role-user">${l.type==='sell'?'ПРОДАЖ':'КУПУЮ'}</span></td>
+      <td><button class="ta-btn red" onclick="deleteAd('${l.id}')">Видалити</button></td>
+    </tr>`).join('')}
+  </tbody></table>`;
+}
+window.deleteAd=async id=>{try{await updateDoc(doc(db,'listings',id),{active:false});showToast('Видалено','ok');await loadListings();await loadAdminData();}catch(e){}};
+window.filterAdminUsers=q=>{const f=allUsersCache.filter(u=>(u.game||u.nick||'').toLowerCase().includes(q.toLowerCase())||(u.email||'').toLowerCase().includes(q.toLowerCase()));renderUserTable(f);};
+window.adminNav=(btn,s)=>{document.querySelectorAll('.admin-nav-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.admin-section').forEach(x=>x.classList.remove('active'));document.getElementById(`sec-${s}`).classList.add('active');};
 
-window.deleteListingAdmin = async (id) => {
-  try { await updateDoc(doc(db,'listings',id),{active:false}); showToast('Оголошення видалено','ok'); await loadAdminData(); } catch(e){ showToast('Помилка','err'); }
-};
+// BAN
+let banUid=null;
+window.openBan=(uid,name)=>{banUid=uid;document.getElementById('banTargetName').textContent=`Гравець: ${name}`;document.getElementById('banReason').value='';document.getElementById('ban_ads').checked=true;document.getElementById('ban_msg').checked=false;document.getElementById('ban_all').checked=false;document.getElementById('banOverlay').classList.add('open');};
+window.closeBan=()=>{document.getElementById('banOverlay').classList.remove('open');banUid=null;};
+window.applyBan=async()=>{if(!banUid)return;const bs={ban_ads:document.getElementById('ban_ads').checked,ban_msg:document.getElementById('ban_msg').checked,ban_all:document.getElementById('ban_all').checked};const reason=document.getElementById('banReason').value.trim();try{await saveUser(banUid,{banned:bs.ban_all,banSettings:bs,banReason:reason});closeBan();showToast('Блокування застосовано','ok');await loadAdminData();}catch(e){showToast('Помилка','err');}};
+window.unbanUser=async uid=>{try{await saveUser(uid,{banned:false,banSettings:{},banReason:''});showToast('Розблоковано','ok');await loadAdminData();}catch(e){}};
+window.makeAdmin=async uid=>{try{await saveUser(uid,{role:'admin'});showToast('Адміна видано ✅','ok');await loadAdminData();}catch(e){}};
 
-// BAN SYSTEM
-let banTargetUid = null;
-window.openBan = (uid, name) => {
-  banTargetUid = uid;
-  document.getElementById('banTargetName').textContent = `Гравець: ${name}`;
-  document.getElementById('banReason').value = '';
-  document.getElementById('ban_ads').checked = true;
-  document.getElementById('ban_msg').checked = false;
-  document.getElementById('ban_all').checked = false;
-  document.getElementById('banOverlay').classList.add('open');
-};
-window.closeBan = () => { document.getElementById('banOverlay').classList.remove('open'); banTargetUid=null; };
-window.applyBan = async () => {
-  if(!banTargetUid) return;
-  const banSettings = {
-    ban_ads: document.getElementById('ban_ads').checked,
-    ban_msg: document.getElementById('ban_msg').checked,
-    ban_all: document.getElementById('ban_all').checked,
-  };
-  const reason = document.getElementById('banReason').value.trim();
-  try {
-    await saveUser(banTargetUid,{banned:banSettings.ban_all, banSettings, banReason:reason});
-    closeBan(); showToast('Блокування застосовано ✅','ok');
-    await loadAdminData();
-  } catch(e){ showToast('Помилка','err'); }
-};
-window.unbanUser = async (uid) => {
-  try { await saveUser(uid,{banned:false,banSettings:{},banReason:''}); showToast('Блокування знято','ok'); await loadAdminData(); } catch(e){}
-};
-window.makeAdmin = async (uid) => {
-  try { await saveUser(uid,{role:'admin'}); showToast('Роль адміна видано ✅','ok'); await loadAdminData(); } catch(e){}
-};
+// MAKE YOURSELF ADMIN (helper)
+window._makeAdmin=async uid=>{await saveUser(uid,{role:'admin'});showToast('Ти тепер адмін!','ok');};
 
-window.adminNav = (btn, section) => {
-  document.querySelectorAll('.admin-nav-item').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(`sec-${section}`).classList.add('active');
-};
-
-// MAKE FIRST USER ADMIN (helper - call once)
-window._makeAdmin = async (uid) => {
-  await saveUser(uid, {role:'admin'});
-  showToast('Адмін встановлено!','ok');
-};
-
-loadFirebaseListings();
+loadListings();
 </script>
 
 <script>
-// SPLASH
 setTimeout(()=>document.getElementById('splash').classList.add('hide'),3500);
 
-// NAV SCROLL HIDE
+// NAV HIDE ON SCROLL
 let lastY=0;
 window.addEventListener('scroll',()=>{
-  const y=window.scrollY, nav=document.getElementById('mainNav');
-  if(y>100 && y>lastY) nav.classList.add('hidden');
+  const y=window.scrollY,nav=document.getElementById('mainNav');
+  if(y>100&&y>lastY) nav.classList.add('hidden');
   else nav.classList.remove('hidden');
   lastY=y;
 },{passive:true});
 
-// LISTINGS
-const DEMO = [
-  {id:'d1',cat:'авто',type:'sell',title:'BMW M5 — Чорний',desc:'Повністю прокачаний. Мотор V8, броня, тюнінг. Стан ідеальний.',price:2500000,condition:'Прокачаний',seller:'SpeedKing',discord:'SpeedKing#1234',photos:[],badge:'hot'},
-  {id:'d2',cat:'зброя',type:'sell',title:'AK-47 + 50 набоїв',desc:'Набір зброї для початківців. Швидка передача в грі.',price:350000,condition:'Новий',seller:'ArmsDealerUA',discord:'Arms#4321',photos:[],badge:'new'},
-  {id:'d3',cat:'бізнес',type:'sell',title:'Автомийка Район 3',desc:'Дохід 45,000 грн/день. Документи готові, персонал найнятий.',price:8000000,condition:'Новий',seller:'BizMaster',discord:'BizMaster#9999',photos:[],badge:''},
-  {id:'d4',cat:'нерухомість',type:'sell',title:'Квартира Central Park',desc:'2 кімнати, вигляд на місто. Центр міста, поряд з банком.',price:1200000,condition:'Б/У',seller:'RealEstate_UG',discord:'RE#5555',photos:[],badge:''},
-  {id:'d5',cat:'авто',type:'sell',title:'Lamborghini Urus',desc:'Стокова комплектація, ідеальний стан.',price:4500000,condition:'Новий',seller:'LuxuryUG',discord:'Luxury#1111',photos:[],badge:'new'},
-  {id:'d6',cat:'одяг',type:'sell',title:'Костюм бізнесмена + годинник',desc:'Ексклюзивний скін. Є лише один. Дуже стильно.',price:180000,condition:'Новий',seller:'StyleKing',discord:'Style#2233',photos:[],badge:'sale'},
-  {id:'d7',cat:'авто',type:'buy',title:'Шукаю Oppressor MK2',desc:'Куплю Oppressor MK2 в хорошому стані. Ціна договірна.',price:5000000,condition:'Б/У',seller:'HunterUG',discord:'Hunter#4455',photos:[],badge:''},
-  {id:'d8',cat:'зброя',type:'buy',title:'Шукаю снайперку з оптикою',desc:'Куплю Precision Rifle з глушником. Ціна договірна.',price:600000,condition:'Б/У',seller:'GhostBuyer',discord:'Ghost#6677',photos:[],badge:''},
-  {id:'d9',cat:'нерухомість',type:'sell',title:'Особняк біля берега',desc:'5 кімнат, 2 гаражі, вигляд на океан. Елітний район.',price:12000000,condition:'Новий',seller:'BigBoss',discord:'Boss#0011',photos:[],badge:'sale'},
-];
-
-window.FIREBASE_LISTINGS = [];
-let curFilter='all', curSearch='', curSection='sell', priceMin=0, priceMax=Infinity;
-
-function getListings(){
-  const base=[...DEMO,...(window.FIREBASE_LISTINGS||[])];
-  return base.filter(l=>{
-    if(l.type!==curSection) return false;
-    if(curFilter!=='all' && l.cat!==curFilter) return false;
-    if(curSearch && !l.title.toLowerCase().includes(curSearch)&&!l.desc.toLowerCase().includes(curSearch)) return false;
-    const p=parseInt(l.price)||0;
-    if(p<priceMin) return false;
-    if(priceMax!==Infinity && p>priceMax) return false;
-    return true;
-  });
-}
+window.FB_LISTINGS=[];
+let curFilter='all',curSearch='',curSection='sell',priceMin=0,priceMax=Infinity;
 
 function fmtPrice(p,type){
   if(type==='exchange') return 'Обмін';
@@ -1217,22 +1151,30 @@ function fmtPrice(p,type){
   return parseInt(p).toLocaleString('uk-UA')+' грн';
 }
 
-window.renderListings = function(){
+window.renderListings=function(){
   const grid=document.getElementById('listingGrid');
-  const data=getListings();
   const labels={sell:'Продаж',buy:'Купую'};
+  let data=(window.FB_LISTINGS||[]).filter(l=>{
+    if(l.type!==curSection) return false;
+    if(curFilter!=='all'&&l.cat!==curFilter) return false;
+    if(curSearch&&!l.title?.toLowerCase().includes(curSearch)&&!l.desc?.toLowerCase().includes(curSearch)) return false;
+    const p=parseInt(l.price)||0;
+    if(p<priceMin) return false;
+    if(priceMax!==Infinity&&p>priceMax) return false;
+    return true;
+  });
   document.getElementById('sectionTitle').textContent=`${labels[curSection]||''} · ${curFilter==='all'?'Усі':curFilter}`;
   document.getElementById('listCount').textContent=`${data.length} оголошень`;
   if(!data.length){
-    grid.innerHTML=`<div class="empty-state"><div class="eicon">🔍</div>Оголошень не знайдено</div>`;
+    grid.innerHTML=`<div class="empty-state"><div class="ei">🔍</div>Оголошень ще немає. Будь першим!</div>`;
     return;
   }
   grid.innerHTML=data.map(l=>`
     <div class="lcard" onclick="openProduct('${l.id}')">
       ${l.badge?`<div class="badge badge-${l.badge}">${l.badge==='hot'?'🔥 HOT':l.badge==='new'?'✦ NEW':'🏷 SALE'}</div>`:''}
-      ${l.photos&&l.photos.length>0
-        ?`<div class="lcard-imgs"><img class="lcard-img" src="${l.photos[0]}" alt=""/></div>`
-        :`<div class="lcard-imgs"><div class="lcard-img-placeholder">📷</div></div>`}
+      <div class="lcard-imgs">
+        ${l.photos&&l.photos.length?`<img src="${l.photos[0]}" alt=""/>`:`<div class="lcard-img-ph">📷</div>`}
+      </div>
       <div class="lcard-cat">${l.cat}</div>
       <div class="lcard-title">${l.title}</div>
       <div class="lcard-desc">${l.desc}</div>
@@ -1243,32 +1185,18 @@ window.renderListings = function(){
     </div>`).join('');
 };
 
-window.filterBy=(btn,cat)=>{
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); curFilter=cat; renderListings();
-};
+window.filterBy=(btn,cat)=>{document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curFilter=cat;renderListings();};
 window.searchListings=v=>{curSearch=v.toLowerCase();renderListings();};
-window.switchSection=(btn,sec)=>{
-  document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); curSection=sec; renderListings();
-};
-window.filterAndGo=(cat)=>{
-  document.querySelectorAll('.info-page').forEach(p=>p.classList.remove('open'));
-  curFilter=cat;
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase().includes(cat)));
-  renderListings();
-  setTimeout(()=>document.getElementById('listingsSection').scrollIntoView({behavior:'smooth'}),100);
-};
+window.switchSection=(btn,sec)=>{document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curSection=sec;renderListings();};
+window.filterAndGo=cat=>{document.querySelectorAll('.info-page').forEach(p=>p.classList.remove('open'));curFilter=cat;document.querySelectorAll('.fbtn').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase().includes(cat)));renderListings();setTimeout(()=>document.getElementById('listingsSection').scrollIntoView({behavior:'smooth'}),100);};
 
-// PRODUCT DETAIL
-window.openProduct=(id)=>{
-  const p=[...DEMO,...(window.FIREBASE_LISTINGS||[])].find(l=>String(l.id)===String(id));
+window.openProduct=id=>{
+  const p=(window.FB_LISTINGS||[]).find(l=>l.id===id);
   if(!p) return;
-  const photos = p.photos||[];
+  const photos=p.photos||[];
   document.getElementById('pdModal').innerHTML=`
     <button class="mclose" onclick="closePD()">×</button>
-    ${photos.length>0?`<div class="pd-imgs"><img src="${photos[0]}" alt="" style="width:100%;height:100%;object-fit:cover"/></div>`:
-    `<div class="pd-imgs" style="font-size:40px;color:var(--border2)">📷</div>`}
+    <div class="pd-imgs">${photos.length?`<img src="${photos[0]}" alt=""/>`:`<span style="font-size:40px;color:var(--border2)">📷</span>`}</div>
     <div class="pd-badge">${p.cat}</div>
     <div class="pd-title">${p.title}</div>
     <div class="pd-price">${fmtPrice(p.price,p.type)}</div>
@@ -1278,16 +1206,15 @@ window.openProduct=(id)=>{
     <div class="pd-row"><span class="pd-label">Стан</span><span class="pd-val">${p.condition||'—'}</span></div>
     <div class="pd-row" style="margin-bottom:12px"><span class="pd-label">Статус</span><span class="pd-val" style="color:var(--success)">● Доступно</span></div>
     <p style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;font-family:'Share Tech Mono',monospace">Контакти продавця</p>
-    <div class="pd-contacts"><div class="contact-chip">💬 Discord: ${p.discord||'—'}</div></div>
-    <button class="btn-message" onclick="closePD();openMsgPanel();showToast('Відкриваємо Pixджер 💬','ok')">✉ Написати у Pixджер</button>`;
+    <div class="pd-contacts"><div class="contact-chip">💬 ${p.discord||'—'}</div></div>
+    <button class="btn-message" onclick="closePD();startChatWith('${p.uid}','${(p.seller||'').replace(/'/g,'')}','${(p.title||'').replace(/'/g,'')}')">✉ Написати у Pixджер</button>`;
   document.getElementById('pdOverlay').classList.add('open');
 };
 window.closePD=()=>document.getElementById('pdOverlay').classList.remove('open');
 document.getElementById('pdOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('pdOverlay'))closePD();});
 
-// AUTH
-window.openAuth=(tab)=>{document.getElementById('authOverlay').classList.add('open');switchAuth(tab||'login');};
-window.switchAuth=(tab)=>{
+window.openAuth=tab=>{document.getElementById('authOverlay').classList.add('open');switchAuth(tab||'login');};
+window.switchAuth=tab=>{
   document.getElementById('fLogin').style.display=tab==='login'?'block':'none';
   document.getElementById('fReg').style.display=tab==='register'?'block':'none';
   document.getElementById('tabL').classList.toggle('active',tab==='login');
@@ -1298,31 +1225,18 @@ window.switchAuth=(tab)=>{
 window.closeAuth=()=>document.getElementById('authOverlay').classList.remove('open');
 document.getElementById('authOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('authOverlay'))closeAuth();});
 
-// ADV FILTERS
 window.toggleAdvFilter=()=>document.getElementById('advPanel').classList.toggle('open');
 window.toggleChip=el=>el.classList.toggle('active');
-window.applyFilters=()=>{
-  priceMin=parseInt(document.getElementById('priceMin').value)||0;
-  priceMax=parseInt(document.getElementById('priceMax').value)||Infinity;
-  renderListings(); toggleAdvFilter();
-};
-window.resetFilters=()=>{
-  priceMin=0;priceMax=Infinity;
-  document.getElementById('priceMin').value='';
-  document.getElementById('priceMax').value='';
-  document.querySelectorAll('.adv-chip').forEach(c=>c.classList.remove('active'));
-  renderListings();
-};
+window.applyFilters=()=>{priceMin=parseInt(document.getElementById('priceMin').value)||0;priceMax=parseInt(document.getElementById('priceMax').value)||Infinity;renderListings();toggleAdvFilter();};
+window.resetFilters=()=>{priceMin=0;priceMax=Infinity;document.getElementById('priceMin').value='';document.getElementById('priceMax').value='';document.querySelectorAll('.adv-chip').forEach(c=>c.classList.remove('active'));renderListings();};
 
-// PAGES
 window.showPage=name=>{document.querySelectorAll('.info-page').forEach(p=>p.classList.remove('open'));document.getElementById('page-'+name)?.classList.add('open');window.scrollTo(0,0);};
 window.hidePage=name=>document.getElementById('page-'+name)?.classList.remove('open');
 
-// TOAST
 window.showToast=(msg,type='')=>{
   const t=document.getElementById('toast');
   t.textContent=msg;t.className='toast show'+(type?' '+type:'');
-  clearTimeout(window._tt);window._tt=setTimeout(()=>t.className='toast',3200);
+  clearTimeout(window._tt);window._tt=setTimeout(()=>t.className='toast',3500);
 };
 
 renderListings();
