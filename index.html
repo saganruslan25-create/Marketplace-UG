@@ -7,22 +7,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:#080808;--dark:#101010;--card:#141414;--card2:#1a1a1a;
-  --border:#222;--border2:#2e2e2e;--white:#f2f2f2;--grey:#888;
-  --purple:#7c3aed;--purple2:#9d5ff5;--purpleGlow:rgba(124,58,237,.18);
-  --success:#22c55e;--danger:#ef4444;
+  --bg:#080808;--dark:#0f0f0f;--card:#161616;--card2:#1c1c1c;
+  --border:#252525;--border2:#333;--white:#f0f0f0;--grey:#777;--grey2:#555;
+  --purple:#7c3aed;--purple2:#9d5ff5;--purpleGlow:rgba(124,58,237,.2);
+  --navbg:rgba(22,22,22,0.97);
+  --success:#22c55e;--danger:#ef4444;--warn:#f59e0b;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:0;}
+::-webkit-scrollbar-thumb:hover{background:var(--purple);}
+
 body{background:var(--bg);color:var(--white);font-family:'Rajdhani',sans-serif;font-size:16px;min-height:100vh;overflow-x:hidden;}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:.5;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:.4;}
 
 /* SPLASH */
-#splash{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .7s ease,visibility .7s;}
+#splash{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .7s,visibility .7s;}
 #splash.hide{opacity:0;visibility:hidden;}
 .splash-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,11vw,96px);letter-spacing:6px;color:var(--white);text-align:center;line-height:1;}
 .splash-logo span{color:var(--purple2);}
-.splash-studio{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--grey);margin-top:-16px;}
+.splash-studio{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--grey);margin-top:-14px;}
 .splash-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--grey);font-weight:600;}
 .splash-spinner{width:42px;height:42px;border:2px solid var(--border2);border-top-color:var(--purple2);border-radius:50%;animation:spin .9s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -31,147 +39,309 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 @keyframes loadBar{0%{width:0}60%{width:70%}85%{width:90%}100%{width:100%}}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(8,8,8,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);}
-.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;color:var(--white);text-decoration:none;}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;height:62px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+  background:var(--navbg);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(20px);
+  transition:transform .35s ease,opacity .35s ease;
+}
+nav.hidden{transform:translateY(-100%);opacity:0;}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:4px;color:var(--white);text-decoration:none;flex-shrink:0;}
 .nav-logo .ug{color:var(--purple2);}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{color:var(--grey);text-decoration:none;font-weight:600;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;cursor:pointer;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{color:var(--grey);text-decoration:none;font-weight:600;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;cursor:pointer;white-space:nowrap;}
 .nav-links a:hover{color:var(--white);}
-.nav-right{display:flex;align-items:center;gap:10px;}
-.search-bar{display:flex;align-items:center;background:var(--card);border:1px solid var(--border);padding:0 12px;height:36px;gap:8px;}
-.search-bar input{background:none;border:none;outline:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;width:170px;}
+.nav-center{display:flex;align-items:center;gap:10px;}
+.search-wrap{position:relative;}
+.search-bar{display:flex;align-items:center;background:rgba(255,255,255,0.07);border:1px solid var(--border);padding:0 12px;height:36px;gap:8px;border-radius:2px;}
+.search-bar input{background:none;border:none;outline:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;width:200px;}
 .search-bar input::placeholder{color:#3a3a3a;}
 .search-bar svg{color:var(--grey);flex-shrink:0;}
-.btn{padding:7px 18px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;}
+.nav-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+
+/* NOTIF BELL */
+.notif-btn{position:relative;width:36px;height:36px;background:rgba(255,255,255,0.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--grey);transition:all .2s;}
+.notif-btn:hover{border-color:var(--border2);color:var(--white);}
+.notif-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;background:var(--purple2);border-radius:50%;border:1.5px solid var(--dark);}
+
+/* BTNS */
+.btn{padding:7px 16px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;white-space:nowrap;}
 .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--grey);}
 .btn-ghost:hover{border-color:var(--white);color:var(--white);}
-.btn-purple{background:var(--purple);color:#fff;box-shadow:0 0 16px var(--purpleGlow);}
+.btn-purple{background:var(--purple);color:#fff;box-shadow:0 0 14px var(--purpleGlow);}
 .btn-purple:hover{background:var(--purple2);}
-.user-btn{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:5px 14px 5px 6px;cursor:pointer;color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;transition:border-color .2s;}
-.user-btn:hover{border-color:var(--purple2);}
-.avatar{width:26px;height:26px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;}
+.btn-sm{padding:5px 12px;font-size:11px;}
+
+.user-area{display:flex;align-items:center;gap:6px;}
+.avatar-btn{width:34px;height:34px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;cursor:pointer;border:2px solid transparent;transition:border-color .2s;flex-shrink:0;}
+.avatar-btn:hover{border-color:var(--purple2);}
+.user-name-btn{background:none;border:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.5px;cursor:pointer;padding:4px 6px;transition:color .2s;}
+.user-name-btn:hover{color:var(--purple2);}
+.logout-btn{background:none;border:1px solid var(--border);color:var(--grey);padding:5px 10px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.logout-btn:hover{border-color:var(--danger);color:var(--danger);}
+
+/* SECTION TABS (Продаж/Купую) */
+.section-tabs{
+  position:sticky;top:62px;z-index:400;
+  background:var(--navbg);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;
+  padding:0 32px;
+  gap:0;
+  backdrop-filter:blur(20px);
+}
+.stab{
+  padding:14px 20px;
+  font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  background:none;border:none;color:var(--grey);
+  cursor:pointer;border-bottom:2px solid transparent;
+  margin-bottom:-1px;transition:all .2s;
+}
+.stab:hover{color:var(--white);}
+.stab.active{color:var(--white);border-bottom-color:var(--purple2);}
+.stab-divider{width:1px;height:20px;background:var(--border);margin:0 4px;}
+
+/* FILTER BAR */
+.filter-row{
+  display:flex;align-items:center;
+  padding:12px 32px;
+  gap:8px;
+  border-bottom:1px solid var(--border);
+  background:var(--dark);
+  flex-wrap:wrap;
+}
+.fbtn{padding:5px 14px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--grey);cursor:pointer;transition:all .2s;border-radius:2px;}
+.fbtn:hover{border-color:var(--border2);color:var(--white);}
+.fbtn.active{background:var(--purple);color:#fff;border-color:var(--purple);}
+
+/* ADVANCED FILTER BTN */
+.adv-filter-btn{
+  margin-left:auto;display:flex;align-items:center;gap:6px;
+  padding:5px 14px;background:rgba(255,255,255,0.06);
+  border:1px solid var(--border);color:var(--grey);
+  font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .2s;
+}
+.adv-filter-btn:hover{border-color:var(--purple2);color:var(--white);}
 
 /* HERO */
 .hero{min-height:100vh;padding:62px 40px 0;display:flex;align-items:center;position:relative;overflow:hidden;}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;}
-.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(124,58,237,.11) 0%,transparent 70%);top:50%;left:60%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:64px 64px;}
+.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(124,58,237,.1) 0%,transparent 70%);top:50%;left:60%;transform:translate(-50%,-50%);pointer-events:none;}
 .hero-content{position:relative;max-width:760px;}
 .hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--purple2);margin-bottom:18px;opacity:0;animation:fadeUp .6s .3s forwards;}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(68px,10vw,136px);line-height:.92;letter-spacing:2px;white-space:nowrap;opacity:0;animation:fadeUp .6s .45s forwards;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,9vw,128px);line-height:.92;letter-spacing:2px;white-space:nowrap;opacity:0;animation:fadeUp .6s .45s forwards;}
 .hero-title .outline{-webkit-text-stroke:1.5px var(--white);color:transparent;}
 .hero-title .purple{color:var(--purple2);}
 .hero-desc{margin-top:22px;font-size:17px;color:var(--grey);max-width:500px;line-height:1.65;font-weight:500;opacity:0;animation:fadeUp .6s .6s forwards;}
 .hero-cta{margin-top:36px;display:flex;gap:14px;opacity:0;animation:fadeUp .6s .75s forwards;}
 .btn-lg{padding:13px 34px;font-size:14px;letter-spacing:2px;}
 .hero-stats{position:absolute;bottom:40px;right:40px;display:flex;gap:36px;opacity:0;animation:fadeUp .6s .9s forwards;}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;color:var(--white);}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;}
 .stat-num em{color:var(--purple2);font-style:normal;}
 .stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:2px;}
 
-/* SECTION */
-.section{padding:72px 40px;border-top:1px solid var(--border);}
-.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:34px;}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:3px;}
-.sec-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:all .2s;}
-.sec-link:hover{color:var(--white);border-color:var(--white);}
+/* LISTINGS SECTION */
+.section{padding:48px 32px;border-top:1px solid var(--border);}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;}
 
-/* FILTERS */
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
-.fbtn{padding:5px 14px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--grey);cursor:pointer;transition:all .2s;}
-.fbtn:hover{border-color:var(--border2);color:var(--white);}
-.fbtn.active{background:var(--purple);color:#fff;border-color:var(--purple);box-shadow:0 0 12px var(--purpleGlow);}
-
-/* GRID */
-.listing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
-.lcard{background:var(--card);padding:22px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden;}
+/* LISTING GRID */
+.listing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
+.lcard{background:var(--card);padding:20px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden;}
 .lcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--purple2));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
 .lcard:hover{background:var(--card2);}
 .lcard:hover::before{transform:scaleX(1);}
-.lcard-cat{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--purple2);margin-bottom:10px;}
-.lcard-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:6px;line-height:1.1;}
-.lcard-desc{font-size:12px;color:var(--grey);line-height:1.55;margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.lcard-cat{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--purple2);margin-bottom:8px;}
+.lcard-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:5px;line-height:1.1;}
+.lcard-desc{font-size:12px;color:var(--grey);line-height:1.5;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .lcard-foot{display:flex;align-items:center;justify-content:space-between;}
-.lcard-price{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;}
-.lcard-price em{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--grey);font-style:normal;margin-left:3px;}
+.lcard-price{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;}
+.lcard-price em{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--grey);font-style:normal;margin-left:2px;}
 .lcard-seller{font-size:10px;color:var(--grey);letter-spacing:1px;text-transform:uppercase;}
-.badge{position:absolute;top:12px;right:12px;padding:2px 8px;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;font-family:'Share Tech Mono',monospace;border:1px solid;}
+.badge{position:absolute;top:10px;right:10px;padding:2px 7px;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;font-family:'Share Tech Mono',monospace;border:1px solid;}
 .badge-hot{color:var(--danger);border-color:var(--danger);}
 .badge-new{color:var(--success);border-color:var(--success);}
 .badge-sale{color:var(--purple2);border-color:var(--purple2);}
+.lcard-type{position:absolute;bottom:10px;right:10px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--grey2);}
+
+/* EMPTY STATE */
+.empty-state{padding:60px;text-align:center;background:var(--card);color:var(--grey);font-size:14px;letter-spacing:1px;}
+.empty-state .icon{font-size:40px;margin-bottom:12px;}
 
 /* OVERLAYS */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:800;display:none;align-items:center;justify-content:center;padding:20px;}
 .overlay.open{display:flex;}
-.modal{background:var(--dark);border:1px solid var(--border);width:100%;max-width:500px;padding:40px;position:relative;animation:fadeUp .3s forwards;max-height:90vh;overflow-y:auto;}
+.modal{background:var(--dark);border:1px solid var(--border);width:100%;max-width:500px;padding:40px;position:relative;animation:fadeUp .3s forwards;max-height:92vh;overflow-y:auto;}
+.modal-wide{max-width:700px;}
 .modal::-webkit-scrollbar{width:4px;}
 .modal::-webkit-scrollbar-thumb{background:var(--border2);}
-.mclose{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--grey);font-size:22px;cursor:pointer;line-height:1;}
+.mclose{position:absolute;top:14px;right:18px;background:none;border:none;color:var(--grey);font-size:22px;cursor:pointer;}
 .mclose:hover{color:var(--white);}
 .mtabs{display:flex;gap:0;margin-bottom:28px;border-bottom:1px solid var(--border);}
-.mtab{padding:9px 22px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--grey);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
+.mtab{padding:9px 20px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--grey);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
 .mtab.active{color:var(--white);border-bottom-color:var(--purple2);}
-.mtitle{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;margin-bottom:6px;}
-.msub{font-size:12px;color:var(--grey);margin-bottom:28px;}
-.fgroup{margin-bottom:14px;}
-.flabel{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:5px;font-family:'Share Tech Mono',monospace;}
-.finput{width:100%;background:#0d0d0d;border:1px solid var(--border);color:var(--white);padding:11px 13px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;outline:none;transition:border-color .2s;}
+.mtitle{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:3px;margin-bottom:5px;}
+.msub{font-size:12px;color:var(--grey);margin-bottom:26px;}
+.fgroup{margin-bottom:13px;}
+.flabel{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:4px;font-family:'Share Tech Mono',monospace;}
+.finput{width:100%;background:#0c0c0c;border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;outline:none;transition:border-color .2s;}
 .finput:focus{border-color:var(--purple2);}
-.finput::placeholder{color:#2a2a2a;}
+.finput::placeholder{color:#282828;}
+select.finput{cursor:pointer;}
+textarea.finput{resize:vertical;font-family:'Rajdhani',sans-serif;}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.divider{display:flex;align-items:center;gap:14px;margin:20px 0;color:var(--grey);font-size:10px;letter-spacing:2px;text-transform:uppercase;}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--grey);font-size:10px;letter-spacing:2px;text-transform:uppercase;}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
-.btn-google{width:100%;padding:11px;background:transparent;border:1px solid var(--border);color:var(--white);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;}
+.btn-google{width:100%;padding:10px;background:transparent;border:1px solid var(--border);color:var(--white);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;}
 .btn-google:hover{background:var(--card2);border-color:var(--border2);}
 .btn-google svg{width:17px;height:17px;flex-shrink:0;}
-.btn-submit{width:100%;padding:13px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:3px;cursor:pointer;margin-top:6px;transition:background .2s;box-shadow:0 0 20px var(--purpleGlow);}
+.btn-submit{width:100%;padding:12px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;cursor:pointer;margin-top:6px;transition:background .2s;box-shadow:0 0 18px var(--purpleGlow);}
 .btn-submit:hover{background:var(--purple2);}
+.btn-submit2{width:100%;padding:12px;background:transparent;border:1px solid var(--border);color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;cursor:pointer;transition:all .2s;}
+.btn-submit2:hover{border-color:var(--white);}
 
-/* PRODUCT DETAIL */
-.pd-badge{display:inline-block;padding:3px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--purple);color:var(--purple2);margin-bottom:14px;}
-.pd-title{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:2px;line-height:1;margin-bottom:12px;}
-.pd-price{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:2px;color:var(--white);margin-bottom:6px;}
-.pd-price em{font-size:16px;color:var(--grey);font-style:normal;font-family:'Share Tech Mono',monospace;margin-left:4px;}
-.pd-desc{font-size:14px;color:var(--grey);line-height:1.7;margin-bottom:22px;border-top:1px solid var(--border);padding-top:16px;}
-.pd-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
-.pd-row-label{color:var(--grey);font-weight:600;}
-.pd-row-val{font-weight:700;}
-.pd-contacts{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 20px;}
-.contact-chip{padding:6px 14px;border:1px solid var(--border);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--grey);font-family:'Share Tech Mono',monospace;}
-.btn-message{width:100%;padding:13px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;cursor:pointer;transition:background .2s;box-shadow:0 0 20px var(--purpleGlow);}
+/* PRODUCT MODAL */
+.pd-badge{display:inline-block;padding:2px 9px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--purple);color:var(--purple2);margin-bottom:12px;}
+.pd-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:2px;line-height:1;margin-bottom:10px;}
+.pd-price{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:2px;color:var(--white);margin-bottom:6px;}
+.pd-price em{font-size:15px;color:var(--grey);font-style:normal;font-family:'Share Tech Mono',monospace;margin-left:4px;}
+.pd-desc{font-size:13px;color:var(--grey);line-height:1.7;margin-bottom:20px;border-top:1px solid var(--border);padding-top:14px;}
+.pd-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.pd-label{color:var(--grey);font-weight:600;}
+.pd-val{font-weight:700;}
+.pd-contacts{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px;}
+.contact-chip{padding:5px 12px;border:1px solid var(--border);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--grey);font-family:'Share Tech Mono',monospace;}
+.btn-message{width:100%;padding:12px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:3px;cursor:pointer;transition:background .2s;box-shadow:0 0 18px var(--purpleGlow);}
 .btn-message:hover{background:var(--purple2);}
+
+/* PROFILE PANEL */
+.side-panel{position:fixed;top:0;right:0;width:380px;height:100vh;background:var(--dark);border-left:1px solid var(--border);z-index:700;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;overflow:hidden;}
+.side-panel.open{transform:translateX(0);}
+.sp-head{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.sp-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;}
+.sp-close{background:none;border:none;color:var(--grey);font-size:20px;cursor:pointer;}
+.sp-close:hover{color:var(--white);}
+.sp-body{flex:1;overflow-y:auto;padding:24px;}
+.sp-avatar{width:64px;height:64px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:28px;margin-bottom:16px;}
+.sp-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;margin-bottom:2px;}
+.sp-meta{font-size:12px;color:var(--grey);letter-spacing:.5px;margin-bottom:20px;}
+.sp-divider{height:1px;background:var(--border);margin:18px 0;}
+.sp-section-title{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--grey);margin-bottom:12px;}
+.sp-btn{width:100%;padding:11px 14px;background:var(--card);border:1px solid var(--border);color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;text-align:left;display:flex;align-items:center;gap:10px;transition:all .2s;margin-bottom:8px;}
+.sp-btn:hover{background:var(--card2);border-color:var(--border2);}
+.sp-btn.purple{background:var(--purple);border-color:var(--purple);box-shadow:0 0 14px var(--purpleGlow);}
+.sp-btn.purple:hover{background:var(--purple2);}
+.sp-btn .icon{font-size:16px;flex-shrink:0;}
+.sp-stat-row{display:flex;gap:1px;background:var(--border);margin-bottom:20px;}
+.sp-stat{flex:1;background:var(--card);padding:14px;text-align:center;}
+.sp-stat-num{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--white);}
+.sp-stat-lbl{font-size:9px;color:var(--grey);letter-spacing:1.5px;text-transform:uppercase;}
+
+/* MESSENGER PANEL */
+.msg-panel{position:fixed;top:0;right:0;width:420px;height:100vh;background:var(--dark);border-left:1px solid var(--border);z-index:700;transform:translateX(100%);transition:transform .35s ease;display:flex;flex-direction:column;}
+.msg-panel.open{transform:translateX(0);}
+.msg-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.msg-head-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;}
+.msg-close{background:none;border:none;color:var(--grey);font-size:20px;cursor:pointer;}
+.msg-close:hover{color:var(--white);}
+.chat-list{flex:1;overflow-y:auto;}
+.chat-item{padding:16px 22px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:12px;}
+.chat-item:hover{background:var(--card);}
+.chat-item.active{background:var(--card2);}
+.chat-av{width:36px;height:36px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;flex-shrink:0;}
+.chat-info{flex:1;min-width:0;}
+.chat-name{font-size:13px;font-weight:700;letter-spacing:.5px;}
+.chat-preview{font-size:11px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
+.chat-time{font-size:10px;color:var(--grey2);flex-shrink:0;}
+.chat-unread{background:var(--purple2);color:#fff;font-size:9px;font-family:'Bebas Neue',sans-serif;min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* CHAT VIEW */
+.chat-view{display:flex;flex-direction:column;height:100%;}
+.chat-view-head{padding:14px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.chat-back{background:none;border:none;color:var(--grey);cursor:pointer;font-size:18px;}
+.chat-back:hover{color:var(--white);}
+.chat-view-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;}
+.chat-messages{flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:12px;}
+.msg-bubble{max-width:75%;padding:10px 14px;font-size:13px;line-height:1.5;}
+.msg-bubble.out{background:var(--purple);align-self:flex-end;}
+.msg-bubble.in{background:var(--card2);align-self:flex-start;}
+.msg-bubble .mtime{font-size:9px;color:rgba(255,255,255,.5);margin-top:4px;text-align:right;}
+.chat-input-row{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:8px;flex-shrink:0;}
+.chat-input{flex:1;background:var(--card);border:1px solid var(--border);color:var(--white);padding:10px 12px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;outline:none;transition:border-color .2s;}
+.chat-input:focus{border-color:var(--purple2);}
+.chat-send{padding:10px 16px;background:var(--purple);border:none;color:#fff;cursor:pointer;font-size:16px;transition:background .2s;}
+.chat-send:hover{background:var(--purple2);}
+
+/* NOTIF PANEL */
+.notif-panel{position:fixed;top:62px;right:32px;width:340px;background:var(--dark);border:1px solid var(--border);z-index:600;display:none;animation:fadeUp .2s forwards;max-height:460px;overflow-y:auto;}
+.notif-panel.open{display:block;}
+.notif-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.notif-head-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;}
+.notif-clear{font-size:10px;color:var(--purple2);cursor:pointer;letter-spacing:1px;text-transform:uppercase;background:none;border:none;}
+.notif-item{padding:14px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .2s;display:flex;gap:10px;align-items:flex-start;}
+.notif-item:hover{background:var(--card);}
+.notif-item.unread{border-left:2px solid var(--purple2);}
+.notif-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+.notif-text{font-size:12px;color:var(--grey);line-height:1.5;flex:1;}
+.notif-text strong{color:var(--white);font-weight:700;}
+.notif-time{font-size:10px;color:var(--grey2);margin-top:4px;}
+
+/* ADVANCED FILTER PANEL */
+.adv-panel{position:fixed;top:62px;left:0;right:0;background:var(--dark);border-bottom:1px solid var(--border);z-index:450;display:none;padding:24px 32px;animation:fadeDown .2s forwards;}
+.adv-panel.open{display:block;}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.adv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:16px;}
+.adv-section-title{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
+.adv-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.adv-chip{padding:4px 12px;background:transparent;border:1px solid var(--border);color:var(--grey);font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .2s;}
+.adv-chip:hover{border-color:var(--border2);color:var(--white);}
+.adv-chip.active{background:var(--purple);color:#fff;border-color:var(--purple);}
+.price-range{display:flex;align-items:center;gap:8px;}
+.price-input{flex:1;background:#0c0c0c;border:1px solid var(--border);color:var(--white);padding:7px 10px;font-family:'Rajdhani',sans-serif;font-size:13px;outline:none;}
+.price-input:focus{border-color:var(--purple2);}
+.adv-actions{display:flex;gap:10px;}
 
 /* INFO PAGES */
 .info-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:600;padding:80px 40px 60px;overflow-y:auto;animation:fadeUp .3s forwards;}
 .info-page.open{display:block;}
-.ip-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--grey);cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:40px;transition:color .2s;}
+.ip-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--grey);cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:36px;transition:color .2s;}
 .ip-back:hover{color:var(--white);}
-.ip-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,86px);letter-spacing:3px;line-height:.95;margin-bottom:40px;}
+.ip-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,80px);letter-spacing:3px;line-height:.95;margin-bottom:36px;}
 .ip-title span{color:var(--purple2);}
-.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:48px;}
-.ip-card{background:var(--card);padding:28px;transition:background .2s;}
+.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:40px;}
+.ip-card{background:var(--card);padding:26px;transition:background .2s;}
 .ip-card:hover{background:var(--card2);}
-.ip-card h3{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;margin-bottom:10px;}
+.ip-card h3{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:2px;margin-bottom:9px;}
 .ip-card p{font-size:13px;color:var(--grey);line-height:1.65;}
-.ip-card .icon{font-size:26px;margin-bottom:12px;}
-.rules-list{list-style:none;max-width:680px;display:flex;flex-direction:column;}
-.rules-list li{padding:16px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--grey);line-height:1.6;display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;}
+.ip-card .icon{font-size:24px;margin-bottom:10px;}
+.rules-list{list-style:none;max-width:680px;}
+.rules-list li{padding:14px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--grey);line-height:1.6;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;}
 .rules-list li span:first-child{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--purple2);}
-.support-form{max-width:560px;}
 
 /* TOAST */
-.toast{position:fixed;bottom:36px;right:36px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--purple2);padding:14px 22px;font-size:13px;z-index:9000;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;font-weight:600;letter-spacing:.5px;max-width:320px;}
+.toast{position:fixed;bottom:32px;right:32px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--purple2);padding:12px 20px;font-size:13px;z-index:9000;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;font-weight:600;letter-spacing:.5px;max-width:300px;}
 .toast.show{opacity:1;transform:translateY(0);}
 .toast.err{border-left-color:var(--danger);}
 .toast.ok{border-left-color:var(--success);}
 
 /* FOOTER */
-footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;}
+footer{padding:32px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;}
 .footer-logo span{color:var(--purple2);}
-.footer-links{display:flex;gap:20px;list-style:none;}
+.footer-links{display:flex;gap:18px;list-style:none;}
 .footer-links a{font-size:11px;color:var(--grey);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;cursor:pointer;}
 .footer-links a:hover{color:var(--white);}
-.footer-copy{font-size:10px;color:#333;letter-spacing:1.5px;text-transform:uppercase;}
+.footer-copy{font-size:10px;color:#2a2a2a;letter-spacing:1.5px;text-transform:uppercase;}
+
+/* SUBMIT AD */
+.photo-upload{width:100%;height:100px;border:2px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s;gap:6px;font-size:12px;color:var(--grey);letter-spacing:1px;}
+.photo-upload:hover{border-color:var(--purple2);}
+.warn-box{padding:12px 14px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);font-size:12px;color:#f59e0b;line-height:1.6;margin-bottom:14px;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
 </style>
@@ -188,7 +358,7 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify
 </div>
 
 <!-- NAV -->
-<nav>
+<nav id="mainNav">
   <a href="#" class="nav-logo">MARKET<span class="ug">UG</span></a>
   <ul class="nav-links">
     <li><a onclick="showPage('categories')">Категорії</a></li>
@@ -196,20 +366,102 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify
     <li><a onclick="showPage('support')">Підтримка</a></li>
     <li><a onclick="showPage('rules')">Правила</a></li>
   </ul>
-  <div class="nav-right">
+  <div class="nav-center">
     <div class="search-bar">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" placeholder="Пошук товарів..." id="searchInput" oninput="searchListings(this.value)"/>
     </div>
+  </div>
+  <div class="nav-right" id="navRight">
     <div id="navActions">
-      <button class="btn btn-ghost" onclick="openAuth('login')">Увійти</button>
-      <button class="btn btn-purple" onclick="openAuth('register')">Реєстрація</button>
+      <button class="btn btn-ghost btn-sm" onclick="openAuth('login')">Увійти</button>
+      <button class="btn btn-purple btn-sm" onclick="openAuth('register')">Реєстрація</button>
     </div>
   </div>
 </nav>
 
+<!-- SECTION TABS (Продаж / Купую) -->
+<div class="section-tabs" id="sectionTabs">
+  <button class="stab active" onclick="switchSection(this,'sell')">📦 Продаж</button>
+  <div class="stab-divider"></div>
+  <button class="stab" onclick="switchSection(this,'buy')">🛒 Купую</button>
+  <div class="stab-divider"></div>
+  <button class="stab" onclick="switchSection(this,'exchange')">🔄 Обмін</button>
+</div>
+
+<!-- FILTER ROW -->
+<div class="filter-row" id="filterRow">
+  <button class="fbtn active" onclick="filterBy(this,'all')">Усі</button>
+  <button class="fbtn" onclick="filterBy(this,'авто')">🚗 Авто</button>
+  <button class="fbtn" onclick="filterBy(this,'зброя')">⚔️ Зброя</button>
+  <button class="fbtn" onclick="filterBy(this,'нерухомість')">🏠 Нерухомість</button>
+  <button class="fbtn" onclick="filterBy(this,'бізнес')">💼 Бізнес</button>
+  <button class="fbtn" onclick="filterBy(this,'одяг')">👕 Одяг/Акс</button>
+  <button class="fbtn" onclick="filterBy(this,'інше')">📦 Інше</button>
+  <button class="adv-filter-btn" onclick="toggleAdvFilter()">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+    Фільтри
+  </button>
+</div>
+
+<!-- ADVANCED FILTER PANEL -->
+<div class="adv-panel" id="advPanel">
+  <div class="adv-grid">
+    <div>
+      <div class="adv-section-title">Цінова категорія</div>
+      <div class="price-range">
+        <input class="price-input" type="number" id="priceMin" placeholder="Від (грн)"/>
+        <span style="color:var(--grey);font-size:12px">—</span>
+        <input class="price-input" type="number" id="priceMax" placeholder="До (грн)"/>
+      </div>
+    </div>
+    <div>
+      <div class="adv-section-title">Марка авто</div>
+      <div class="adv-chips" id="carBrandChips">
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">BMW</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Mercedes</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Audi</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Toyota</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Lamborghini</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Ferrari</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Dodge</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Chevrolet</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Ford</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Porsche</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Mazda</span>
+        <span class="adv-chip" onclick="toggleChip(this,'brand')">Honda</span>
+      </div>
+    </div>
+    <div>
+      <div class="adv-section-title">Клас авто</div>
+      <div class="adv-chips">
+        <span class="adv-chip" onclick="toggleChip(this,'class')">Економ</span>
+        <span class="adv-chip" onclick="toggleChip(this,'class')">Бізнес</span>
+        <span class="adv-chip" onclick="toggleChip(this,'class')">Преміум</span>
+        <span class="adv-chip" onclick="toggleChip(this,'class')">Суперкар</span>
+        <span class="adv-chip" onclick="toggleChip(this,'class')">Мото</span>
+        <span class="adv-chip" onclick="toggleChip(this,'class')">Вертоліт</span>
+        <span class="adv-chip" onclick="toggleChip(this,'class')">Яхта</span>
+      </div>
+    </div>
+    <div>
+      <div class="adv-section-title">Стан</div>
+      <div class="adv-chips">
+        <span class="adv-chip" onclick="toggleChip(this,'condition')">Новий</span>
+        <span class="adv-chip" onclick="toggleChip(this,'condition')">Б/У</span>
+        <span class="adv-chip" onclick="toggleChip(this,'condition')">Прокачаний</span>
+      </div>
+    </div>
+  </div>
+  <div class="adv-actions">
+    <button class="btn btn-purple btn-sm" onclick="applyFilters()">Застосувати</button>
+    <button class="btn btn-ghost btn-sm" onclick="resetFilters()">Скинути</button>
+    <button class="btn btn-ghost btn-sm" onclick="toggleAdvFilter()">Закрити</button>
+  </div>
+</div>
+
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="heroSection">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
@@ -218,7 +470,7 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify
     <p class="hero-desc">Купуй, продавай і обмінюй ігрові цінності в найбільшому маркетплейсі Ukraine GTA. Безпечно. Швидко. Своїм.</p>
     <div class="hero-cta">
       <button class="btn btn-purple btn-lg" onclick="openAuth('register')">Почати зараз</button>
-      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})">Переглянути лоти</button>
+      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('listingsSection').scrollIntoView({behavior:'smooth'})">Переглянути лоти</button>
     </div>
   </div>
   <div class="hero-stats">
@@ -229,18 +481,10 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify
 </section>
 
 <!-- LISTINGS -->
-<section class="section" id="listings">
+<section class="section" id="listingsSection">
   <div class="sec-head">
-    <h2 class="sec-title">Актуальні лоти</h2>
-    <span class="sec-link" onclick="filterBy(document.querySelector('.fbtn'),'all')">Показати всі</span>
-  </div>
-  <div class="filters">
-    <button class="fbtn active" onclick="filterBy(this,'all')">Усі</button>
-    <button class="fbtn" onclick="filterBy(this,'авто')">🚗 Авто</button>
-    <button class="fbtn" onclick="filterBy(this,'зброя')">⚔️ Зброя</button>
-    <button class="fbtn" onclick="filterBy(this,'бізнес')">💼 Бізнес</button>
-    <button class="fbtn" onclick="filterBy(this,'нерухомість')">🏠 Нерухомість</button>
-    <button class="fbtn" onclick="filterBy(this,'інше')">📦 Інше</button>
+    <h2 class="sec-title" id="sectionTitle">Продаж · Усі</h2>
+    <span style="font-size:11px;color:var(--grey);letter-spacing:1px" id="listCount"></span>
   </div>
   <div class="listing-grid" id="listingGrid"></div>
 </section>
@@ -252,7 +496,6 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify
     <li><a onclick="showPage('rules')">Правила</a></li>
     <li><a onclick="showPage('support')">Підтримка</a></li>
     <li><a onclick="showPage('about')">Про нас</a></li>
-    <li><a href="https://discord.gg/" target="_blank">Discord</a></li>
   </ul>
   <p class="footer-copy">© 2025 Pixle Web Studio · Ukraine GTA</p>
 </footer>
@@ -303,46 +546,140 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify
   <div class="modal" id="pdModal"></div>
 </div>
 
-<!-- PAGE: CATEGORIES -->
+<!-- SUBMIT AD MODAL -->
+<div class="overlay" id="adOverlay">
+  <div class="modal modal-wide">
+    <button class="mclose" onclick="closeAd()">×</button>
+    <div class="mtitle">Подати оголошення</div>
+    <p class="msub">Розмісти свій товар — покупці побачать його одразу</p>
+    <div class="warn-box">
+      ⚠️ КАТЕГОРИЧНО ЗАБОРОНЕНО: Продаж VIP-валюти, донат-валюти та будь-якої ігрової валюти. Порушення = блокування назавжди.
+    </div>
+    <div class="frow">
+      <div class="fgroup">
+        <label class="flabel">Тип оголошення *</label>
+        <select class="finput" id="adType">
+          <option value="sell">Продаю</option>
+          <option value="buy">Купую</option>
+          <option value="exchange">Обмін</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Категорія *</label>
+        <select class="finput" id="adCat" onchange="updateSubCat()">
+          <option value="">Обери...</option>
+          <option value="авто">🚗 Авто</option>
+          <option value="зброя">⚔️ Зброя</option>
+          <option value="нерухомість">🏠 Нерухомість</option>
+          <option value="бізнес">💼 Бізнес</option>
+          <option value="одяг">👕 Одяг/Аксесуари</option>
+          <option value="інше">📦 Інше</option>
+        </select>
+      </div>
+    </div>
+    <div class="fgroup" id="subCatGroup" style="display:none">
+      <label class="flabel">Підкатегорія</label>
+      <select class="finput" id="adSubCat"></select>
+    </div>
+    <div class="fgroup">
+      <label class="flabel">Назва товару *</label>
+      <input class="finput" type="text" id="adTitle" placeholder="Наприклад: BMW M5 повністю прокачаний"/>
+    </div>
+    <div class="fgroup">
+      <label class="flabel">Опис товару *</label>
+      <textarea class="finput" id="adDesc" rows="4" placeholder="Детально опиши товар: стан, характеристики, деталі угоди..."></textarea>
+    </div>
+    <div class="frow">
+      <div class="fgroup">
+        <label class="flabel">Ціна (грн) *</label>
+        <input class="finput" type="number" id="adPrice" placeholder="50000"/>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Стан</label>
+        <select class="finput" id="adCondition">
+          <option value="Новий">Новий</option>
+          <option value="Б/У">Б/У</option>
+          <option value="Прокачаний">Прокачаний</option>
+        </select>
+      </div>
+    </div>
+    <div class="fgroup">
+      <div class="photo-upload" onclick="showToast('Завантаження фото — незабаром 📸')">
+        <span style="font-size:24px">📷</span>
+        <span>Додати фото (до 5 шт)</span>
+      </div>
+    </div>
+    <button class="btn-submit" onclick="submitAd()">Опублікувати оголошення</button>
+  </div>
+</div>
+
+<!-- PROFILE PANEL -->
+<div class="side-panel" id="profilePanel">
+  <div class="sp-head">
+    <div class="sp-title">ПРОФІЛЬ</div>
+    <button class="sp-close" onclick="closeProfile()">×</button>
+  </div>
+  <div class="sp-body" id="profileBody"></div>
+</div>
+
+<!-- MESSENGER PANEL (Піксджер) -->
+<div class="msg-panel" id="msgPanel">
+  <div class="msg-head">
+    <div class="msg-head-title">💬 ПІКСДЖЕР</div>
+    <button class="msg-close" onclick="closeMsg()">×</button>
+  </div>
+  <div id="msgBody" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+    <div class="chat-list" id="chatList"></div>
+  </div>
+</div>
+
+<!-- NOTIF PANEL -->
+<div class="notif-panel" id="notifPanel">
+  <div class="notif-head">
+    <div class="notif-head-title">СПОВІЩЕННЯ</div>
+    <button class="notif-clear" onclick="clearNotifs()">Очистити все</button>
+  </div>
+  <div id="notifList"></div>
+</div>
+
+<!-- PAGES -->
 <div class="info-page" id="page-categories">
   <button class="ip-back" onclick="hidePage('categories')">← Назад</button>
   <h1 class="ip-title">КАТЕ<span>ГОРІЇ</span></h1>
   <div class="ip-grid">
-    <div class="ip-card" onclick="filterAndGo('авто')" style="cursor:pointer"><div class="icon">🚗</div><h3>Авто</h3><p>Всі транспортні засоби: машини, мотоцикли, гелікоптери. Стокові та прокачані варіанти.</p></div>
-    <div class="ip-card" onclick="filterAndGo('зброя')" style="cursor:pointer"><div class="icon">⚔️</div><h3>Зброя</h3><p>Пістолети, автомати, снайперські гвинтівки, боєприпаси та спорядження.</p></div>
-    <div class="ip-card" onclick="filterAndGo('бізнес')" style="cursor:pointer"><div class="icon">💼</div><h3>Бізнес</h3><p>Прибуткові бізнеси: кафе, автомийки, склади — стабільний дохід у грі.</p></div>
-    <div class="ip-card" onclick="filterAndGo('нерухомість')" style="cursor:pointer"><div class="icon">🏠</div><h3>Нерухомість</h3><p>Квартири, будинки та гаражі в різних районах міста.</p></div>
-    <div class="ip-card" onclick="filterAndGo('інше')" style="cursor:pointer"><div class="icon">📦</div><h3>Інше</h3><p>VIP статуси, ресурси, ігрова валюта та унікальні предмети.</p></div>
+    <div class="ip-card" onclick="filterAndGo('авто')" style="cursor:pointer"><div class="icon">🚗</div><h3>Авто</h3><p>BMW, Mercedes, Lamborghini, Ferrari та сотні інших марок. Стокові та прокачані.</p></div>
+    <div class="ip-card" onclick="filterAndGo('зброя')" style="cursor:pointer"><div class="icon">⚔️</div><h3>Зброя</h3><p>Пістолети, автомати, снайперки, боєприпаси та спорядження для бою.</p></div>
+    <div class="ip-card" onclick="filterAndGo('нерухомість')" style="cursor:pointer"><div class="icon">🏠</div><h3>Нерухомість</h3><p>Квартири, будинки, гаражі та склади в різних районах міста.</p></div>
+    <div class="ip-card" onclick="filterAndGo('бізнес')" style="cursor:pointer"><div class="icon">💼</div><h3>Бізнес</h3><p>Автомийки, ресторани, магазини — стабільний пасивний дохід.</p></div>
+    <div class="ip-card" onclick="filterAndGo('одяг')" style="cursor:pointer"><div class="icon">👕</div><h3>Одяг / Аксесуари</h3><p>Скіни, одяг, годинники, ланцюги та будь-які аксесуари персонажа.</p></div>
+    <div class="ip-card" onclick="filterAndGo('інше')" style="cursor:pointer"><div class="icon">📦</div><h3>Інше</h3><p>Все що не потрапило в інші категорії — унікальні предмети та послуги.</p></div>
   </div>
 </div>
 
-<!-- PAGE: ABOUT -->
 <div class="info-page" id="page-about">
   <button class="ip-back" onclick="hidePage('about')">← Назад</button>
   <h1 class="ip-title">ПРО <span>НАС</span></h1>
   <div class="ip-grid">
-    <div class="ip-card"><div class="icon">🎮</div><h3>Хто ми</h3><p>Marketplace UG — офіційний майданчик Ukraine GTA для торгівлі між гравцями. Ми зробили процес безпечним та зручним.</p></div>
-    <div class="ip-card"><div class="icon">🛡️</div><h3>Безпека</h3><p>Кожна угода проходить через месенджер платформи. Ми ведемо журнал всіх транзакцій для захисту від шахраїв.</p></div>
-    <div class="ip-card"><div class="icon">⚡</div><h3>Швидкість</h3><p>Від публікації лоту до отримання запиту — хвилини. Покупець пише напряму продавцю через месенджер.</p></div>
-    <div class="ip-card"><div class="icon">🏆</div><h3>Спільнота</h3><p>Понад 400 активних гравців. Discord-сервер для спілкування, обговорення угод та технічної підтримки.</p></div>
+    <div class="ip-card"><div class="icon">🎮</div><h3>Хто ми</h3><p>Marketplace UG — офіційний майданчик Ukraine GTA для торгівлі між гравцями. Безпека, зручність, спільнота.</p></div>
+    <div class="ip-card"><div class="icon">🛡️</div><h3>Безпека</h3><p>Угоди через вбудований месенджер Піксджер. Журнал транзакцій та система захисту від шахраїв.</p></div>
+    <div class="ip-card"><div class="icon">⚡</div><h3>Швидкість</h3><p>Від публікації лоту до першого запиту — хвилини. Покупець пише напряму через Піксджер.</p></div>
+    <div class="ip-card"><div class="icon">🏆</div><h3>Спільнота</h3><p>Понад 400 активних гравців. Discord-сервер для обговорень та технічної підтримки.</p></div>
     <div class="ip-card"><div class="icon">💜</div><h3>Pixle Web Studio</h3><p>Сайт розроблений Pixle Web Studio — командою, що спеціалізується на веб-рішеннях для ігрових проектів.</p></div>
   </div>
 </div>
 
-<!-- PAGE: SUPPORT -->
 <div class="info-page" id="page-support">
   <button class="ip-back" onclick="hidePage('support')">← Назад</button>
   <h1 class="ip-title">ТЕХ<span>ПІДТРИМКА</span></h1>
-  <div class="ip-grid" style="margin-bottom:48px">
-    <div class="ip-card"><div class="icon">💬</div><h3>Discord</h3><p>Найшвидший спосіб отримати допомогу — написати в Discord сервер Ukraine GTA. Відповідаємо впродовж 30 хвилин.</p></div>
-    <div class="ip-card"><div class="icon">📧</div><h3>Email</h3><p>Для складних питань або скарг — пишіть на офіційну пошту. Відповідь протягом 24 годин.</p></div>
-    <div class="ip-card"><div class="icon">📋</div><h3>Форма заявки</h3><p>Заповни форму нижче і ми зв'яжемося з тобою. Вказуй нік та детальний опис проблеми.</p></div>
+  <div class="ip-grid" style="margin-bottom:36px">
+    <div class="ip-card"><div class="icon">💬</div><h3>Discord</h3><p>Найшвидший спосіб — написати в Discord сервер Ukraine GTA. Відповідаємо за 30 хвилин.</p></div>
+    <div class="ip-card"><div class="icon">⚡</div><h3>Піксджер</h3><p>Якщо ти в системі — напиши нам через вбудований месенджер Піксджер. Відповідь миттєво.</p></div>
   </div>
-  <div class="support-form">
-    <div class="fgroup"><label class="flabel">Твій нік в грі</label><input class="finput" type="text" placeholder="GTA_Nick"/></div>
-    <div class="fgroup"><label class="flabel">Discord або Email</label><input class="finput" type="text" placeholder="user#0000 або mail@gmail.com"/></div>
-    <div class="fgroup"><label class="flabel">Тема звернення</label>
-      <select class="finput" style="cursor:pointer;background:#0d0d0d">
+  <div style="max-width:560px">
+    <div class="fgroup"><label class="flabel">Нік в грі</label><input class="finput" type="text" id="supGame" placeholder="Підтягується з акаунту..."/></div>
+    <div class="fgroup"><label class="flabel">Discord</label><input class="finput" type="text" id="supDiscord" placeholder="Підтягується з акаунту..."/></div>
+    <div class="fgroup"><label class="flabel">Тема</label>
+      <select class="finput" style="background:#0c0c0c">
         <option value="">Обери тему...</option>
         <option>Проблема з акаунтом</option>
         <option>Скарга на продавця</option>
@@ -351,24 +688,23 @@ footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify
         <option>Інше</option>
       </select>
     </div>
-    <div class="fgroup"><label class="flabel">Опис проблеми</label><textarea class="finput" rows="5" placeholder="Детально опиши ситуацію..." style="resize:vertical;font-family:'Rajdhani',sans-serif;font-size:14px;"></textarea></div>
-    <button class="btn-submit" onclick="showToast('Заявку відправлено! Ми зв\'яжемося з тобою 👌','ok')">Відправити заявку</button>
+    <div class="fgroup"><label class="flabel">Опис</label><textarea class="finput" rows="5" placeholder="Детально опиши ситуацію..."></textarea></div>
+    <button class="btn-submit" onclick="showToast('Заявку відправлено! Ми зв\'яжемося 👌','ok')">Відправити заявку</button>
   </div>
 </div>
 
-<!-- PAGE: RULES -->
 <div class="info-page" id="page-rules">
   <button class="ip-back" onclick="hidePage('rules')">← Назад</button>
   <h1 class="ip-title">ПРА<span>ВИЛА</span></h1>
   <ul class="rules-list">
-    <li><span>01</span><span>Забороняється шахрайство в будь-якій формі. При виявленні — постійне блокування акаунту.</span></li>
-    <li><span>02</span><span>Вся комунікація між покупцем і продавцем має вестись через вбудований месенджер платформи.</span></li>
-    <li><span>03</span><span>Ціна в оголошенні має відповідати реальній ціні товару. Заборонено змінювати ціну після запиту.</span></li>
-    <li><span>04</span><span>Публікація фейкових або неіснуючих товарів — причина блокування без попередження.</span></li>
-    <li><span>05</span><span>Заборонено розміщувати особисті дані (номери телефонів) в описах товарів.</span></li>
-    <li><span>06</span><span>Один гравець може мати лише один акаунт на платформі. Мультиакаунти блокуються.</span></li>
-    <li><span>07</span><span>Будь-які суперечки вирішуються через службу підтримки. Самосуд та шантаж заборонені.</span></li>
-    <li><span>08</span><span>Платформа не несе відповідальності за угоди, здійснені поза межами маркетплейсу.</span></li>
+    <li><span>01</span><span>Шахрайство в будь-якій формі — постійне блокування без попереджень.</span></li>
+    <li><span>02</span><span>Вся комунікація між покупцем і продавцем має вестись через Піксджер.</span></li>
+    <li><span>03</span><span>Ціна в оголошенні має відповідати реальній. Змінювати ціну після запиту заборонено.</span></li>
+    <li><span>04</span><span>Публікація фейкових або неіснуючих товарів — блокування без попередження.</span></li>
+    <li><span>05</span><span><strong style="color:var(--danger)">КАТЕГОРИЧНО ЗАБОРОНЕНО</strong> продавати VIP-валюту, донат-валюту та будь-яку ігрову валюту.</span></li>
+    <li><span>06</span><span>Один гравець = один акаунт. Мультиакаунти блокуються автоматично.</span></li>
+    <li><span>07</span><span>Суперечки вирішуються через підтримку. Самосуд та шантаж заборонені.</span></li>
+    <li><span>08</span><span>Платформа не несе відповідальності за угоди поза межами маркетплейсу.</span></li>
   </ul>
 </div>
 
@@ -381,13 +717,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
   signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, serverTimestamp
+import { getFirestore, doc, setDoc, getDoc, collection, addDoc, query, where, getDocs, orderBy, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ══════════════════════════════════════════
-// ⚠️  ВСТАВТЕ СВІЙ КОНФІГ НИЖЧЕ
-// Знайти: Firebase Console → ⚙️ Project Settings → Your apps → Web app
-// ══════════════════════════════════════════
 const firebaseConfig = {
   apiKey: "AIzaSyDWYb50Ly1f1CZsJ7B2J-Q5LNTVgp3UuiA",
   authDomain: "marketplace-ug-c730a.firebaseapp.com",
@@ -403,27 +735,55 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const gProvider = new GoogleAuthProvider();
 
+let currentUser = null;
+let currentUserData = null;
+
 async function saveUser(uid, data) {
   await setDoc(doc(db,"users",uid), {...data, updatedAt: serverTimestamp()}, {merge:true});
 }
+async function loadUserData(uid) {
+  const snap = await getDoc(doc(db,"users",uid));
+  return snap.exists() ? snap.data() : null;
+}
 
-onAuthStateChanged(auth, user => {
-  const el = document.getElementById('navActions');
+onAuthStateChanged(auth, async user => {
+  currentUser = user;
   if (user) {
-    const init = (user.displayName || user.email || '?')[0].toUpperCase();
-    const name = user.displayName || user.email.split('@')[0];
-    el.innerHTML = `
-      <button class="user-btn">
-        <div class="avatar">${init}</div>${name}
-      </button>
-      <button class="btn btn-ghost" onclick="doLogout()">Вийти</button>`;
+    currentUserData = await loadUserData(user.uid);
+    updateNavForUser(user, currentUserData);
+    fillSupportForm(currentUserData);
     closeAuth();
   } else {
-    el.innerHTML = `
-      <button class="btn btn-ghost" onclick="openAuth('login')">Увійти</button>
-      <button class="btn btn-purple" onclick="openAuth('register')">Реєстрація</button>`;
+    currentUser = null; currentUserData = null;
+    document.getElementById('navActions').innerHTML = `
+      <button class="btn btn-ghost btn-sm" onclick="openAuth('login')">Увійти</button>
+      <button class="btn btn-purple btn-sm" onclick="openAuth('register')">Реєстрація</button>`;
   }
 });
+
+function updateNavForUser(user, data) {
+  const init = (user.displayName || user.email || '?')[0].toUpperCase();
+  const name = user.displayName || user.email.split('@')[0];
+  document.getElementById('navActions').innerHTML = `
+    <div class="user-area">
+      <div class="notif-btn" onclick="toggleNotif()" id="notifBtn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <div class="notif-dot" id="notifDot"></div>
+      </div>
+      <div class="avatar-btn" onclick="openProfile()">${init}</div>
+      <button class="user-name-btn" onclick="openProfile()">${name}</button>
+      <button class="logout-btn" onclick="doLogout()">Вийти</button>
+    </div>`;
+  loadNotifs();
+}
+
+function fillSupportForm(data) {
+  if (!data) return;
+  const g = document.getElementById('supGame');
+  const d = document.getElementById('supDiscord');
+  if (g) g.value = data.game || '';
+  if (d) d.value = data.discord || '';
+}
 
 window.doRegister = async () => {
   const nick=document.getElementById('rNick').value.trim();
@@ -436,7 +796,7 @@ window.doRegister = async () => {
   try {
     const c = await createUserWithEmailAndPassword(auth,email,pass);
     await updateProfile(c.user,{displayName:nick});
-    await saveUser(c.user.uid,{nick,game,email,discord,telegram:tg,role:'user'});
+    await saveUser(c.user.uid,{nick,game,email,discord,telegram:tg,role:'user',ads:0,deals:0});
     showToast(`Ласкаво просимо, ${nick}! 🎮`,'ok');
   } catch(e){ showToast(e.message,'err'); }
 };
@@ -454,137 +814,383 @@ window.doGoogle = async () => {
   try {
     const r = await signInWithPopup(auth,gProvider);
     const snap = await getDoc(doc(db,"users",r.user.uid));
-    if(!snap.exists()) await saveUser(r.user.uid,{nick:r.user.displayName,game:'',email:r.user.email,discord:'',telegram:'',role:'user'});
+    if(!snap.exists()) await saveUser(r.user.uid,{nick:r.user.displayName,game:'',email:r.user.email,discord:'',telegram:'',role:'user',ads:0,deals:0});
     showToast(`З поверненням, ${r.user.displayName}! 🎮`,'ok');
   } catch(e){ showToast(e.message,'err'); }
 };
 
-window.doLogout = async () => {
-  await signOut(auth);
-  showToast('Ти вийшов з акаунту');
+window.doLogout = async () => { await signOut(auth); showToast('Ти вийшов з акаунту'); };
+
+// PROFILE PANEL
+window.openProfile = () => {
+  if (!currentUser) return openAuth('login');
+  const data = currentUserData || {};
+  const init = (currentUser.displayName||currentUser.email||'?')[0].toUpperCase();
+  const name = currentUser.displayName || currentUser.email.split('@')[0];
+  document.getElementById('profileBody').innerHTML = `
+    <div class="sp-avatar">${init}</div>
+    <div class="sp-name">${name}</div>
+    <div class="sp-meta">${data.email||''}</div>
+    <div class="sp-stat-row">
+      <div class="sp-stat"><div class="sp-stat-num">${data.ads||0}</div><div class="sp-stat-lbl">Оголошень</div></div>
+      <div class="sp-stat"><div class="sp-stat-num">${data.deals||0}</div><div class="sp-stat-lbl">Угод</div></div>
+    </div>
+    <div class="sp-section-title">Ігрові дані</div>
+    <div class="fgroup"><label class="flabel">Нік в грі</label><input class="finput" type="text" id="editGame" value="${data.game||''}"/></div>
+    <div class="fgroup"><label class="flabel">Discord</label><input class="finput" type="text" id="editDiscord" value="${data.discord||''}"/></div>
+    <div class="fgroup"><label class="flabel">Telegram</label><input class="finput" type="text" id="editTG" value="${data.telegram||''}"/></div>
+    <button class="btn-submit" style="margin-bottom:18px" onclick="saveProfile()">Зберегти зміни</button>
+    <div class="sp-divider"></div>
+    <div class="sp-section-title">Дії</div>
+    <button class="sp-btn purple" onclick="closeProfile();openAd()"><span class="icon">📢</span> Подати оголошення</button>
+    <button class="sp-btn" onclick="openMsg()"><span class="icon">💬</span> Піксджер (чати)</button>
+    <div class="sp-divider"></div>
+    <button class="sp-btn" style="border-color:var(--danger);color:var(--danger)" onclick="doLogout();closeProfile()"><span class="icon">🚪</span> Вийти</button>`;
+  document.getElementById('profilePanel').classList.add('open');
 };
+window.closeProfile = () => document.getElementById('profilePanel').classList.remove('open');
+
+window.saveProfile = async () => {
+  if(!currentUser) return;
+  const game = document.getElementById('editGame').value.trim();
+  const discord = document.getElementById('editDiscord').value.trim();
+  const tg = document.getElementById('editTG').value.trim();
+  await saveUser(currentUser.uid, {game, discord, telegram:tg});
+  currentUserData = {...(currentUserData||{}), game, discord, telegram:tg};
+  fillSupportForm(currentUserData);
+  showToast('Профіль оновлено! ✅','ok');
+};
+
+// SUBMIT AD
+window.openAd = () => {
+  if(!currentUser) return openAuth('login');
+  document.getElementById('adOverlay').classList.add('open');
+};
+window.closeAd = () => document.getElementById('adOverlay').classList.remove('open');
+
+window.submitAd = async () => {
+  if(!currentUser) return openAuth('login');
+  const type = document.getElementById('adType').value;
+  const cat = document.getElementById('adCat').value;
+  const title = document.getElementById('adTitle').value.trim();
+  const desc = document.getElementById('adDesc').value.trim();
+  const price = document.getElementById('adPrice').value;
+  const condition = document.getElementById('adCondition').value;
+  if(!cat||!title||!desc||!price) return showToast('Заповни всі обов\'язкові поля','err');
+  try {
+    await addDoc(collection(db,'listings'), {
+      uid: currentUser.uid,
+      seller: currentUser.displayName || currentUser.email.split('@')[0],
+      discord: currentUserData?.discord||'',
+      type, cat, title, desc, price: parseInt(price), condition,
+      createdAt: serverTimestamp(), active: true
+    });
+    await saveUser(currentUser.uid, {ads: (currentUserData?.ads||0)+1});
+    closeAd();
+    showToast('Оголошення опубліковано! 🎉','ok');
+    loadFirebaseListings();
+  } catch(e){ showToast(e.message,'err'); }
+};
+
+// LOAD LISTINGS FROM FIREBASE
+window.loadFirebaseListings = async () => {
+  try {
+    const q = query(collection(db,'listings'), where('active','==',true));
+    const snap = await getDocs(q);
+    if(!snap.empty){
+      const items = snap.docs.map(d=>({id:d.id,...d.data()}));
+      window.FIREBASE_LISTINGS = items;
+      renderListings();
+    }
+  } catch(e){ /* use demo data */ }
+};
+
+// NOTIFS
+let NOTIFS = [
+  {id:1,icon:'💬',text:'<strong>SpeedKing</strong> відповів на твій запит щодо BMW M5',time:'5 хв тому',unread:true},
+  {id:2,icon:'📦',text:'Твоє оголошення <strong>"Квартира ЦП"</strong> отримало новий запит',time:'1 год тому',unread:true},
+  {id:3,icon:'✅',text:'Угоду з <strong>RocketMan</strong> закрито успішно',time:'3 год тому',unread:false},
+];
+function loadNotifs(){
+  const list = document.getElementById('notifList');
+  const unread = NOTIFS.filter(n=>n.unread).length;
+  document.getElementById('notifDot') && (document.getElementById('notifDot').style.display = unread>0?'block':'none');
+  list.innerHTML = NOTIFS.length ? NOTIFS.map(n=>`
+    <div class="notif-item${n.unread?' unread':''}">
+      <div class="notif-icon">${n.icon}</div>
+      <div><div class="notif-text">${n.text}</div><div class="notif-time">${n.time}</div></div>
+    </div>`).join('') : `<div style="padding:24px;text-align:center;color:var(--grey);font-size:13px">Немає сповіщень</div>`;
+}
+window.toggleNotif = () => {
+  const p = document.getElementById('notifPanel');
+  p.classList.toggle('open');
+  if(p.classList.contains('open')){NOTIFS=NOTIFS.map(n=>({...n,unread:false}));loadNotifs();}
+};
+window.clearNotifs = () => { NOTIFS=[]; loadNotifs(); };
+
+// MESSENGER
+const DEMO_CHATS = [
+  {id:1,name:'SpeedKing',last:'Так, машина ще в наявності!',time:'щойно',unread:2,messages:[
+    {text:'Привіт! Машина ще доступна?',out:false,time:'14:30'},
+    {text:'Так, машина ще в наявності!',out:true,time:'14:31'},
+  ]},
+  {id:2,name:'RocketMan',last:'Домовились, зустрічаємось о 20:00',time:'1г',unread:0,messages:[
+    {text:'Ціна фіксована?',out:false,time:'12:00'},
+    {text:'Так, 6,800,000 грн',out:true,time:'12:01'},
+    {text:'Домовились, зустрічаємось о 20:00',out:false,time:'12:05'},
+  ]},
+];
+let activeChatId = null;
+
+window.openMsg = () => {
+  closeProfile();
+  document.getElementById('msgPanel').classList.add('open');
+  renderChatList();
+};
+window.closeMsg = () => {
+  document.getElementById('msgPanel').classList.remove('open');
+  activeChatId = null;
+};
+
+function renderChatList(){
+  const body = document.getElementById('msgBody');
+  body.innerHTML = `<div class="chat-list">${DEMO_CHATS.map(c=>`
+    <div class="chat-item" onclick="openChat(${c.id})">
+      <div class="chat-av">${c.name[0]}</div>
+      <div class="chat-info">
+        <div class="chat-name">${c.name}</div>
+        <div class="chat-preview">${c.last}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+        <div class="chat-time">${c.time}</div>
+        ${c.unread>0?`<div class="chat-unread">${c.unread}</div>`:''}
+      </div>
+    </div>`).join('')}</div>`;
+}
+
+window.openChat = (id) => {
+  const chat = DEMO_CHATS.find(c=>c.id===id);
+  if(!chat) return;
+  activeChatId = id;
+  document.getElementById('msgBody').innerHTML = `
+    <div class="chat-view">
+      <div class="chat-view-head">
+        <button class="chat-back" onclick="renderChatList()">←</button>
+        <div class="chat-av" style="width:28px;height:28px;font-size:12px">${chat.name[0]}</div>
+        <div class="chat-view-name">${chat.name}</div>
+      </div>
+      <div class="chat-messages" id="chatMsgs">
+        ${chat.messages.map(m=>`
+          <div class="msg-bubble ${m.out?'out':'in'}">${m.text}<div class="mtime">${m.time}</div></div>
+        `).join('')}
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chatInput" placeholder="Написати повідомлення..." onkeydown="if(event.key==='Enter')sendMsg(${id})"/>
+        <button class="chat-send" onclick="sendMsg(${id})">➤</button>
+      </div>
+    </div>`;
+};
+
+window.sendMsg = (id) => {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  const chat = DEMO_CHATS.find(c=>c.id===id);
+  const now = new Date().toLocaleTimeString('uk',{hour:'2-digit',minute:'2-digit'});
+  chat.messages.push({text,out:true,time:now});
+  chat.last = text;
+  input.value = '';
+  openChat(id);
+  const msgs = document.getElementById('chatMsgs');
+  if(msgs) msgs.scrollTop = msgs.scrollHeight;
+};
+
+loadFirebaseListings();
 </script>
 
 <script>
 // SPLASH
-setTimeout(() => document.getElementById('splash').classList.add('hide'), 3500);
+setTimeout(()=>document.getElementById('splash').classList.add('hide'), 3500);
 
-// LISTINGS
-const LISTINGS = [
-  {id:1,cat:'авто',       title:'Zentorno — чорний',      desc:'Повністю прокачаний. Мотор V12, броня 4 рівня, повний тюнінг BodyKit. Стан ідеальний.',         price:'2,500,000',cur:'$',seller:'SpeedKing',    discord:'SpeedKing#1234',badge:'hot'},
-  {id:2,cat:'зброя',      title:'AK-47 + 50 набоїв',      desc:'Набір зброї з боєприпасами. Швидка і безпечна передача в грі. Ідеально для старту.',            price:'350,000',  cur:'$',seller:'ArmsDealerUA', discord:'Arms#4321',    badge:'new'},
-  {id:3,cat:'бізнес',     title:'Автомийка Район 3',       desc:'Дохід $45K/день. Документи готові, персонал найнятий. Ідеальний старт для нового гравця.',       price:'8,000,000',cur:'$',seller:'BizMaster',    discord:'BizMaster#9999',badge:''},
-  {id:4,cat:'нерухомість',title:'Квартира Central Park',   desc:'2 кімнати, вигляд на місто. Відмінна локація в центрі, поряд із магазинами і банком.',          price:'1,200,000',cur:'$',seller:'RealEstate_UG',discord:'RE#5555',     badge:''},
-  {id:5,cat:'авто',       title:'Elegy RH8 — білий',       desc:'Стокова комплектація, без пошкоджень. Відмінний варіант для старту або дрифту.',                price:'900,000',  cur:'$',seller:'AutoSalon',    discord:'Auto#2345',   badge:'new'},
-  {id:6,cat:'інше',       title:'VIP Статус · 30 днів',    desc:'Доступ до VIP зон, бонуси при виконанні завдань, приватний VIP чат з адміністрацією.',           price:'500,000',  cur:'$',seller:'AdminShop',    discord:'Admin#0001',  badge:'hot'},
-  {id:7,cat:'зброя',      title:'Снайперська гвинтівка',   desc:'Precision Rifle з глушником і оптикою. Ідеальна для далекого бою та місій.',                    price:'750,000',  cur:'$',seller:'GhostShot',    discord:'Ghost#7777',  badge:''},
-  {id:8,cat:'бізнес',     title:'Ресторан Порт-зона',      desc:'Дохід $30K/день. Гарне місцезнаходження, щоденний трафік клієнтів. Документи готові.',          price:'5,500,000',cur:'$',seller:'ChefBoss',      discord:'Chef#3333',   badge:'sale'},
-  {id:9,cat:'авто',       title:'Oppressor MK2',           desc:'Легендарний байк з ракетами. Найшвидший транспорт у грі. Повний боєкомплект включено.',          price:'6,800,000',cur:'$',seller:'RocketMan',    discord:'Rocket#8888', badge:'hot'},
-  {id:10,cat:'нерухомість',title:'Особняк біля берега',    desc:'5 кімнат, два гаражі, вигляд на океан. Елітна нерухомість в найпрестижнішому районі міста.',    price:'12,000,000',cur:'$',seller:'LuxuryUG',    discord:'Luxury#1111', badge:'sale'},
+// NAV HIDE ON SCROLL
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  const cur=window.scrollY;
+  const nav=document.getElementById('mainNav');
+  if(cur>120 && cur>lastScroll) nav.classList.add('hidden');
+  else nav.classList.remove('hidden');
+  lastScroll=cur;
+},{passive:true});
+
+// DEMO + FIREBASE LISTINGS
+const DEMO = [
+  {id:'d1',cat:'авто',type:'sell',title:'BMW M5 — Чорний',desc:'Повністю прокачаний. Мотор V8, броня, повний тюнінг. Швидкий та надійний.',price:2500000,condition:'Прокачаний',seller:'SpeedKing',discord:'SpeedKing#1234',badge:'hot'},
+  {id:'d2',cat:'зброя',type:'sell',title:'AK-47 + 50 набоїв',desc:'Набір зброї для початківців. Швидка передача. Ідеальний стан.',price:350000,condition:'Новий',seller:'ArmsDealerUA',discord:'Arms#4321',badge:'new'},
+  {id:'d3',cat:'бізнес',type:'sell',title:'Автомийка Район 3',desc:'Дохід 45,000 грн/день. Документи готові, персонал найнятий.',price:8000000,condition:'Новий',seller:'BizMaster',discord:'BizMaster#9999',badge:''},
+  {id:'d4',cat:'нерухомість',type:'sell',title:'Квартира Central Park',desc:'2 кімнати, вигляд на місто. Центр, поряд з банком та магазинами.',price:1200000,condition:'Б/У',seller:'RealEstate_UG',discord:'RE#5555',badge:''},
+  {id:'d5',cat:'авто',type:'sell',title:'Lamborghini Urus',desc:'Стокова комплектація, ідеальний стан. Відмінний вибір для гонок.',price:4500000,condition:'Новий',seller:'LuxuryUG',discord:'Luxury#1111',badge:'new'},
+  {id:'d6',cat:'одяг',type:'sell',title:'Костюм бізнесмена + годинник',desc:'Ексклюзивний скін. Виглядає дорого і стильно. Є лише один.',price:180000,condition:'Новий',seller:'StyleKing',discord:'Style#2233',badge:'sale'},
+  {id:'d7',cat:'авто',type:'buy',title:'Шукаю Oppressor MK2',desc:'Куплю Oppressor MK2 в хорошому стані. Ціна договірна. Пишіть у Піксджер.',price:5000000,condition:'Б/У',seller:'HunterUG',discord:'Hunter#4455',badge:''},
+  {id:'d8',cat:'зброя',type:'buy',title:'Шукаю снайперку з оптикою',desc:'Куплю Precision Rifle з глушником. Ціна договірна.',price:600000,condition:'Б/У',seller:'GhostBuyer',discord:'Ghost#6677',badge:''},
+  {id:'d9',cat:'авто',type:'exchange',title:'Обмін Ferrari на Mercedes',desc:'Маю Ferrari 488. Хочу обміняти на Mercedes AMG GT або аналог.',price:0,condition:'Прокачаний',seller:'SwapKing',discord:'Swap#8899',badge:''},
+  {id:'d10',cat:'нерухомість',type:'sell',title:'Особняк біля берега',desc:'5 кімнат, 2 гаражі, вигляд на океан. Елітний район.',price:12000000,condition:'Новий',seller:'BigBoss',discord:'Boss#0011',badge:'sale'},
 ];
 
-let curFilter='all', curSearch='';
+window.FIREBASE_LISTINGS = [];
+let curFilter='all', curSearch='', curSection='sell', priceMin=0, priceMax=Infinity;
 
-function renderListings() {
-  const grid = document.getElementById('listingGrid');
-  let data = LISTINGS;
-  if (curFilter !== 'all') data = data.filter(l => l.cat === curFilter);
-  if (curSearch) data = data.filter(l =>
-    l.title.toLowerCase().includes(curSearch) ||
-    l.desc.toLowerCase().includes(curSearch) ||
-    l.cat.toLowerCase().includes(curSearch)
-  );
-  if (!data.length) {
-    grid.innerHTML = `<div style="padding:48px;color:var(--grey);font-size:14px;letter-spacing:1px;text-align:center;background:var(--card)">Нічого не знайдено 🔍</div>`;
+function getActiveListings(){
+  const base = [...DEMO,...(window.FIREBASE_LISTINGS||[])];
+  return base.filter(l=>{
+    if(l.type!==curSection) return false;
+    if(curFilter!=='all' && l.cat!==curFilter) return false;
+    if(curSearch && !l.title.toLowerCase().includes(curSearch) && !l.desc.toLowerCase().includes(curSearch)) return false;
+    const p = parseInt(l.price)||0;
+    if(p < priceMin) return false;
+    if(p > priceMax && priceMax!==Infinity) return false;
+    return true;
+  });
+}
+
+function fmtPrice(p,type){
+  if(type==='exchange') return 'Обмін';
+  if(!p) return 'Договірна';
+  return parseInt(p).toLocaleString('uk-UA')+ ' грн';
+}
+
+function renderListings(){
+  const grid=document.getElementById('listingGrid');
+  const data=getActiveListings();
+  const label={sell:'Продаж',buy:'Купую',exchange:'Обмін'};
+  document.getElementById('sectionTitle').textContent = `${label[curSection]} · ${curFilter==='all'?'Усі':curFilter}`;
+  document.getElementById('listCount').textContent = `${data.length} оголошень`;
+  if(!data.length){
+    grid.innerHTML=`<div class="empty-state"><div class="icon">🔍</div>Оголошень не знайдено</div>`;
     return;
   }
-  grid.innerHTML = data.map(l => `
-    <div class="lcard" onclick="openProduct(${l.id})">
-      ${l.badge ? `<div class="badge badge-${l.badge}">${l.badge==='hot'?'🔥 HOT':l.badge==='new'?'✦ NEW':'🏷 SALE'}</div>` : ''}
+  grid.innerHTML=data.map(l=>`
+    <div class="lcard" onclick="openProduct('${l.id}')">
+      ${l.badge?`<div class="badge badge-${l.badge}">${l.badge==='hot'?'🔥 HOT':l.badge==='new'?'✦ NEW':'🏷 SALE'}</div>`:''}
       <div class="lcard-cat">${l.cat}</div>
       <div class="lcard-title">${l.title}</div>
       <div class="lcard-desc">${l.desc}</div>
       <div class="lcard-foot">
-        <div class="lcard-price">${l.price}<em>${l.cur}</em></div>
+        <div class="lcard-price">${fmtPrice(l.price,l.type)}</div>
         <div class="lcard-seller">від ${l.seller}</div>
       </div>
+      <div class="lcard-type">${l.condition||''}</div>
     </div>`).join('');
 }
 
-window.filterBy = (btn, cat) => {
-  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  curFilter = cat;
-  renderListings();
+window.filterBy=(btn,cat)=>{
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); curFilter=cat; renderListings();
 };
-window.searchListings = v => { curSearch = v.toLowerCase(); renderListings(); };
-window.filterAndGo = (cat) => {
-  document.querySelectorAll('.info-page').forEach(p => p.classList.remove('open'));
-  curFilter = cat;
-  document.querySelectorAll('.fbtn').forEach(b => {
-    b.classList.toggle('active', b.textContent.toLowerCase().includes(cat) || (cat==='all' && b.textContent==='Усі'));
+window.searchListings=v=>{curSearch=v.toLowerCase();renderListings();};
+window.switchSection=(btn,sec)=>{
+  document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); curSection=sec; renderListings();
+};
+window.filterAndGo=(cat)=>{
+  document.querySelectorAll('.info-page').forEach(p=>p.classList.remove('open'));
+  curFilter=cat;
+  document.querySelectorAll('.fbtn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.toLowerCase().includes(cat));
   });
   renderListings();
-  setTimeout(() => document.getElementById('listings').scrollIntoView({behavior:'smooth'}), 100);
+  setTimeout(()=>document.getElementById('listingsSection').scrollIntoView({behavior:'smooth'}),100);
 };
 
 // PRODUCT DETAIL
-window.openProduct = (id) => {
-  const p = LISTINGS.find(l => l.id === id);
-  if (!p) return;
-  document.getElementById('pdModal').innerHTML = `
+window.openProduct=(id)=>{
+  const p=[...DEMO,...(window.FIREBASE_LISTINGS||[])].find(l=>l.id==id||l.id===id);
+  if(!p) return;
+  document.getElementById('pdModal').innerHTML=`
     <button class="mclose" onclick="closePD()">×</button>
     <div class="pd-badge">${p.cat}</div>
     <div class="pd-title">${p.title}</div>
-    <div class="pd-price">${p.price}<em>${p.cur}</em></div>
+    <div class="pd-price">${fmtPrice(p.price,p.type)}</div>
     <div class="pd-desc">${p.desc}</div>
-    <div class="pd-row"><span class="pd-row-label">Продавець</span><span class="pd-row-val">${p.seller}</span></div>
-    <div class="pd-row"><span class="pd-row-label">Категорія</span><span class="pd-row-val">${p.cat}</span></div>
-    <div class="pd-row" style="margin-bottom:16px"><span class="pd-row-label">Статус</span><span class="pd-row-val" style="color:var(--success)">● Доступно</span></div>
-    <p style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:10px;font-family:'Share Tech Mono',monospace">Контакти продавця</p>
-    <div class="pd-contacts"><div class="contact-chip">💬 ${p.discord}</div></div>
-    <button class="btn-message" onclick="showToast('Месенджер — буде в наступній версії 💬','ok')">✉ Написати продавцю</button>`;
+    <div class="pd-row"><span class="pd-label">Продавець</span><span class="pd-val">${p.seller}</span></div>
+    <div class="pd-row"><span class="pd-label">Категорія</span><span class="pd-val">${p.cat}</span></div>
+    <div class="pd-row"><span class="pd-label">Стан</span><span class="pd-val">${p.condition||'—'}</span></div>
+    <div class="pd-row" style="margin-bottom:14px"><span class="pd-label">Статус</span><span class="pd-val" style="color:var(--success)">● Доступно</span></div>
+    <p style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:9px;font-family:'Share Tech Mono',monospace">Контакти продавця</p>
+    <div class="pd-contacts"><div class="contact-chip">💬 Discord: ${p.discord||'—'}</div></div>
+    <button class="btn-message" onclick="showToast('Відкриваємо Піксджер... 💬','ok');closePD();openMsg()">✉ Написати у Піксджер</button>`;
   document.getElementById('pdOverlay').classList.add('open');
 };
-window.closePD = () => document.getElementById('pdOverlay').classList.remove('open');
-document.getElementById('pdOverlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('pdOverlay')) closePD();
-});
+window.closePD=()=>document.getElementById('pdOverlay').classList.remove('open');
+document.getElementById('pdOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('pdOverlay'))closePD();});
 
 // AUTH
-window.openAuth = (tab) => {
-  document.getElementById('authOverlay').classList.add('open');
-  switchAuth(tab || 'login');
+window.openAuth=(tab)=>{document.getElementById('authOverlay').classList.add('open');switchAuth(tab||'login');};
+window.switchAuth=(tab)=>{
+  document.getElementById('fLogin').style.display=tab==='login'?'block':'none';
+  document.getElementById('fReg').style.display=tab==='register'?'block':'none';
+  document.getElementById('tabL').classList.toggle('active',tab==='login');
+  document.getElementById('tabR').classList.toggle('active',tab==='register');
+  document.getElementById('authTitle').textContent=tab==='login'?'Увійти':'Реєстрація';
+  document.getElementById('authSub').textContent=tab==='login'?'Раді бачити тебе знову, гравець':'Приєднуйся до Marketplace UG';
 };
-window.switchAuth = (tab) => {
-  document.getElementById('fLogin').style.display  = tab==='login'    ? 'block' : 'none';
-  document.getElementById('fReg').style.display    = tab==='register' ? 'block' : 'none';
-  document.getElementById('tabL').classList.toggle('active', tab==='login');
-  document.getElementById('tabR').classList.toggle('active', tab==='register');
-  document.getElementById('authTitle').textContent = tab==='login' ? 'Увійти' : 'Реєстрація';
-  document.getElementById('authSub').textContent   = tab==='login' ? 'Раді бачити тебе знову, гравець' : 'Приєднуйся до Marketplace UG';
+window.closeAuth=()=>document.getElementById('authOverlay').classList.remove('open');
+document.getElementById('authOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('authOverlay'))closeAuth();});
+
+// SUBMIT AD
+window.updateSubCat=()=>{
+  const cat=document.getElementById('adCat').value;
+  const grp=document.getElementById('subCatGroup');
+  const sel=document.getElementById('adSubCat');
+  const subCats={
+    'авто':['Легкові','Позашляховики','Суперкари','Мото','Гелікоптери','Яхти','Вантажівки'],
+    'зброя':['Пістолети','Автомати','Снайперки','Дробовики','Важка зброя','Боєприпаси'],
+    'нерухомість':['Квартири','Будинки','Гаражі','Комерційна'],
+    'бізнес':['Їжа та напої','Автосервіс','Торгівля','Розваги'],
+    'одяг':['Верхній одяг','Взуття','Головні убори','Аксесуари','Повні скіни'],
+    'інше':['Послуги','Унікальні предмети','Інформація'],
+  };
+  if(subCats[cat]){grp.style.display='block';sel.innerHTML=subCats[cat].map(s=>`<option>${s}</option>`).join('');}
+  else grp.style.display='none';
 };
-window.closeAuth = () => document.getElementById('authOverlay').classList.remove('open');
-document.getElementById('authOverlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('authOverlay')) closeAuth();
-});
+
+// ADV FILTERS
+window.toggleAdvFilter=()=>document.getElementById('advPanel').classList.toggle('open');
+window.toggleChip=(el)=>{el.classList.toggle('active');};
+window.applyFilters=()=>{
+  priceMin=parseInt(document.getElementById('priceMin').value)||0;
+  priceMax=parseInt(document.getElementById('priceMax').value)||Infinity;
+  renderListings();
+  toggleAdvFilter();
+};
+window.resetFilters=()=>{
+  priceMin=0;priceMax=Infinity;
+  document.getElementById('priceMin').value='';
+  document.getElementById('priceMax').value='';
+  document.querySelectorAll('.adv-chip').forEach(c=>c.classList.remove('active'));
+  renderListings();
+};
 
 // PAGES
-window.showPage = (name) => {
-  document.querySelectorAll('.info-page').forEach(p => p.classList.remove('open'));
+window.showPage=(name)=>{
+  document.querySelectorAll('.info-page').forEach(p=>p.classList.remove('open'));
   document.getElementById('page-'+name)?.classList.add('open');
   window.scrollTo(0,0);
 };
-window.hidePage = (name) => document.getElementById('page-'+name)?.classList.remove('open');
+window.hidePage=(name)=>document.getElementById('page-'+name)?.classList.remove('open');
 
 // TOAST
-window.showToast = (msg, type='') => {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show' + (type ? ' '+type : '');
-  clearTimeout(window._tt);
-  window._tt = setTimeout(() => t.className = 'toast', 3200);
+window.showToast=(msg,type='')=>{
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast show'+(type?' '+type:'');
+  clearTimeout(window._tt);window._tt=setTimeout(()=>t.className='toast',3200);
 };
+
+// CLOSE panels on outside click
+document.addEventListener('click',e=>{
+  const np=document.getElementById('notifPanel');
+  const nb=document.getElementById('notifBtn');
+  if(np&&np.classList.contains('open')&&!np.contains(e.target)&&nb&&!nb.contains(e.target)) np.classList.remove('open');
+});
 
 renderListings();
 </script>
