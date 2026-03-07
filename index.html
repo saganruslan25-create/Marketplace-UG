@@ -1,712 +1,296 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Marketplace UG — Ukraine GTA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --black: #0a0a0a;
-      --dark: #111111;
-      --card: #181818;
-      --border: #2a2a2a;
-      --white: #f0f0f0;
-      --accent: #ffffff;
-      --muted: #666;
-      --danger: #ff3b3b;
-      --success: #39ff14;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Marketplace UG — Ukraine GTA</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#080808;--dark:#101010;--card:#141414;--card2:#1a1a1a;
+  --border:#222;--border2:#2e2e2e;--white:#f2f2f2;--grey:#888;
+  --purple:#7c3aed;--purple2:#9d5ff5;--purpleGlow:rgba(124,58,237,.18);
+  --success:#22c55e;--danger:#ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--white);font-family:'Rajdhani',sans-serif;font-size:16px;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;opacity:.5;}
 
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 16px;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+/* SPLASH */
+#splash{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .7s ease,visibility .7s;}
+#splash.hide{opacity:0;visibility:hidden;}
+.splash-logo{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,11vw,96px);letter-spacing:6px;color:var(--white);text-align:center;line-height:1;}
+.splash-logo span{color:var(--purple2);}
+.splash-studio{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--grey);margin-top:-16px;}
+.splash-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--grey);font-weight:600;}
+.splash-spinner{width:42px;height:42px;border:2px solid var(--border2);border-top-color:var(--purple2);border-radius:50%;animation:spin .9s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.splash-bar-wrap{width:220px;height:2px;background:var(--border);overflow:hidden;}
+.splash-bar{height:100%;background:linear-gradient(90deg,var(--purple),var(--purple2));width:0;animation:loadBar 3.3s ease forwards;}
+@keyframes loadBar{0%{width:0}60%{width:70%}85%{width:90%}100%{width:100%}}
 
-    /* ─── NOISE OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.4;
-    }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(8,8,8,.96);border-bottom:1px solid var(--border);backdrop-filter:blur(16px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:4px;color:var(--white);text-decoration:none;}
+.nav-logo .ug{color:var(--purple2);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--grey);text-decoration:none;font-weight:600;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;cursor:pointer;}
+.nav-links a:hover{color:var(--white);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.search-bar{display:flex;align-items:center;background:var(--card);border:1px solid var(--border);padding:0 12px;height:36px;gap:8px;}
+.search-bar input{background:none;border:none;outline:none;color:var(--white);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;width:170px;}
+.search-bar input::placeholder{color:#3a3a3a;}
+.search-bar svg{color:var(--grey);flex-shrink:0;}
+.btn{padding:7px 18px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--grey);}
+.btn-ghost:hover{border-color:var(--white);color:var(--white);}
+.btn-purple{background:var(--purple);color:#fff;box-shadow:0 0 16px var(--purpleGlow);}
+.btn-purple:hover{background:var(--purple2);}
+.user-btn{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:5px 14px 5px 6px;cursor:pointer;color:var(--white);font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;transition:border-color .2s;}
+.user-btn:hover{border-color:var(--purple2);}
+.avatar{width:26px;height:26px;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:13px;}
 
-    /* ─── NAVBAR ─── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      height: 64px;
-      background: rgba(10,10,10,0.95);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-    .nav-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      letter-spacing: 3px;
-      color: var(--white);
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--success); }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-actions { display: flex; gap: 12px; }
-    .btn {
-      padding: 8px 20px;
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
-    .btn-primary {
-      background: var(--white);
-      color: var(--black);
-    }
-    .btn-primary:hover { background: #ccc; }
+/* HERO */
+.hero{min-height:100vh;padding:62px 40px 0;display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;}
+.hero-glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(124,58,237,.11) 0%,transparent 70%);top:50%;left:60%;transform:translate(-50%,-50%);pointer-events:none;}
+.hero-content{position:relative;max-width:760px;}
+.hero-eyebrow{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--purple2);margin-bottom:18px;opacity:0;animation:fadeUp .6s .3s forwards;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(68px,10vw,136px);line-height:.92;letter-spacing:2px;white-space:nowrap;opacity:0;animation:fadeUp .6s .45s forwards;}
+.hero-title .outline{-webkit-text-stroke:1.5px var(--white);color:transparent;}
+.hero-title .purple{color:var(--purple2);}
+.hero-desc{margin-top:22px;font-size:17px;color:var(--grey);max-width:500px;line-height:1.65;font-weight:500;opacity:0;animation:fadeUp .6s .6s forwards;}
+.hero-cta{margin-top:36px;display:flex;gap:14px;opacity:0;animation:fadeUp .6s .75s forwards;}
+.btn-lg{padding:13px 34px;font-size:14px;letter-spacing:2px;}
+.hero-stats{position:absolute;bottom:40px;right:40px;display:flex;gap:36px;opacity:0;animation:fadeUp .6s .9s forwards;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;color:var(--white);}
+.stat-num em{color:var(--purple2);font-style:normal;}
+.stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:2px;}
 
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 0 40px;
-      padding-top: 64px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-grid-bg {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-    .hero-tag {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 12px;
-      color: var(--success);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.2s forwards;
-    }
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(72px, 12vw, 160px);
-      line-height: 0.9;
-      letter-spacing: -2px;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.35s forwards;
-    }
-    .hero-title .outline {
-      -webkit-text-stroke: 1px var(--white);
-      color: transparent;
-    }
-    .hero-sub {
-      margin-top: 24px;
-      font-size: 18px;
-      color: var(--muted);
-      max-width: 480px;
-      line-height: 1.6;
-      font-weight: 500;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.5s forwards;
-    }
-    .hero-cta {
-      margin-top: 40px;
-      display: flex;
-      gap: 16px;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.65s forwards;
-    }
-    .btn-large {
-      padding: 14px 36px;
-      font-size: 15px;
-      letter-spacing: 2px;
-    }
-    .hero-stats {
-      position: absolute;
-      bottom: 40px;
-      right: 40px;
-      display: flex;
-      gap: 40px;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.8s forwards;
-    }
-    .stat { text-align: right; }
-    .stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      letter-spacing: 2px;
-      color: var(--white);
-    }
-    .stat-label {
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+/* SECTION */
+.section{padding:72px 40px;border-top:1px solid var(--border);}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:34px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:3px;}
+.sec-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:all .2s;}
+.sec-link:hover{color:var(--white);border-color:var(--white);}
 
-    /* ─── LISTINGS SECTION ─── */
-    .section {
-      padding: 80px 40px;
-      border-top: 1px solid var(--border);
-    }
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 40px;
-    }
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      letter-spacing: 3px;
-    }
-    .section-link {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 2px;
-      transition: all 0.2s;
-    }
-    .section-link:hover { color: var(--white); border-color: var(--white); }
+/* FILTERS */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+.fbtn{padding:5px 14px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--grey);cursor:pointer;transition:all .2s;}
+.fbtn:hover{border-color:var(--border2);color:var(--white);}
+.fbtn.active{background:var(--purple);color:#fff;border-color:var(--purple);box-shadow:0 0 12px var(--purpleGlow);}
 
-    /* ─── CATEGORY FILTERS ─── */
-    .filters {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-    .filter-btn {
-      padding: 6px 16px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--white);
-      color: var(--black);
-      border-color: var(--white);
-    }
+/* GRID */
+.listing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);}
+.lcard{background:var(--card);padding:22px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden;}
+.lcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--purple),var(--purple2));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.lcard:hover{background:var(--card2);}
+.lcard:hover::before{transform:scaleX(1);}
+.lcard-cat{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--purple2);margin-bottom:10px;}
+.lcard-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:6px;line-height:1.1;}
+.lcard-desc{font-size:12px;color:var(--grey);line-height:1.55;margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.lcard-foot{display:flex;align-items:center;justify-content:space-between;}
+.lcard-price{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;}
+.lcard-price em{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--grey);font-style:normal;margin-left:3px;}
+.lcard-seller{font-size:10px;color:var(--grey);letter-spacing:1px;text-transform:uppercase;}
+.badge{position:absolute;top:12px;right:12px;padding:2px 8px;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;font-family:'Share Tech Mono',monospace;border:1px solid;}
+.badge-hot{color:var(--danger);border-color:var(--danger);}
+.badge-new{color:var(--success);border-color:var(--success);}
+.badge-sale{color:var(--purple2);border-color:var(--purple2);}
 
-    /* ─── LISTING GRID ─── */
-    .listing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-    }
-    .listing-card {
-      background: var(--card);
-      padding: 24px;
-      cursor: pointer;
-      transition: background 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .listing-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--white);
-      transform: scaleX(0);
-      transition: transform 0.3s;
-      transform-origin: left;
-    }
-    .listing-card:hover { background: #1e1e1e; }
-    .listing-card:hover::after { transform: scaleX(1); }
-    .card-category {
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--success);
-      font-family: 'Share Tech Mono', monospace;
-      margin-bottom: 12px;
-    }
-    .card-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-      line-height: 1.1;
-    }
-    .card-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .card-price {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      letter-spacing: 1px;
-    }
-    .card-price span {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 400;
-      margin-left: 4px;
-    }
-    .card-seller {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .card-badge {
-      display: inline-block;
-      padding: 2px 8px;
-      font-size: 9px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-family: 'Share Tech Mono', monospace;
-    }
-    .badge-hot { border-color: var(--danger); color: var(--danger); }
-    .badge-new { border-color: var(--success); color: var(--success); }
+/* OVERLAYS */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:800;display:none;align-items:center;justify-content:center;padding:20px;}
+.overlay.open{display:flex;}
+.modal{background:var(--dark);border:1px solid var(--border);width:100%;max-width:500px;padding:40px;position:relative;animation:fadeUp .3s forwards;max-height:90vh;overflow-y:auto;}
+.modal::-webkit-scrollbar{width:4px;}
+.modal::-webkit-scrollbar-thumb{background:var(--border2);}
+.mclose{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--grey);font-size:22px;cursor:pointer;line-height:1;}
+.mclose:hover{color:var(--white);}
+.mtabs{display:flex;gap:0;margin-bottom:28px;border-bottom:1px solid var(--border);}
+.mtab{padding:9px 22px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--grey);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
+.mtab.active{color:var(--white);border-bottom-color:var(--purple2);}
+.mtitle{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;margin-bottom:6px;}
+.msub{font-size:12px;color:var(--grey);margin-bottom:28px;}
+.fgroup{margin-bottom:14px;}
+.flabel{display:block;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:5px;font-family:'Share Tech Mono',monospace;}
+.finput{width:100%;background:#0d0d0d;border:1px solid var(--border);color:var(--white);padding:11px 13px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:500;outline:none;transition:border-color .2s;}
+.finput:focus{border-color:var(--purple2);}
+.finput::placeholder{color:#2a2a2a;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.divider{display:flex;align-items:center;gap:14px;margin:20px 0;color:var(--grey);font-size:10px;letter-spacing:2px;text-transform:uppercase;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.btn-google{width:100%;padding:11px;background:transparent;border:1px solid var(--border);color:var(--white);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;}
+.btn-google:hover{background:var(--card2);border-color:var(--border2);}
+.btn-google svg{width:17px;height:17px;flex-shrink:0;}
+.btn-submit{width:100%;padding:13px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:3px;cursor:pointer;margin-top:6px;transition:background .2s;box-shadow:0 0 20px var(--purpleGlow);}
+.btn-submit:hover{background:var(--purple2);}
 
-    /* ─── MODAL OVERLAY ─── */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--dark);
-      border: 1px solid var(--border);
-      width: 100%;
-      max-width: 460px;
-      padding: 48px;
-      position: relative;
-      animation: fadeUp 0.3s forwards;
-    }
-    .modal-close {
-      position: absolute;
-      top: 20px; right: 24px;
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 24px;
-      cursor: pointer;
-      line-height: 1;
-    }
-    .modal-close:hover { color: var(--white); }
-    .modal-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 36px;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
-    }
-    .modal-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 32px;
-    }
-    .tabs {
-      display: flex;
-      gap: 0;
-      margin-bottom: 32px;
-      border-bottom: 1px solid var(--border);
-    }
-    .tab {
-      padding: 10px 24px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      color: var(--muted);
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: all 0.2s;
-    }
-    .tab.active { color: var(--white); border-bottom-color: var(--white); }
+/* PRODUCT DETAIL */
+.pd-badge{display:inline-block;padding:3px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--purple);color:var(--purple2);margin-bottom:14px;}
+.pd-title{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:2px;line-height:1;margin-bottom:12px;}
+.pd-price{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:2px;color:var(--white);margin-bottom:6px;}
+.pd-price em{font-size:16px;color:var(--grey);font-style:normal;font-family:'Share Tech Mono',monospace;margin-left:4px;}
+.pd-desc{font-size:14px;color:var(--grey);line-height:1.7;margin-bottom:22px;border-top:1px solid var(--border);padding-top:16px;}
+.pd-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.pd-row-label{color:var(--grey);font-weight:600;}
+.pd-row-val{font-weight:700;}
+.pd-contacts{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 20px;}
+.contact-chip{padding:6px 14px;border:1px solid var(--border);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--grey);font-family:'Share Tech Mono',monospace;}
+.btn-message{width:100%;padding:13px;background:var(--purple);color:#fff;border:none;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:3px;cursor:pointer;transition:background .2s;box-shadow:0 0 20px var(--purpleGlow);}
+.btn-message:hover{background:var(--purple2);}
 
-    /* ─── FORM ─── */
-    .form-group { margin-bottom: 16px; }
-    .form-label {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
-      font-family: 'Share Tech Mono', monospace;
-    }
-    .form-input {
-      width: 100%;
-      background: #111;
-      border: 1px solid var(--border);
-      color: var(--white);
-      padding: 12px 14px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 15px;
-      font-weight: 500;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .form-input:focus { border-color: var(--white); }
-    .form-input::placeholder { color: #333; }
+/* INFO PAGES */
+.info-page{display:none;position:fixed;inset:0;background:var(--bg);z-index:600;padding:80px 40px 60px;overflow-y:auto;animation:fadeUp .3s forwards;}
+.info-page.open{display:block;}
+.ip-back{display:flex;align-items:center;gap:8px;background:none;border:none;color:var(--grey);cursor:pointer;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:40px;transition:color .2s;}
+.ip-back:hover{color:var(--white);}
+.ip-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,86px);letter-spacing:3px;line-height:.95;margin-bottom:40px;}
+.ip-title span{color:var(--purple2);}
+.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:48px;}
+.ip-card{background:var(--card);padding:28px;transition:background .2s;}
+.ip-card:hover{background:var(--card2);}
+.ip-card h3{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;margin-bottom:10px;}
+.ip-card p{font-size:13px;color:var(--grey);line-height:1.65;}
+.ip-card .icon{font-size:26px;margin-bottom:12px;}
+.rules-list{list-style:none;max-width:680px;display:flex;flex-direction:column;}
+.rules-list li{padding:16px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--grey);line-height:1.6;display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;}
+.rules-list li span:first-child{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--purple2);}
+.support-form{max-width:560px;}
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+/* TOAST */
+.toast{position:fixed;bottom:36px;right:36px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--purple2);padding:14px 22px;font-size:13px;z-index:9000;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;font-weight:600;letter-spacing:.5px;max-width:320px;}
+.toast.show{opacity:1;transform:translateY(0);}
+.toast.err{border-left-color:var(--danger);}
+.toast.ok{border-left-color:var(--success);}
 
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 24px 0;
-      color: var(--muted);
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
+/* FOOTER */
+footer{padding:36px 40px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;}
+.footer-logo span{color:var(--purple2);}
+.footer-links{display:flex;gap:20px;list-style:none;}
+.footer-links a{font-size:11px;color:var(--grey);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;cursor:pointer;}
+.footer-links a:hover{color:var(--white);}
+.footer-copy{font-size:10px;color:#333;letter-spacing:1.5px;text-transform:uppercase;}
 
-    .btn-google {
-      width: 100%;
-      padding: 12px;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--white);
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 0.2s;
-    }
-    .btn-google:hover { background: #1a1a1a; border-color: #555; }
-    .btn-google svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-    .btn-submit {
-      width: 100%;
-      padding: 14px;
-      background: var(--white);
-      color: var(--black);
-      border: none;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 18px;
-      letter-spacing: 3px;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: background 0.2s;
-    }
-    .btn-submit:hover { background: #ccc; }
-
-    /* ─── USER PANEL (after login) ─── */
-    .user-btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 6px 16px 6px 8px;
-      cursor: pointer;
-      color: var(--white);
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 600;
-      font-size: 13px;
-      letter-spacing: 1px;
-      transition: border-color 0.2s;
-    }
-    .user-btn:hover { border-color: var(--white); }
-    .avatar {
-      width: 28px; height: 28px;
-      background: var(--white);
-      color: var(--black);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 14px;
-    }
-
-    /* ─── TOAST ─── */
-    .toast {
-      position: fixed;
-      bottom: 40px; right: 40px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--success);
-      padding: 16px 24px;
-      font-size: 14px;
-      z-index: 2000;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s;
-      pointer-events: none;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .toast.show { opacity: 1; transform: translateY(0); }
-    .toast.error { border-left-color: var(--danger); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      padding: 40px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      letter-spacing: 3px;
-    }
-    .footer-logo span { color: var(--success); }
-    .footer-copy {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 11px;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--white); }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+</style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">Market<span>UG</span></a>
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-logo">MARKET<span>PLACE</span><br><span style="color:var(--white)">UG</span></div>
+  <div class="splash-studio">Pixle Web Studio</div>
+  <div class="splash-sub">Офіційний Маркетплейс · Ukraine GTA</div>
+  <div class="splash-spinner"></div>
+  <div class="splash-bar-wrap"><div class="splash-bar"></div></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">MARKET<span class="ug">UG</span></a>
   <ul class="nav-links">
-    <li><a href="#listings">Товари</a></li>
-    <li><a href="#">Категорії</a></li>
-    <li><a href="#">Продати</a></li>
-    <li><a href="#">Про нас</a></li>
+    <li><a onclick="showPage('categories')">Категорії</a></li>
+    <li><a onclick="showPage('about')">Про нас</a></li>
+    <li><a onclick="showPage('support')">Підтримка</a></li>
+    <li><a onclick="showPage('rules')">Правила</a></li>
   </ul>
-  <div class="nav-actions" id="navActions">
-    <button class="btn btn-ghost" onclick="openModal('login')">Увійти</button>
-    <button class="btn btn-primary" onclick="openModal('register')">Реєстрація</button>
+  <div class="nav-right">
+    <div class="search-bar">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Пошук товарів..." id="searchInput" oninput="searchListings(this.value)"/>
+    </div>
+    <div id="navActions">
+      <button class="btn btn-ghost" onclick="openAuth('login')">Увійти</button>
+      <button class="btn btn-purple" onclick="openAuth('register')">Реєстрація</button>
+    </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-grid-bg"></div>
-  <div style="position:relative">
-    <p class="hero-tag">// Ukraine GTA — Офіційний маркетплейс</p>
-    <h1 class="hero-title">
-      Market<br><span class="outline">place</span><br>UG
-    </h1>
-    <p class="hero-sub">
-      Купуй, продавай і обмінюй ігрові цінності в найбільшому маркетплейсі Ukraine GTA. Безпечно. Швидко. Своїм.
-    </p>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">// Ukraine GTA · Офіційний маркетплейс</p>
+    <h1 class="hero-title">MARKET<span class="outline">PLACE</span> <span class="purple">UG</span></h1>
+    <p class="hero-desc">Купуй, продавай і обмінюй ігрові цінності в найбільшому маркетплейсі Ukraine GTA. Безпечно. Швидко. Своїм.</p>
     <div class="hero-cta">
-      <button class="btn btn-primary btn-large" onclick="openModal('register')">Почати зараз</button>
-      <button class="btn btn-ghost btn-large" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})">Переглянути товари</button>
+      <button class="btn btn-purple btn-lg" onclick="openAuth('register')">Почати зараз</button>
+      <button class="btn btn-ghost btn-lg" onclick="document.getElementById('listings').scrollIntoView({behavior:'smooth'})">Переглянути лоти</button>
     </div>
   </div>
   <div class="hero-stats">
-    <div class="stat">
-      <div class="stat-num">1.2K+</div>
-      <div class="stat-label">Активних лотів</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">400+</div>
-      <div class="stat-label">Гравців</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">99%</div>
-      <div class="stat-label">Угод закрито</div>
-    </div>
+    <div><div class="stat-num">1.<em>2K</em></div><div class="stat-lbl">Активних лотів</div></div>
+    <div><div class="stat-num">4<em>00+</em></div><div class="stat-lbl">Гравців</div></div>
+    <div><div class="stat-num">99<em>%</em></div><div class="stat-lbl">Угод закрито</div></div>
   </div>
 </section>
 
 <!-- LISTINGS -->
 <section class="section" id="listings">
-  <div class="section-header">
-    <h2 class="section-title">Актуальні лоти</h2>
-    <a href="#" class="section-link">Усі товари →</a>
+  <div class="sec-head">
+    <h2 class="sec-title">Актуальні лоти</h2>
+    <span class="sec-link" onclick="filterBy(document.querySelector('.fbtn'),'all')">Показати всі</span>
   </div>
   <div class="filters">
-    <button class="filter-btn active" onclick="filterCards(this,'all')">Усі</button>
-    <button class="filter-btn" onclick="filterCards(this,'авто')">Авто</button>
-    <button class="filter-btn" onclick="filterCards(this,'зброя')">Зброя</button>
-    <button class="filter-btn" onclick="filterCards(this,'бізнес')">Бізнес</button>
-    <button class="filter-btn" onclick="filterCards(this,'нерухомість')">Нерухомість</button>
-    <button class="filter-btn" onclick="filterCards(this,'інше')">Інше</button>
+    <button class="fbtn active" onclick="filterBy(this,'all')">Усі</button>
+    <button class="fbtn" onclick="filterBy(this,'авто')">🚗 Авто</button>
+    <button class="fbtn" onclick="filterBy(this,'зброя')">⚔️ Зброя</button>
+    <button class="fbtn" onclick="filterBy(this,'бізнес')">💼 Бізнес</button>
+    <button class="fbtn" onclick="filterBy(this,'нерухомість')">🏠 Нерухомість</button>
+    <button class="fbtn" onclick="filterBy(this,'інше')">📦 Інше</button>
   </div>
-  <div class="listing-grid" id="listingGrid">
-    <!-- Cards injected by JS -->
-  </div>
+  <div class="listing-grid" id="listingGrid"></div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Market<span>UG</span></div>
+  <div class="footer-logo">MARKET<span>UG</span></div>
   <ul class="footer-links">
-    <li><a href="#">Правила</a></li>
-    <li><a href="#">Підтримка</a></li>
-    <li><a href="#">Discord</a></li>
+    <li><a onclick="showPage('rules')">Правила</a></li>
+    <li><a onclick="showPage('support')">Підтримка</a></li>
+    <li><a onclick="showPage('about')">Про нас</a></li>
+    <li><a href="https://discord.gg/" target="_blank">Discord</a></li>
   </ul>
   <p class="footer-copy">© 2025 Pixle Web Studio · Ukraine GTA</p>
 </footer>
 
 <!-- AUTH MODAL -->
-<div class="modal-overlay" id="authModal">
+<div class="overlay" id="authOverlay">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="modal-title" id="modalTitle">Увійти</div>
-    <p class="modal-sub" id="modalSub">Раді бачити тебе знову, гравець</p>
-
-    <div class="tabs">
-      <button class="tab active" id="tabLogin" onclick="switchTab('login')">Вхід</button>
-      <button class="tab" id="tabRegister" onclick="switchTab('register')">Реєстрація</button>
+    <button class="mclose" onclick="closeAuth()">×</button>
+    <div class="mtitle" id="authTitle">Увійти</div>
+    <p class="msub" id="authSub">Раді бачити тебе знову, гравець</p>
+    <div class="mtabs">
+      <button class="mtab active" id="tabL" onclick="switchAuth('login')">Вхід</button>
+      <button class="mtab" id="tabR" onclick="switchAuth('register')">Реєстрація</button>
     </div>
-
-    <!-- LOGIN FORM -->
-    <div id="formLogin">
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <input class="form-input" type="email" id="loginEmail" placeholder="gamer@mail.com"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Пароль</label>
-        <input class="form-input" type="password" id="loginPassword" placeholder="••••••••"/>
-      </div>
+    <div id="fLogin">
+      <div class="fgroup"><label class="flabel">Email</label><input class="finput" type="email" id="lEmail" placeholder="gamer@mail.com"/></div>
+      <div class="fgroup"><label class="flabel">Пароль</label><input class="finput" type="password" id="lPass" placeholder="••••••••"/></div>
       <button class="btn-submit" onclick="doLogin()">Увійти</button>
       <div class="divider">або</div>
-      <button class="btn-google" onclick="doGoogleLogin()">
+      <button class="btn-google" onclick="doGoogle()">
         <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16.1 19 13 24 13c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.7 0-14.4 4.3-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.4 0 10.3-2 14-5.3l-6.5-5.5C29.6 35 26.9 36 24 36c-5.2 0-9.7-3.3-11.3-8H6.1C9.4 39.5 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.4l6.5 5.5C41.8 35.6 44 30.2 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
         Продовжити з Google
       </button>
     </div>
-
-    <!-- REGISTER FORM -->
-    <div id="formRegister" style="display:none">
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Нікнейм (сайт)</label>
-          <input class="form-input" type="text" id="regNick" placeholder="CoolPlayer"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Нік в грі</label>
-          <input class="form-input" type="text" id="regGameNick" placeholder="GTA_Nick"/>
-        </div>
+    <div id="fReg" style="display:none">
+      <div class="frow">
+        <div class="fgroup"><label class="flabel">Нікнейм (сайт) *</label><input class="finput" type="text" id="rNick" placeholder="CoolPlayer"/></div>
+        <div class="fgroup"><label class="flabel">Нік в грі *</label><input class="finput" type="text" id="rGame" placeholder="GTA_Nick"/></div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <input class="form-input" type="email" id="regEmail" placeholder="gamer@mail.com"/>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Пароль</label>
-        <input class="form-input" type="password" id="regPassword" placeholder="Мін. 6 символів"/>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Discord</label>
-          <input class="form-input" type="text" id="regDiscord" placeholder="user#0000"/>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Telegram (опцій.)</label>
-          <input class="form-input" type="text" id="regTelegram" placeholder="@username"/>
-        </div>
+      <div class="fgroup"><label class="flabel">Email *</label><input class="finput" type="email" id="rEmail" placeholder="gamer@mail.com"/></div>
+      <div class="fgroup"><label class="flabel">Пароль * (мін. 6 символів)</label><input class="finput" type="password" id="rPass" placeholder="••••••••"/></div>
+      <div class="frow">
+        <div class="fgroup"><label class="flabel">Discord</label><input class="finput" type="text" id="rDiscord" placeholder="user#0000"/></div>
+        <div class="fgroup"><label class="flabel">Telegram</label><input class="finput" type="text" id="rTG" placeholder="@username"/></div>
       </div>
       <button class="btn-submit" onclick="doRegister()">Зареєструватись</button>
       <div class="divider">або</div>
-      <button class="btn-google" onclick="doGoogleLogin()">
+      <button class="btn-google" onclick="doGoogle()">
         <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16.1 19 13 24 13c3.1 0 5.8 1.1 8 2.9l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.7 0-14.4 4.3-17.7 10.7z"/><path fill="#4CAF50" d="M24 44c5.4 0 10.3-2 14-5.3l-6.5-5.5C29.6 35 26.9 36 24 36c-5.2 0-9.7-3.3-11.3-8H6.1C9.4 39.5 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.4l6.5 5.5C41.8 35.6 44 30.2 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
         Реєстрація через Google
       </button>
@@ -714,206 +298,295 @@
   </div>
 </div>
 
+<!-- PRODUCT MODAL -->
+<div class="overlay" id="pdOverlay">
+  <div class="modal" id="pdModal"></div>
+</div>
+
+<!-- PAGE: CATEGORIES -->
+<div class="info-page" id="page-categories">
+  <button class="ip-back" onclick="hidePage('categories')">← Назад</button>
+  <h1 class="ip-title">КАТЕ<span>ГОРІЇ</span></h1>
+  <div class="ip-grid">
+    <div class="ip-card" onclick="filterAndGo('авто')" style="cursor:pointer"><div class="icon">🚗</div><h3>Авто</h3><p>Всі транспортні засоби: машини, мотоцикли, гелікоптери. Стокові та прокачані варіанти.</p></div>
+    <div class="ip-card" onclick="filterAndGo('зброя')" style="cursor:pointer"><div class="icon">⚔️</div><h3>Зброя</h3><p>Пістолети, автомати, снайперські гвинтівки, боєприпаси та спорядження.</p></div>
+    <div class="ip-card" onclick="filterAndGo('бізнес')" style="cursor:pointer"><div class="icon">💼</div><h3>Бізнес</h3><p>Прибуткові бізнеси: кафе, автомийки, склади — стабільний дохід у грі.</p></div>
+    <div class="ip-card" onclick="filterAndGo('нерухомість')" style="cursor:pointer"><div class="icon">🏠</div><h3>Нерухомість</h3><p>Квартири, будинки та гаражі в різних районах міста.</p></div>
+    <div class="ip-card" onclick="filterAndGo('інше')" style="cursor:pointer"><div class="icon">📦</div><h3>Інше</h3><p>VIP статуси, ресурси, ігрова валюта та унікальні предмети.</p></div>
+  </div>
+</div>
+
+<!-- PAGE: ABOUT -->
+<div class="info-page" id="page-about">
+  <button class="ip-back" onclick="hidePage('about')">← Назад</button>
+  <h1 class="ip-title">ПРО <span>НАС</span></h1>
+  <div class="ip-grid">
+    <div class="ip-card"><div class="icon">🎮</div><h3>Хто ми</h3><p>Marketplace UG — офіційний майданчик Ukraine GTA для торгівлі між гравцями. Ми зробили процес безпечним та зручним.</p></div>
+    <div class="ip-card"><div class="icon">🛡️</div><h3>Безпека</h3><p>Кожна угода проходить через месенджер платформи. Ми ведемо журнал всіх транзакцій для захисту від шахраїв.</p></div>
+    <div class="ip-card"><div class="icon">⚡</div><h3>Швидкість</h3><p>Від публікації лоту до отримання запиту — хвилини. Покупець пише напряму продавцю через месенджер.</p></div>
+    <div class="ip-card"><div class="icon">🏆</div><h3>Спільнота</h3><p>Понад 400 активних гравців. Discord-сервер для спілкування, обговорення угод та технічної підтримки.</p></div>
+    <div class="ip-card"><div class="icon">💜</div><h3>Pixle Web Studio</h3><p>Сайт розроблений Pixle Web Studio — командою, що спеціалізується на веб-рішеннях для ігрових проектів.</p></div>
+  </div>
+</div>
+
+<!-- PAGE: SUPPORT -->
+<div class="info-page" id="page-support">
+  <button class="ip-back" onclick="hidePage('support')">← Назад</button>
+  <h1 class="ip-title">ТЕХ<span>ПІДТРИМКА</span></h1>
+  <div class="ip-grid" style="margin-bottom:48px">
+    <div class="ip-card"><div class="icon">💬</div><h3>Discord</h3><p>Найшвидший спосіб отримати допомогу — написати в Discord сервер Ukraine GTA. Відповідаємо впродовж 30 хвилин.</p></div>
+    <div class="ip-card"><div class="icon">📧</div><h3>Email</h3><p>Для складних питань або скарг — пишіть на офіційну пошту. Відповідь протягом 24 годин.</p></div>
+    <div class="ip-card"><div class="icon">📋</div><h3>Форма заявки</h3><p>Заповни форму нижче і ми зв'яжемося з тобою. Вказуй нік та детальний опис проблеми.</p></div>
+  </div>
+  <div class="support-form">
+    <div class="fgroup"><label class="flabel">Твій нік в грі</label><input class="finput" type="text" placeholder="GTA_Nick"/></div>
+    <div class="fgroup"><label class="flabel">Discord або Email</label><input class="finput" type="text" placeholder="user#0000 або mail@gmail.com"/></div>
+    <div class="fgroup"><label class="flabel">Тема звернення</label>
+      <select class="finput" style="cursor:pointer;background:#0d0d0d">
+        <option value="">Обери тему...</option>
+        <option>Проблема з акаунтом</option>
+        <option>Скарга на продавця</option>
+        <option>Технічна помилка</option>
+        <option>Питання щодо угоди</option>
+        <option>Інше</option>
+      </select>
+    </div>
+    <div class="fgroup"><label class="flabel">Опис проблеми</label><textarea class="finput" rows="5" placeholder="Детально опиши ситуацію..." style="resize:vertical;font-family:'Rajdhani',sans-serif;font-size:14px;"></textarea></div>
+    <button class="btn-submit" onclick="showToast('Заявку відправлено! Ми зв\'яжемося з тобою 👌','ok')">Відправити заявку</button>
+  </div>
+</div>
+
+<!-- PAGE: RULES -->
+<div class="info-page" id="page-rules">
+  <button class="ip-back" onclick="hidePage('rules')">← Назад</button>
+  <h1 class="ip-title">ПРА<span>ВИЛА</span></h1>
+  <ul class="rules-list">
+    <li><span>01</span><span>Забороняється шахрайство в будь-якій формі. При виявленні — постійне блокування акаунту.</span></li>
+    <li><span>02</span><span>Вся комунікація між покупцем і продавцем має вестись через вбудований месенджер платформи.</span></li>
+    <li><span>03</span><span>Ціна в оголошенні має відповідати реальній ціні товару. Заборонено змінювати ціну після запиту.</span></li>
+    <li><span>04</span><span>Публікація фейкових або неіснуючих товарів — причина блокування без попередження.</span></li>
+    <li><span>05</span><span>Заборонено розміщувати особисті дані (номери телефонів) в описах товарів.</span></li>
+    <li><span>06</span><span>Один гравець може мати лише один акаунт на платформі. Мультиакаунти блокуються.</span></li>
+    <li><span>07</span><span>Будь-які суперечки вирішуються через службу підтримки. Самосуд та шантаж заборонені.</span></li>
+    <li><span>08</span><span>Платформа не несе відповідальності за угоди, здійснені поза межами маркетплейсу.</span></li>
+  </ul>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE + APP LOGIC -->
+<!-- FIREBASE -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
-    onAuthStateChanged,
-    signOut,
-    updateProfile
-  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import {
-    getFirestore,
-    doc,
-    setDoc,
-    getDoc,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut, updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ── YOUR FIREBASE CONFIG ──
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "marketplace-ug-c730a.firebaseapp.com",
-    projectId: "marketplace-ug-c730a",
-    storageBucket: "marketplace-ug-c730a.appspot.com",
-    messagingSenderId: "614525163532",
-    appId: "YOUR_APP_ID"
-  };
+// ══════════════════════════════════════════
+// ⚠️  ВСТАВТЕ СВІЙ КОНФІГ НИЖЧЕ
+// Знайти: Firebase Console → ⚙️ Project Settings → Your apps → Web app
+// ══════════════════════════════════════════
+const firebaseConfig = {
+  apiKey: "AIzaSyDWYb50Ly1f1CZsJ7B2J-Q5LNTVgp3UuiA",
+  authDomain: "marketplace-ug-c730a.firebaseapp.com",
+  projectId: "marketplace-ug-c730a",
+  storageBucket: "marketplace-ug-c730a.firebasestorage.app",
+  messagingSenderId: "614525163532",
+  appId: "1:614525163532:web:9b78eda8d2a80a5158f629",
+  measurementId: "G-4D3LQDS917"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db   = getFirestore(app);
-  const provider = new GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const gProvider = new GoogleAuthProvider();
 
-  // ── SAVE USER TO FIRESTORE ──
-  async function saveUser(uid, data) {
-    await setDoc(doc(db, "users", uid), { ...data, createdAt: serverTimestamp() }, { merge: true });
+async function saveUser(uid, data) {
+  await setDoc(doc(db,"users",uid), {...data, updatedAt: serverTimestamp()}, {merge:true});
+}
+
+onAuthStateChanged(auth, user => {
+  const el = document.getElementById('navActions');
+  if (user) {
+    const init = (user.displayName || user.email || '?')[0].toUpperCase();
+    const name = user.displayName || user.email.split('@')[0];
+    el.innerHTML = `
+      <button class="user-btn">
+        <div class="avatar">${init}</div>${name}
+      </button>
+      <button class="btn btn-ghost" onclick="doLogout()">Вийти</button>`;
+    closeAuth();
+  } else {
+    el.innerHTML = `
+      <button class="btn btn-ghost" onclick="openAuth('login')">Увійти</button>
+      <button class="btn btn-purple" onclick="openAuth('register')">Реєстрація</button>`;
   }
+});
 
-  // ── AUTH STATE ──
-  onAuthStateChanged(auth, user => {
-    const actions = document.getElementById('navActions');
-    if (user) {
-      const initial = (user.displayName || user.email || '?')[0].toUpperCase();
-      actions.innerHTML = `
-        <button class="user-btn" onclick="openProfile()">
-          <div class="avatar">${initial}</div>
-          ${user.displayName || user.email.split('@')[0]}
-        </button>
-        <button class="btn btn-ghost" onclick="doLogout()">Вийти</button>`;
-      closeModal();
-    } else {
-      actions.innerHTML = `
-        <button class="btn btn-ghost" onclick="openModal('login')">Увійти</button>
-        <button class="btn btn-primary" onclick="openModal('register')">Реєстрація</button>`;
-    }
-  });
+window.doRegister = async () => {
+  const nick=document.getElementById('rNick').value.trim();
+  const game=document.getElementById('rGame').value.trim();
+  const email=document.getElementById('rEmail').value.trim();
+  const pass=document.getElementById('rPass').value;
+  const discord=document.getElementById('rDiscord').value.trim();
+  const tg=document.getElementById('rTG').value.trim();
+  if(!nick||!game||!email||!pass) return showToast("Заповни обов'язкові поля",'err');
+  try {
+    const c = await createUserWithEmailAndPassword(auth,email,pass);
+    await updateProfile(c.user,{displayName:nick});
+    await saveUser(c.user.uid,{nick,game,email,discord,telegram:tg,role:'user'});
+    showToast(`Ласкаво просимо, ${nick}! 🎮`,'ok');
+  } catch(e){ showToast(e.message,'err'); }
+};
 
-  // ── REGISTER ──
-  window.doRegister = async () => {
-    const nick     = document.getElementById('regNick').value.trim();
-    const gameNick = document.getElementById('regGameNick').value.trim();
-    const email    = document.getElementById('regEmail').value.trim();
-    const password = document.getElementById('regPassword').value;
-    const discord  = document.getElementById('regDiscord').value.trim();
-    const telegram = document.getElementById('regTelegram').value.trim();
+window.doLogin = async () => {
+  const email=document.getElementById('lEmail').value.trim();
+  const pass=document.getElementById('lPass').value;
+  try {
+    await signInWithEmailAndPassword(auth,email,pass);
+    showToast('Вхід успішний! 🎮','ok');
+  } catch(e){ showToast('Невірний email або пароль','err'); }
+};
 
-    if (!nick || !gameNick || !email || !password) return showToast('Заповни всі обов\'язкові поля', 'error');
+window.doGoogle = async () => {
+  try {
+    const r = await signInWithPopup(auth,gProvider);
+    const snap = await getDoc(doc(db,"users",r.user.uid));
+    if(!snap.exists()) await saveUser(r.user.uid,{nick:r.user.displayName,game:'',email:r.user.email,discord:'',telegram:'',role:'user'});
+    showToast(`З поверненням, ${r.user.displayName}! 🎮`,'ok');
+  } catch(e){ showToast(e.message,'err'); }
+};
 
-    try {
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(cred.user, { displayName: nick });
-      await saveUser(cred.user.uid, { nick, gameNick, email, discord, telegram, role: 'user' });
-      showToast(`Ласкаво просимо, ${nick}! 🎮`);
-    } catch(e) {
-      showToast(e.message, 'error');
-    }
-  };
-
-  // ── LOGIN ──
-  window.doLogin = async () => {
-    const email    = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      showToast('Вхід успішний!');
-    } catch(e) {
-      showToast('Невірний email або пароль', 'error');
-    }
-  };
-
-  // ── GOOGLE ──
-  window.doGoogleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      const snap = await getDoc(doc(db, "users", user.uid));
-      if (!snap.exists()) {
-        await saveUser(user.uid, {
-          nick: user.displayName,
-          gameNick: '',
-          email: user.email,
-          discord: '',
-          telegram: '',
-          role: 'user'
-        });
-      }
-      showToast(`З поверненням, ${user.displayName}! 🎮`);
-    } catch(e) {
-      showToast(e.message, 'error');
-    }
-  };
-
-  // ── LOGOUT ──
-  window.doLogout = async () => {
-    await signOut(auth);
-    showToast('Ти вийшов з акаунту');
-  };
-
-  window.openProfile = () => showToast('Профіль — буде в наступній версії 👤');
+window.doLogout = async () => {
+  await signOut(auth);
+  showToast('Ти вийшов з акаунту');
+};
 </script>
 
 <script>
-  // ── MODAL ──
-  function openModal(tab) {
-    document.getElementById('authModal').classList.add('open');
-    switchTab(tab || 'login');
+// SPLASH
+setTimeout(() => document.getElementById('splash').classList.add('hide'), 3500);
+
+// LISTINGS
+const LISTINGS = [
+  {id:1,cat:'авто',       title:'Zentorno — чорний',      desc:'Повністю прокачаний. Мотор V12, броня 4 рівня, повний тюнінг BodyKit. Стан ідеальний.',         price:'2,500,000',cur:'$',seller:'SpeedKing',    discord:'SpeedKing#1234',badge:'hot'},
+  {id:2,cat:'зброя',      title:'AK-47 + 50 набоїв',      desc:'Набір зброї з боєприпасами. Швидка і безпечна передача в грі. Ідеально для старту.',            price:'350,000',  cur:'$',seller:'ArmsDealerUA', discord:'Arms#4321',    badge:'new'},
+  {id:3,cat:'бізнес',     title:'Автомийка Район 3',       desc:'Дохід $45K/день. Документи готові, персонал найнятий. Ідеальний старт для нового гравця.',       price:'8,000,000',cur:'$',seller:'BizMaster',    discord:'BizMaster#9999',badge:''},
+  {id:4,cat:'нерухомість',title:'Квартира Central Park',   desc:'2 кімнати, вигляд на місто. Відмінна локація в центрі, поряд із магазинами і банком.',          price:'1,200,000',cur:'$',seller:'RealEstate_UG',discord:'RE#5555',     badge:''},
+  {id:5,cat:'авто',       title:'Elegy RH8 — білий',       desc:'Стокова комплектація, без пошкоджень. Відмінний варіант для старту або дрифту.',                price:'900,000',  cur:'$',seller:'AutoSalon',    discord:'Auto#2345',   badge:'new'},
+  {id:6,cat:'інше',       title:'VIP Статус · 30 днів',    desc:'Доступ до VIP зон, бонуси при виконанні завдань, приватний VIP чат з адміністрацією.',           price:'500,000',  cur:'$',seller:'AdminShop',    discord:'Admin#0001',  badge:'hot'},
+  {id:7,cat:'зброя',      title:'Снайперська гвинтівка',   desc:'Precision Rifle з глушником і оптикою. Ідеальна для далекого бою та місій.',                    price:'750,000',  cur:'$',seller:'GhostShot',    discord:'Ghost#7777',  badge:''},
+  {id:8,cat:'бізнес',     title:'Ресторан Порт-зона',      desc:'Дохід $30K/день. Гарне місцезнаходження, щоденний трафік клієнтів. Документи готові.',          price:'5,500,000',cur:'$',seller:'ChefBoss',      discord:'Chef#3333',   badge:'sale'},
+  {id:9,cat:'авто',       title:'Oppressor MK2',           desc:'Легендарний байк з ракетами. Найшвидший транспорт у грі. Повний боєкомплект включено.',          price:'6,800,000',cur:'$',seller:'RocketMan',    discord:'Rocket#8888', badge:'hot'},
+  {id:10,cat:'нерухомість',title:'Особняк біля берега',    desc:'5 кімнат, два гаражі, вигляд на океан. Елітна нерухомість в найпрестижнішому районі міста.',    price:'12,000,000',cur:'$',seller:'LuxuryUG',    discord:'Luxury#1111', badge:'sale'},
+];
+
+let curFilter='all', curSearch='';
+
+function renderListings() {
+  const grid = document.getElementById('listingGrid');
+  let data = LISTINGS;
+  if (curFilter !== 'all') data = data.filter(l => l.cat === curFilter);
+  if (curSearch) data = data.filter(l =>
+    l.title.toLowerCase().includes(curSearch) ||
+    l.desc.toLowerCase().includes(curSearch) ||
+    l.cat.toLowerCase().includes(curSearch)
+  );
+  if (!data.length) {
+    grid.innerHTML = `<div style="padding:48px;color:var(--grey);font-size:14px;letter-spacing:1px;text-align:center;background:var(--card)">Нічого не знайдено 🔍</div>`;
+    return;
   }
-  function closeModal() {
-    document.getElementById('authModal').classList.remove('open');
-  }
-  function switchTab(tab) {
-    document.getElementById('formLogin').style.display    = tab === 'login'    ? 'block' : 'none';
-    document.getElementById('formRegister').style.display = tab === 'register' ? 'block' : 'none';
-    document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
-    document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
-    document.getElementById('modalTitle').textContent = tab === 'login' ? 'Увійти' : 'Реєстрація';
-    document.getElementById('modalSub').textContent   = tab === 'login'
-      ? 'Раді бачити тебе знову, гравець'
-      : 'Приєднуйся до Marketplace UG';
-  }
-  window.openModal = openModal;
-  window.closeModal = closeModal;
-  window.switchTab = switchTab;
-  document.getElementById('authModal').addEventListener('click', e => {
-    if (e.target === document.getElementById('authModal')) closeModal();
+  grid.innerHTML = data.map(l => `
+    <div class="lcard" onclick="openProduct(${l.id})">
+      ${l.badge ? `<div class="badge badge-${l.badge}">${l.badge==='hot'?'🔥 HOT':l.badge==='new'?'✦ NEW':'🏷 SALE'}</div>` : ''}
+      <div class="lcard-cat">${l.cat}</div>
+      <div class="lcard-title">${l.title}</div>
+      <div class="lcard-desc">${l.desc}</div>
+      <div class="lcard-foot">
+        <div class="lcard-price">${l.price}<em>${l.cur}</em></div>
+        <div class="lcard-seller">від ${l.seller}</div>
+      </div>
+    </div>`).join('');
+}
+
+window.filterBy = (btn, cat) => {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  curFilter = cat;
+  renderListings();
+};
+window.searchListings = v => { curSearch = v.toLowerCase(); renderListings(); };
+window.filterAndGo = (cat) => {
+  document.querySelectorAll('.info-page').forEach(p => p.classList.remove('open'));
+  curFilter = cat;
+  document.querySelectorAll('.fbtn').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase().includes(cat) || (cat==='all' && b.textContent==='Усі'));
   });
+  renderListings();
+  setTimeout(() => document.getElementById('listings').scrollIntoView({behavior:'smooth'}), 100);
+};
 
-  // ── TOAST ──
-  function showToast(msg, type='') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = 'toast show' + (type ? ' ' + type : '');
-    setTimeout(() => t.className = 'toast', 3000);
-  }
-  window.showToast = showToast;
+// PRODUCT DETAIL
+window.openProduct = (id) => {
+  const p = LISTINGS.find(l => l.id === id);
+  if (!p) return;
+  document.getElementById('pdModal').innerHTML = `
+    <button class="mclose" onclick="closePD()">×</button>
+    <div class="pd-badge">${p.cat}</div>
+    <div class="pd-title">${p.title}</div>
+    <div class="pd-price">${p.price}<em>${p.cur}</em></div>
+    <div class="pd-desc">${p.desc}</div>
+    <div class="pd-row"><span class="pd-row-label">Продавець</span><span class="pd-row-val">${p.seller}</span></div>
+    <div class="pd-row"><span class="pd-row-label">Категорія</span><span class="pd-row-val">${p.cat}</span></div>
+    <div class="pd-row" style="margin-bottom:16px"><span class="pd-row-label">Статус</span><span class="pd-row-val" style="color:var(--success)">● Доступно</span></div>
+    <p style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:10px;font-family:'Share Tech Mono',monospace">Контакти продавця</p>
+    <div class="pd-contacts"><div class="contact-chip">💬 ${p.discord}</div></div>
+    <button class="btn-message" onclick="showToast('Месенджер — буде в наступній версії 💬','ok')">✉ Написати продавцю</button>`;
+  document.getElementById('pdOverlay').classList.add('open');
+};
+window.closePD = () => document.getElementById('pdOverlay').classList.remove('open');
+document.getElementById('pdOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('pdOverlay')) closePD();
+});
 
-  // ── DEMO LISTINGS ──
-  const listings = [
-    { cat:'авто',        title:'Zentorno — чорний',        desc:'Повністю прокачаний. Новий мотор, броня, тюнінг BodyKit.',     price:'2,500,000', currency:'$', seller:'SpeedKing', badge:'hot' },
-    { cat:'зброя',       title:'AK-47 x50 патронів',       desc:'Набір зброї з боєприпасами для початківців. Швидка передача.', price:'350,000',   currency:'$', seller:'ArmsDealerUA', badge:'new' },
-    { cat:'бізнес',      title:'Автомийка Район 3',         desc:'Прибутковий бізнес, щоденний дохід $45K. Документи готові.',  price:'8,000,000', currency:'$', seller:'BizMaster', badge:'' },
-    { cat:'нерухомість', title:'Квартира Central Park',     desc:'2 кімнати, вигляд на місто. Гарна локація для старту.',       price:'1,200,000', currency:'$', seller:'RealEstate_UG', badge:'' },
-    { cat:'авто',        title:'Elegy RH8 білий',           desc:'Стокова комплектація, без пробоїн, гарний вигляд.',           price:'900,000',   currency:'$', seller:'AutoSalon', badge:'new' },
-    { cat:'інше',        title:'VIP Статус 30 днів',        desc:'Доступ до VIP зон, бонуси, приватний чат.',                   price:'500,000',   currency:'$', seller:'AdminShop', badge:'hot' },
-    { cat:'зброя',       title:'Снайперська гвинтівка',     desc:'Precision Rifle з глушником. Дальній бій.',                   price:'750,000',   currency:'$', seller:'GhostShot', badge:'' },
-    { cat:'бізнес',      title:'Ресторан Порт-зона',        desc:'Стабільний дохід, хороший трафік клієнтів щодня.',            price:'5,500,000', currency:'$', seller:'ChefBoss', badge:'' },
-  ];
+// AUTH
+window.openAuth = (tab) => {
+  document.getElementById('authOverlay').classList.add('open');
+  switchAuth(tab || 'login');
+};
+window.switchAuth = (tab) => {
+  document.getElementById('fLogin').style.display  = tab==='login'    ? 'block' : 'none';
+  document.getElementById('fReg').style.display    = tab==='register' ? 'block' : 'none';
+  document.getElementById('tabL').classList.toggle('active', tab==='login');
+  document.getElementById('tabR').classList.toggle('active', tab==='register');
+  document.getElementById('authTitle').textContent = tab==='login' ? 'Увійти' : 'Реєстрація';
+  document.getElementById('authSub').textContent   = tab==='login' ? 'Раді бачити тебе знову, гравець' : 'Приєднуйся до Marketplace UG';
+};
+window.closeAuth = () => document.getElementById('authOverlay').classList.remove('open');
+document.getElementById('authOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('authOverlay')) closeAuth();
+});
 
-  function renderCards(filter='all') {
-    const grid = document.getElementById('listingGrid');
-    const filtered = filter === 'all' ? listings : listings.filter(l => l.cat === filter);
-    grid.innerHTML = filtered.map(l => `
-      <div class="listing-card" data-cat="${l.cat}">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <span class="card-category">${l.cat}</span>
-          ${l.badge ? `<span class="card-badge badge-${l.badge}">${l.badge === 'hot' ? '🔥 HOT' : '✦ NEW'}</span>` : ''}
-        </div>
-        <div class="card-title">${l.title}</div>
-        <div class="card-desc">${l.desc}</div>
-        <div class="card-footer">
-          <div class="card-price">${l.price}<span>${l.currency}</span></div>
-          <div class="card-seller">від ${l.seller}</div>
-        </div>
-      </div>`).join('');
-  }
+// PAGES
+window.showPage = (name) => {
+  document.querySelectorAll('.info-page').forEach(p => p.classList.remove('open'));
+  document.getElementById('page-'+name)?.classList.add('open');
+  window.scrollTo(0,0);
+};
+window.hidePage = (name) => document.getElementById('page-'+name)?.classList.remove('open');
 
-  function filterCards(btn, cat) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderCards(cat);
-  }
-  window.filterCards = filterCards;
+// TOAST
+window.showToast = (msg, type='') => {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type ? ' '+type : '');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(() => t.className = 'toast', 3200);
+};
 
-  renderCards();
+renderListings();
 </script>
 </body>
 </html>
