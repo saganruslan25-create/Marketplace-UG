@@ -498,6 +498,152 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 .badge-new{background:#e4f7ec;color:var(--success);}
 .badge-done{background:var(--bg2);color:var(--text3);}
 .admin-empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:14px;}
+/* ============================
+   MOBILE RESPONSIVE
+   ============================ */
+/* Mobile hamburger button */
+.mob-menu-btn{display:none;position:fixed;top:14px;left:14px;z-index:1200;width:40px;height:40px;background:var(--white);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:5px;box-shadow:var(--shadow);}
+.mob-menu-btn span{display:block;width:18px;height:2px;background:var(--text);border-radius:2px;transition:all .25s;}
+.mob-menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.mob-menu-btn.open span:nth-child(2){opacity:0;}
+.mob-menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+/* Sidebar overlay on mobile */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:299;backdrop-filter:blur(2px);}
+.sidebar-overlay.open{display:block;}
+
+@media(max-width:768px){
+  /* Show hamburger */
+  .mob-menu-btn{display:flex;}
+  .sidebar-overlay.open{display:block;}
+
+  /* Sidebar hidden by default, slides in */
+  .sidebar{transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);z-index:500;}
+  .sidebar.mob-open{transform:translateX(0);}
+
+  /* Main takes full width */
+  .main{margin-left:0;}
+
+  /* Topbar adjustments */
+  .topbar{padding:0 12px 0 62px;height:56px;}
+  .topbar-search{max-width:none;flex:1;}
+  .topbar-search input{height:34px;font-size:13px;}
+  .tb-btn-ghost{display:none;}
+  .tb-btn-purple{height:34px;padding:0 14px;font-size:12px;}
+  .tb-username{display:none;}
+  .tb-logout{padding:3px 8px;font-size:11px;}
+  .admin-chip{font-size:9px;padding:2px 7px;}
+
+  /* Section tabs */
+  .section-tabs{padding:0 12px;}
+  .stab{padding:12px 12px;font-size:12px;}
+
+  /* Filter row */
+  .filter-row{padding:10px 12px;gap:6px;}
+  .fchip{padding:5px 10px;font-size:11px;}
+  .adv-btn{font-size:11px;padding:5px 10px;}
+
+  /* Content */
+  .content{padding:16px 12px;}
+  .content-title{font-size:20px;}
+
+  /* Listing grid - 1 column on small, 2 on medium */
+  .listing-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+
+  /* Cards */
+  .lcard-title{font-size:13px;}
+  .lcard-price{font-size:15px;}
+  .lcard-desc{display:none;}
+
+  /* Product detail - full screen */
+  .pd-overlay{padding:0;}
+  .pd-card{flex-direction:column;border-radius:0;max-height:100vh;width:100%;overflow-y:auto;}
+  .pd-left{width:100%;max-height:260px;min-height:200px;}
+  .pd-left img{height:260px;border-radius:0;}
+  .pd-right{padding:16px;overflow-y:visible;}
+  .pd-close-btn{top:10px;left:10px;}
+  .pd-title{font-size:20px;}
+  .pd-price-big{font-size:24px;}
+
+  /* Modals - full screen */
+  .overlay{padding:0;align-items:flex-end;}
+  .modal{border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;width:100%;}
+  .modal-wide{border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;width:100%;}
+  .complete-modal{border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;width:100%;}
+  .ban-modal{border-radius:20px 20px 0 0;width:100%;margin:0;}
+  .confirm-box{border-radius:20px 20px 0 0;width:100%;margin:0;}
+
+  /* Report overlay full screen bottom */
+  #reportOverlay .modal{max-height:90vh;}
+
+  /* Side panels full width */
+  .side-panel{width:100%;border-left:none;border-top:1.5px solid var(--border);}
+  .msg-panel{width:100%;border-left:none;}
+
+  /* Admin panel */
+  .admin-panel{overflow-y:auto;}
+  .admin-body{flex-direction:column;}
+  .admin-sidebar{width:100%;display:flex;flex-wrap:wrap;gap:4px;padding:10px;border-right:none;border-bottom:1px solid var(--border);}
+  .admin-nav-item{width:auto;flex:none;padding:7px 12px;font-size:12px;}
+  .admin-content{overflow-x:auto;}
+  .admin-head{padding:12px 16px;flex-wrap:wrap;gap:8px;}
+  .admin-head-title{font-size:14px;}
+  .admin-stats{grid-template-columns:repeat(3,1fr);}
+  .user-table{font-size:11px;}
+  .user-table th,.user-table td{padding:6px 8px;}
+
+  /* Adv filter panel */
+  .adv-panel{padding-top:0;align-items:flex-end;}
+  .adv-box{border-radius:20px 20px 0 0;max-height:80vh;overflow-y:auto;width:100%;}
+
+  /* Info pages */
+  .info-inner{padding:20px 16px;}
+  .ip-title{font-size:28px;}
+  .ip-grid{grid-template-columns:1fr;}
+
+  /* Notification stack */
+  #notifStack{bottom:70px;right:12px;left:12px;}
+  .notif-popup{min-width:0;width:100%;}
+
+  /* Toast */
+  .toast{right:12px;left:12px;bottom:16px;text-align:center;}
+
+  /* Chat */
+  .chat-input-row{padding:8px;}
+  .chat-input{font-size:14px;}
+
+  /* Profile panel */
+  .sp-head{padding:14px 16px;}
+  .sp-body{padding:16px;}
+
+  /* Frow - stack on mobile */
+  .frow{flex-direction:column;gap:0;}
+
+  /* Lightbox */
+  #lightbox img{max-width:98vw;max-height:80vh;}
+}
+
+@media(max-width:480px){
+  .listing-grid{grid-template-columns:1fr;}
+  .topbar{padding-right:10px;}
+  .tb-btn-purple{font-size:11px;padding:0 10px;height:32px;}
+  .lcard-price{font-size:14px;}
+  .content-title{font-size:18px;}
+}
+/* MOBILE BOTTOM NAV */
+.mob-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:58px;background:var(--white);border-top:1.5px solid var(--border);z-index:400;padding:0;box-shadow:0 -4px 20px rgba(0,0,0,.07);}
+.mbn-items{display:flex;align-items:stretch;height:100%;}
+.mbn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;font-weight:600;color:var(--text3);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;transition:color .18s;padding:0;position:relative;}
+.mbn-item.active,.mbn-item:hover{color:var(--purple);}
+.mbn-icon{width:22px;height:22px;display:flex;align-items:center;justify-content:center;}
+.mbn-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;}
+.mbn-badge{position:absolute;top:8px;right:calc(50% - 14px);width:7px;height:7px;background:var(--purple);border-radius:50%;display:none;}
+.mbn-badge.show{display:block;}
+@media(max-width:768px){
+  .mob-bottom-nav{display:flex;}
+  .content{padding-bottom:74px;}
+  .toast{bottom:70px;}
+  #notifStack{bottom:70px;}
+}
 </style>
 </head>
 <body>
@@ -511,6 +657,12 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 </div>
 
 <div class="app-layout">
+
+<!-- MOBILE HAMBURGER -->
+<button class="mob-menu-btn" id="mobMenuBtn" onclick="toggleMobMenu()" aria-label="Меню">
+  <span></span><span></span><span></span>
+</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobMenu()"></div>
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
@@ -951,10 +1103,13 @@ function stopGlobalChatListener(){if(globalChatListener){globalChatListener();gl
 
 function updatePixdgerDot(hasNew){
   const btn=document.querySelector('.nav-item[onclick*="openMsgPanel"]');
-  if(!btn)return;
-  let dot=btn.querySelector('.unread-dot');
-  if(hasNew&&!dot){dot=document.createElement('span');dot.className='unread-dot';btn.appendChild(dot);}
-  else if(!hasNew&&dot){dot.remove();}
+  if(btn){
+    let dot=btn.querySelector('.unread-dot');
+    if(hasNew&&!dot){dot=document.createElement('span');dot.className='unread-dot';btn.appendChild(dot);}
+    else if(!hasNew&&dot){dot.remove();}
+  }
+  const mob=document.getElementById('mbnMsgBadge');
+  if(mob)mob.classList.toggle('show',hasNew);
 }
 
 function showNotifPopup(name,text,chatId){
@@ -1093,14 +1248,46 @@ window.submitAd=async()=>{
   }
   const btn=document.getElementById('submitAdBtn');btn.textContent='Публікуємо...';btn.disabled=true;
   try{
-    const cp=await Promise.all(adPhotos.map(src=>compressImg(src,700,0.72)));
+    const cp=adPhotos.length ? await Promise.all(adPhotos.map(src=>
+      src.startsWith('data:') ? compressToTarget(src,22) : Promise.resolve(src)
+    )) : [];
+    // Verify total size
+    const totalBytes=cp.reduce((a,s)=>a+s.length,0);
+    if(totalBytes>800000)return showToast('Фото занадто великі. Спробуй менші зображення.','err');
     await addDoc(collection(db,'listings'),{uid:CU.uid,seller:CUD?.game||CUD?.nick||CU.displayName||'?',discord:CUD?.discord||'',type,cat,title,desc,price:parseInt(price),condition,carBrand,photos:cp,createdAt:serverTimestamp(),active:true});
     await saveUser(CU.uid,{ads:(CUD?.ads||0)+1});
     CUD={...CUD,ads:(CUD?.ads||0)+1};
     closeAd();showToast('Оголошення опубліковано!','ok');loadListings();
   }catch(e){showToast('Помилка: '+e.message,'err');}finally{btn.textContent='Опублікувати оголошення';btn.disabled=false;}
 };
-function compressImg(src,maxW,q){return new Promise(res=>{const img=new Image();img.onload=()=>{const s=Math.min(1,maxW/img.width),w=img.width*s,h=img.height*s,c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);res(c.toDataURL('image/jpeg',q));};img.src=src;});}
+function compressImg(src,maxW,q){
+  return new Promise((res,rej)=>{
+    const img=new Image();
+    img.onload=()=>{
+      const s=Math.min(1,maxW/Math.max(img.width,img.height));
+      const w=Math.round(img.width*s),h=Math.round(img.height*s);
+      const canvas=document.createElement('canvas');
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      res(canvas.toDataURL('image/jpeg',q));
+    };
+    img.onerror=rej;
+    img.src=src;
+  });
+}
+// Compress to target size ~20KB per photo
+async function compressToTarget(src,targetKB=25){
+  // First compress to 400px wide, quality 0.6
+  let result=await compressImg(src,400,0.6);
+  // If still too big, reduce quality further
+  if(result.length>targetKB*1024*1.37){// base64 overhead ~1.37x
+    result=await compressImg(src,300,0.45);
+  }
+  if(result.length>targetKB*1024*1.37){
+    result=await compressImg(src,240,0.35);
+  }
+  return result;
+}
 
 // EDIT AD (owner)
 window.editAd=async(id)=>{
@@ -1137,7 +1324,7 @@ window.editAd=async(id)=>{
     if(!title||!desc||!price)return showToast('Заповни всі поля','err');
     btn.textContent='Зберігаємо...';btn.disabled=true;
     try{
-      const cp=adPhotos.length?await Promise.all(adPhotos.map(s=>s.startsWith('data:')?compressImg(s,700,0.72):Promise.resolve(s))):[];
+      const cp=adPhotos.length?await Promise.all(adPhotos.map(s=>s.startsWith('data:')?compressToTarget(s,22):Promise.resolve(s))):[];
       await updateDoc(doc(db,'listings',id),{title,desc,price:parseInt(price),condition,carBrand,photos:cp,updatedAt:serverTimestamp()});
       // Reset button back
       btn.textContent='Опублікувати оголошення';btn.onclick=null;
@@ -1264,7 +1451,7 @@ window.sendPhoto=async(e,chatId,targetName,adTitle)=>{
   try{
     const r=new FileReader();
     r.onload=async ev=>{
-      const compressed=await compressImg(ev.target.result,600,0.75);
+      const compressed=await compressToTarget(ev.target.result,30);
       await addDoc(collection(db,`chats/${chatId}/messages`),{uid:CU.uid,sender:CUD?.game||CU.displayName||'?',text:'',photo:compressed,ts:serverTimestamp()});
       await updateChatMeta(chatId,targetName,adTitle,'Фото');
     };
@@ -1523,6 +1710,25 @@ document.addEventListener('keydown', e => {
   }
 });
 
+// MOBILE MENU
+window.toggleMobMenu=()=>{
+  const sb=document.getElementById('sidebar');
+  const btn=document.getElementById('mobMenuBtn');
+  const ov=document.getElementById('sidebarOverlay');
+  const isOpen=sb.classList.toggle('mob-open');
+  btn.classList.toggle('open',isOpen);
+  ov.classList.toggle('open',isOpen);
+};
+window.closeMobMenu=()=>{
+  document.getElementById('sidebar').classList.remove('mob-open');
+  document.getElementById('mobMenuBtn').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+};
+// Close sidebar when nav item clicked on mobile
+document.querySelectorAll('.nav-item').forEach(btn=>{
+  btn.addEventListener('click',()=>{if(window.innerWidth<=768)closeMobMenu();});
+});
+
 // CONFIRM MODAL
 window.showConfirm=({icon='!',title='Ти впевнений?',text='',okText='Підтвердити',okClass='danger',cancelText='Скасувати',onOk})=>{
   document.getElementById('confirmIcon').textContent=icon;
@@ -1665,11 +1871,11 @@ window._CU=null;window._CUD=null;
 window.closePD=()=>document.getElementById('pdOverlay').classList.remove('open');
 
 window.filterBy=(btn,cat)=>{document.querySelectorAll('.fchip').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curFilter=cat;renderListings();};
-window.filterByNav=(btn,cat)=>{document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curFilter=cat;document.querySelectorAll('.fchip').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase().trim().includes(cat==='all'?'усі':cat)));renderListings();};
+window.filterByNav=(btn,cat)=>{document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curFilter=cat;document.querySelectorAll('.fchip').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase().trim().includes(cat==='all'?'усі':cat)));renderListings();if(window.innerWidth<=768)closeMobMenu();};
 window.searchListings=v=>{curSearch=v.toLowerCase();renderListings();};
 window.switchSection=(btn,sec)=>{document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curSection=sec;renderListings();};
 
-window.openAuth=tab=>{document.getElementById('authOverlay').classList.add('open');switchAuth(tab||'login');};
+window.openAuth=tab=>{document.getElementById('authOverlay').classList.add('open');switchAuth(tab||'login');if(window.innerWidth<=768)closeMobMenu();};
 window.switchAuth=tab=>{document.getElementById('fLogin').style.display=tab==='login'?'block':'none';document.getElementById('fReg').style.display=tab==='register'?'block':'none';document.getElementById('tabL').classList.toggle('active',tab==='login');document.getElementById('tabR').classList.toggle('active',tab==='register');document.getElementById('authTitle').textContent=tab==='login'?'Увійти':'Реєстрація';document.getElementById('authSub').textContent=tab==='login'?'Раді бачити тебе знову':'Приєднуйся до Marketplace UG';};
 window.closeAuth=()=>document.getElementById('authOverlay').classList.remove('open');
 document.getElementById('authOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('authOverlay'))closeAuth();});
@@ -1679,10 +1885,20 @@ window.toggleChip=el=>el.classList.toggle('active');
 window.applyFilters=()=>{priceMin=parseInt(document.getElementById('priceMin').value)||0;priceMax=parseInt(document.getElementById('priceMax').value)||Infinity;renderListings();toggleAdvFilter();};
 window.resetFilters=()=>{priceMin=0;priceMax=Infinity;document.getElementById('priceMin').value='';document.getElementById('priceMax').value='';document.querySelectorAll('.adv-chip').forEach(c=>c.classList.remove('active'));renderListings();};
 
-window.showPage=name=>{document.querySelectorAll('.info-page').forEach(p=>p.classList.remove('open'));document.getElementById('page-'+name)?.classList.add('open');};
+window.showPage=name=>{document.querySelectorAll('.info-page').forEach(p=>p.classList.remove('open'));document.getElementById('page-'+name)?.classList.add('open');if(window.innerWidth<=768)closeMobMenu();};
 window.hidePage=name=>document.getElementById('page-'+name)?.classList.remove('open');
 
 window.showToast=(msg,type='')=>{const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(type?' '+type:'');clearTimeout(window._tt);window._tt=setTimeout(()=>t.className='toast',3500);};
+
+// MOBILE BOTTOM NAV
+window.mbnCatalog=btn=>{document.querySelectorAll('.mbn-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.info-page').forEach(p=>p.classList.remove('open'));window.scrollTo({top:0,behavior:'smooth'});};
+window.mbnSearch=btn=>{document.querySelectorAll('.mbn-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('searchInput')?.focus();};
+window.mbnPost=()=>{if(window.openAd)openAd();else openAuth('login');};
+window.mbnMsg=btn=>{document.querySelectorAll('.mbn-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(window.openMsgPanel)openMsgPanel();};
+window.mbnProfile=btn=>{document.querySelectorAll('.mbn-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(window._CU&&window.openProfile)openProfile();else openAuth('login');};
+// Update msg badge from pixdger dot
+const _origUpdateDot=window.updatePixdgerDot;
+// Will be overridden after firebase module loads via event
 
 renderListings();
 </script>
@@ -1705,6 +1921,32 @@ renderListings();
     </div>
   </div>
 </div>
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mob-bottom-nav">
+  <div class="mbn-items">
+    <button class="mbn-item active" onclick="mbnCatalog(this)">
+      <span class="mbn-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>
+      <span>Каталог</span>
+    </button>
+    <button class="mbn-item" onclick="mbnSearch(this)">
+      <span class="mbn-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+      <span>Пошук</span>
+    </button>
+    <button class="mbn-item mbn-post" onclick="mbnPost()">
+      <span class="mbn-icon" style="width:40px;height:40px;background:var(--purple);border-radius:50%;color:#fff;margin-bottom:2px"><svg viewBox="0 0 24 24" style="stroke:#fff"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+      <span style="color:var(--purple)">Подати</span>
+    </button>
+    <button class="mbn-item" onclick="mbnMsg(this)" id="mbnMsgBtn">
+      <span class="mbn-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      <span class="mbn-badge" id="mbnMsgBadge"></span>
+      <span>Pixджер</span>
+    </button>
+    <button class="mbn-item" onclick="mbnProfile(this)">
+      <span class="mbn-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      <span>Профіль</span>
+    </button>
+  </div>
+</nav>
 
 </body>
 </html>
