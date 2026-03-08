@@ -125,7 +125,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .lcard-photo{width:100%;height:200px;background:var(--bg2);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
 .lcard-photo img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
 .lcard:hover .lcard-photo img{transform:scale(1.04);}
-.lcard-photo-ph{font-size:40px;color:var(--border2);}
+.lcard-photo-ph::after{content:"[ ]";font-family:monospace;font-size:24px;color:var(--border2);} .lcard-photo-ph{font-size:40px;color:var(--border2);}
 .lcard-photo-badge{position:absolute;top:10px;left:10px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;font-family:'DM Mono',monospace;letter-spacing:.5px;}
 .lcard-photo-badge.hot{background:#ffe4e4;color:#c53030;}
 .lcard-photo-badge.new{background:#e4f7ec;color:#1e7a45;}
@@ -467,6 +467,37 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 .car-brand-wrap{display:grid;grid-template-columns:1fr auto;gap:8px;}
 /* UNREAD DOT on pixdger nav */
 .nav-item .unread-dot{width:8px;height:8px;background:var(--purple);border-radius:50%;margin-left:auto;animation:pulse 1.5s ease infinite;}
+
+/* NAV dot indicators - no emoji */
+.ni-dot{display:inline-block;width:6px;height:6px;background:var(--border2);border-radius:50%;flex-shrink:0;transition:background .2s;}
+.nav-item.active .ni-dot,.nav-item:hover .ni-dot{background:var(--purple);}
+.ni-star{background:none;color:var(--text3);font-size:14px;display:inline-flex;align-items:center;justify-content:center;}
+.ni-star::after{content:'★';}
+.nav-item.active .ni-star{color:var(--purple);}
+/* Report option icons */
+.report-option-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;}
+.roi-18{background:#fff5f5;color:var(--danger);}
+.roi-spam{background:#fff9e6;color:var(--warn);}
+.roi-fake{background:#fff5f5;color:var(--danger);}
+.roi-price{background:#e6fff0;color:var(--success);}
+.roi-ban{background:#f0eaff;color:var(--purple);}
+.roi-cat{background:#e6f3ff;color:#3b82f6;font-size:8px;}
+.roi-off{background:#fff5f5;color:var(--danger);}
+.roi-other{background:var(--bg2);color:var(--text3);}
+/* Admin card styles */
+.admin-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:12px;}
+.admin-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px;}
+.admin-card-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;}
+.admin-card-meta{font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;margin:4px 0 8px;}
+.admin-card-badge{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;font-family:'DM Mono',monospace;flex-shrink:0;white-space:nowrap;}
+.admin-card-text{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:12px;}
+.admin-card-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.badge-report{background:#fff5f5;color:var(--danger);}
+.badge-idea{background:var(--purpleLight);color:var(--purple);}
+.badge-support{background:#fff9e6;color:var(--warn);}
+.badge-new{background:#e4f7ec;color:var(--success);}
+.badge-done{background:var(--bg2);color:var(--text3);}
+.admin-empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:14px;}
 </style>
 </head>
 <body>
@@ -489,23 +520,24 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
   </div>
   <nav class="sidebar-nav">
     <div class="nav-group-title">Категорії</div>
-    <button class="nav-item active" onclick="filterByNav(this,'all')"><span class="ni">🏪</span> Усі оголошення</button>
-    <button class="nav-item" onclick="filterByNav(this,'авто')"><span class="ni">🚗</span> Авто</button>
-    <button class="nav-item" onclick="filterByNav(this,'зброя')"><span class="ni">⚔️</span> Зброя</button>
-    <button class="nav-item" onclick="filterByNav(this,'нерухомість')"><span class="ni">🏠</span> Нерухомість</button>
-    <button class="nav-item" onclick="filterByNav(this,'бізнес')"><span class="ni">💼</span> Бізнес</button>
-    <button class="nav-item" onclick="filterByNav(this,'одяг')"><span class="ni">👕</span> Одяг / Акс</button>
-    <button class="nav-item" onclick="filterByNav(this,'інше')"><span class="ni">📦</span> Інше</button>
+    <button class="nav-item active" onclick="filterByNav(this,'all')"><span class="ni-dot"></span> Усі оголошення</button>
+    <button class="nav-item" onclick="filterByNav(this,'авто')"><span class="ni-dot"></span> Авто</button>
+    <button class="nav-item" onclick="filterByNav(this,'зброя')"><span class="ni-dot"></span> Зброя</button>
+    <button class="nav-item" onclick="filterByNav(this,'нерухомість')"><span class="ni-dot"></span> Нерухомість</button>
+    <button class="nav-item" onclick="filterByNav(this,'бізнес')"><span class="ni-dot"></span> Бізнес</button>
+    <button class="nav-item" onclick="filterByNav(this,'одяг')"><span class="ni-dot"></span> Одяг / Акс</button>
+    <button class="nav-item" onclick="filterByNav(this,'інше')"><span class="ni-dot"></span> Інше</button>
     <div class="nav-group-title">Сторінки</div>
-    <button class="nav-item" onclick="showPage('about')"><span class="ni">ℹ️</span> Про нас</button>
-    <button class="nav-item" onclick="showPage('support')"><span class="ni">🛟</span> Підтримка</button>
-    <button class="nav-item" onclick="showPage('rules')"><span class="ni">📋</span> Правила</button>
-    <button class="nav-item" onclick="showFavorites(this)"><span class="ni">⭐</span> Обране<span id="favCount" style="display:none">0</span></button>
+    <button class="nav-item" onclick="showPage('about')"><span class="ni-dot"></span> Про нас</button>
+    <button class="nav-item" onclick="showPage('support')"><span class="ni-dot"></span> Підтримка</button>
+    <button class="nav-item" onclick="showPage('rules')"><span class="ni-dot"></span> Правила</button>
+    <button class="nav-item" onclick="showPage('ideas')"><span class="ni-dot"></span> Ваші ідеї</button>
+    <button class="nav-item" onclick="showFavorites(this)"><span class="ni-dot ni-star"></span> Обране<span id="favCount" style="display:none">0</span></button>
   </nav>
   <div class="sidebar-bottom">
     <div id="sidebarUser">
-      <button class="nav-item" onclick="openAuth('login')" style="margin-bottom:6px"><span class="ni">🔑</span> Увійти</button>
-      <button class="nav-item" onclick="openAuth('register')"><span class="ni">✨</span> Реєстрація</button>
+      <button class="nav-item" onclick="openAuth('login')" style="margin-bottom:6px"><span class="ni-dot"></span> Увійти</button>
+      <button class="nav-item" onclick="openAuth('register')"><span class="ni-dot"></span> Реєстрація</button>
     </div>
   </div>
 </aside>
@@ -527,20 +559,20 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 
 <!-- SECTION TABS -->
 <div class="section-tabs">
-  <button class="stab active" onclick="switchSection(this,'sell')">📦 Продаж</button>
+  <button class="stab active" onclick="switchSection(this,'sell')">Продаж</button>
   <div class="stab-sep"></div>
-  <button class="stab" onclick="switchSection(this,'buy')">🛒 Купую</button>
+  <button class="stab" onclick="switchSection(this,'buy')">Купую</button>
 </div>
 
 <!-- FILTER CHIPS -->
 <div class="filter-row" id="filterRow">
   <button class="fchip active" onclick="filterBy(this,'all')">Усі</button>
-  <button class="fchip" onclick="filterBy(this,'авто')">🚗 Авто</button>
-  <button class="fchip" onclick="filterBy(this,'зброя')">⚔️ Зброя</button>
-  <button class="fchip" onclick="filterBy(this,'нерухомість')">🏠 Нерухомість</button>
-  <button class="fchip" onclick="filterBy(this,'бізнес')">💼 Бізнес</button>
-  <button class="fchip" onclick="filterBy(this,'одяг')">👕 Одяг/Акс</button>
-  <button class="fchip" onclick="filterBy(this,'інше')">📦 Інше</button>
+  <button class="fchip" onclick="filterBy(this,'авто')">Авто</button>
+  <button class="fchip" onclick="filterBy(this,'зброя')">Зброя</button>
+  <button class="fchip" onclick="filterBy(this,'нерухомість')">Нерухомість</button>
+  <button class="fchip" onclick="filterBy(this,'бізнес')">Бізнес</button>
+  <button class="fchip" onclick="filterBy(this,'одяг')">Одяг/Акс</button>
+  <button class="fchip" onclick="filterBy(this,'інше')">Інше</button>
   <button class="adv-btn" onclick="toggleAdvFilter()">
     <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
     Фільтри
@@ -567,7 +599,7 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 <!-- AUTH MODAL -->
 <div class="overlay" id="authOverlay">
   <div class="modal">
-    <button class="mclose" onclick="closeAuth()">✕</button>
+    <button class="mclose" onclick="closeAuth()">&#xd7;</button>
     <div class="mtitle" id="authTitle">Увійти</div>
     <p class="msub" id="authSub">Раді бачити тебе знову</p>
     <div class="modal-tabs">
@@ -611,7 +643,7 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
   <div class="complete-modal">
     <div class="mtitle">Заверши профіль</div>
     <p class="msub">Ти увійшов через Google. Заповни ігрові дані</p>
-    <div class="info-box">💡 Ці дані будуть видні у Pixджері при спілкуванні з іншими гравцями</div>
+    <div class="info-box">Ці дані будуть видні у Pixджері при спілкуванні з іншими гравцями</div>
     <div class="fgroup"><label class="flabel">Нікнейм (сайт) *</label><input class="finput" id="cpNick" placeholder="CoolPlayer" autocomplete="off"/></div>
     <div class="fgroup"><label class="flabel">Нік в грі *</label><input class="finput" id="cpGame" placeholder="GTA_Nick" autocomplete="off"/></div>
     <div class="fgroup"><label class="flabel">ID в грі *</label><input class="finput" id="cpGameId" placeholder="Наприклад: 12345" autocomplete="off"/></div>
@@ -626,14 +658,15 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 <!-- SUBMIT AD -->
 <div class="overlay" id="adOverlay">
   <div class="modal modal-wide">
-    <button class="mclose" onclick="closeAd()">✕</button>
+    <button class="mclose" onclick="closeAd()">&#xd7;</button>
     <div class="mtitle">Подати оголошення</div>
     <p class="msub">Безкоштовно · Відразу видно всім гравцям</p>
-    <div class="warn-box">⚠️ ЗАБОРОНЕНО: VIP-валюта, донат-валюта, ігрова валюта = постійний бан.</div>
+    <div class="warn-box">ЗАБОРОНЕНО: VIP-валюта, донат-валюта, ігрова валюта = постійний бан.</div>
     <div class="frow">
       <div class="fgroup"><label class="flabel">Тип *</label><select class="finput" id="adType"><option value="sell">Продаю</option><option value="buy">Купую</option></select></div>
-      <div class="fgroup"><label class="flabel">Категорія *</label><select class="finput" id="adCat" onchange="updateSubCat()"><option value="">Обери...</option><option value="авто">🚗 Авто</option><option value="зброя">⚔️ Зброя</option><option value="нерухомість">🏠 Нерухомість</option><option value="бізнес">💼 Бізнес</option><option value="одяг">👕 Одяг/Аксесуари</option><option value="інше">📦 Інше</option></select></div>
+      <div class="fgroup"><label class="flabel">Категорія *</label><select class="finput" id="adCat" onchange="updateSubCat()"><option value="">Обери...</option><option value="авто">Авто</option><option value="зброя">Зброя</option><option value="нерухомість">Нерухомість</option><option value="бізнес">Бізнес</option><option value="одяг">Одяг/Аксесуари</option><option value="інше">Інше</option></select></div>
     </div>
+    <div class="fgroup"><label class="flabel">Назва оголошення *</label><input class="finput" id="adTitle" placeholder="Наприклад: BMW M3 2021 повністю прокачана" autocomplete="off"/></div>
     <div class="fgroup" id="subCatGroup" style="display:none"><label class="flabel">Підкатегорія</label><select class="finput" id="adSubCat"></select></div>
     <div class="fgroup" id="carBrandGroup" style="display:none">
       <label class="flabel">Марка авто *</label>
@@ -649,7 +682,7 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
     </div>
     <div class="fgroup">
       <label class="flabel">Фото (до 5 штук)</label>
-      <div class="photo-upload-btn" onclick="document.getElementById('photoInput').click()"><span style="font-size:22px">📷</span><span>Натисни щоб вибрати фото</span></div>
+      <div class="photo-upload-btn" onclick="document.getElementById('photoInput').click()"><span style="font-size:22px;filter:grayscale(1);opacity:.5">[ ]</span><span>Натисни щоб вибрати фото</span></div>
       <input type="file" id="photoInput" accept="image/*" multiple style="display:none" onchange="handlePhotos(event)"/>
       <div class="photo-preview-row" id="photoRow"></div>
     </div>
@@ -659,23 +692,23 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 
 <!-- PROFILE PANEL -->
 <div class="side-panel" id="profilePanel">
-  <div class="sp-head"><div class="sp-title">Профіль</div><button class="sp-close" onclick="closeProfile()">✕</button></div>
+  <div class="sp-head"><div class="sp-title">Профіль</div><button class="sp-close" onclick="closeProfile()">&#xd7;</button></div>
   <div class="sp-body" id="profileBody"></div>
 </div>
 
 <!-- PIXДЖЕР -->
 <div class="msg-panel" id="msgPanel">
-  <div class="msg-head"><div class="msg-title">💬 Pixджер</div><button class="msg-close" onclick="closeMsgPanel()">✕</button></div>
+  <div class="msg-head"><div class="msg-title">Pixджер</div><button class="msg-close" onclick="closeMsgPanel()">&#xd7;</button></div>
   <div class="msg-content" id="msgContent">
-    <div class="chat-empty"><div style="font-size:40px">💬</div><span>Увійди щоб побачити чати</span></div>
+    <div class="chat-empty"><div style="font-size:32px;color:var(--border2)">[ ]</div><span>Увійди щоб побачити чати</span></div>
   </div>
 </div>
 
 <!-- BAN MODAL -->
 <div class="overlay" id="banOverlay">
   <div class="ban-modal">
-    <button class="mclose" onclick="closeBan()">✕</button>
-    <div class="ban-title">⛔ Блокування</div>
+    <button class="mclose" onclick="closeBan()">&#xd7;</button>
+    <div class="ban-title">Блокування</div>
     <div class="ban-sub" id="banTargetName">Гравець: —</div>
     <div class="check-list">
       <label class="check-item"><input type="checkbox" id="ban_ads" checked/> Заборонити виставляти оголошення</label>
@@ -690,14 +723,17 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 <!-- ADMIN PANEL -->
 <div class="admin-panel" id="adminPanel">
   <div class="admin-head">
-    <div class="admin-head-title">⚡ Адмін панель · Marketplace UG</div>
+    <div class="admin-head-title">Адмін панель · Marketplace UG</div>
     <button class="tb-btn tb-btn-ghost" onclick="closeAdmin()">← Закрити</button>
   </div>
   <div class="admin-body">
     <div class="admin-sidebar">
-      <button class="admin-nav-item active" onclick="adminNav(this,'stats')">📊 Статистика</button>
-      <button class="admin-nav-item" onclick="adminNav(this,'users')">👥 Користувачі</button>
-      <button class="admin-nav-item" onclick="adminNav(this,'listings')">📋 Оголошення</button>
+      <button class="admin-nav-item active" onclick="adminNav(this,'stats')">Статистика</button>
+      <button class="admin-nav-item" onclick="adminNav(this,'users')">Користувачі</button>
+      <button class="admin-nav-item" onclick="adminNav(this,'listings')">Оголошення</button>
+      <button class="admin-nav-item" id="navReports" onclick="adminNav(this,'reports')">Скарги <span id="reportsBadge" style="display:none;background:var(--danger);color:#fff;font-size:9px;padding:1px 6px;border-radius:10px;margin-left:4px">0</span></button>
+      <button class="admin-nav-item" onclick="adminNav(this,'support')">Підтримка</button>
+      <button class="admin-nav-item" onclick="adminNav(this,'ideas')">Ідеї</button>
     </div>
     <div class="admin-content">
       <div class="admin-section active" id="sec-stats">
@@ -706,6 +742,8 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
           <div class="astat"><div class="astat-num" id="as-users">—</div><div class="astat-lbl">Користувачів</div></div>
           <div class="astat"><div class="astat-num" id="as-ads">—</div><div class="astat-lbl">Оголошень</div></div>
           <div class="astat"><div class="astat-num" style="color:var(--danger)" id="as-banned">—</div><div class="astat-lbl">Заблокованих</div></div>
+          <div class="astat"><div class="astat-num" style="color:var(--warn)" id="as-reports">—</div><div class="astat-lbl">Скарг</div></div>
+          <div class="astat"><div class="astat-num" style="color:var(--purple)" id="as-ideas">—</div><div class="astat-lbl">Ідей</div></div>
         </div>
       </div>
       <div class="admin-section" id="sec-users">
@@ -717,6 +755,18 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
         <div class="admin-section-title">Оголошення</div>
         <div id="adminListingsWrap"></div>
       </div>
+      <div class="admin-section" id="sec-reports">
+        <div class="admin-section-title">Скарги на оголошення</div>
+        <div id="adminReportsWrap"><div class="admin-empty">Завантаження...</div></div>
+      </div>
+      <div class="admin-section" id="sec-support">
+        <div class="admin-section-title">Заявки техпідтримки</div>
+        <div id="adminSupportWrap"><div class="admin-empty">Завантаження...</div></div>
+      </div>
+      <div class="admin-section" id="sec-ideas">
+        <div class="admin-section-title">Ідеї від гравців</div>
+        <div id="adminIdeasWrap"><div class="admin-empty">Завантаження...</div></div>
+      </div>
     </div>
   </div>
 </div>
@@ -726,9 +776,9 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
   <button class="ip-back" onclick="hidePage('about')">← Назад</button>
   <h1 class="ip-title">Про <span>нас</span></h1>
   <div class="ip-grid">
-    <div class="ip-card"><div class="icon">🎮</div><h3>Хто ми</h3><p>Marketplace UG — офіційний майданчик Ukraine GTA для торгівлі між гравцями.</p></div>
-    <div class="ip-card"><div class="icon">💬</div><h3>Pixджер</h3><p>Власний месенджер для безпечної комунікації між покупцями і продавцями.</p></div>
-    <div class="ip-card"><div class="icon">💜</div><h3>Pixle Web Studio</h3><p>Сайт розроблений Pixle Web Studio — веб-рішення для ігрових проектів.</p></div>
+    <div class="ip-card"><div class="icon" style="font-size:22px;font-family:monospace">[ ]</div><h3>Хто ми</h3><p>Marketplace UG — офіційний майданчик Ukraine GTA для торгівлі між гравцями.</p></div>
+    <div class="ip-card"><div class="icon" style="font-size:22px;font-family:monospace">[ ]</div><h3>Pixджер</h3><p>Власний месенджер для безпечної комунікації між покупцями і продавцями.</p></div>
+    <div class="ip-card"><div class="icon" style="font-size:22px;font-family:monospace">[ ]</div><h3>Pixle Web Studio</h3><p>Сайт розроблений Pixle Web Studio — веб-рішення для ігрових проектів.</p></div>
   </div>
 </div></div>
 <div class="info-page" id="page-support"><div class="info-inner">
@@ -737,9 +787,9 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
   <div style="max-width:520px">
     <div class="fgroup"><label class="flabel">Нік в грі</label><input class="finput" id="supGame" placeholder="Підтягується з акаунту..." autocomplete="off"/></div>
     <div class="fgroup"><label class="flabel">Discord</label><input class="finput" id="supDiscord" placeholder="Підтягується з акаунту..." autocomplete="off"/></div>
-    <div class="fgroup"><label class="flabel">Тема</label><select class="finput" style="background:var(--bg)"><option>Оберіть...</option><option>Проблема з акаунтом</option><option>Скарга на продавця</option><option>Технічна помилка</option><option>Питання щодо угоди</option><option>Інше</option></select></div>
-    <div class="fgroup"><label class="flabel">Опис</label><textarea class="finput" rows="4" placeholder="Детально опиши ситуацію..."></textarea></div>
-    <button class="btn-submit" onclick="showToast('Заявку відправлено! 👌','ok')">Відправити заявку</button>
+    <div class="fgroup"><label class="flabel">Тема</label><select class="finput" id="supTopic" style="background:var(--bg)"><option value="">Оберіть...</option><option value="account">Проблема з акаунтом</option><option value="seller">Скарга на продавця</option><option value="tech">Технічна помилка</option><option value="deal">Питання щодо угоди</option><option value="other">Інше</option></select></div>
+    <div class="fgroup"><label class="flabel">Опис</label><textarea class="finput" id="supDesc" rows="4" placeholder="Детально опиши ситуацію..."></textarea></div>
+    <button class="btn-submit" onclick="submitSupport()">Відправити заявку</button>
   </div>
 </div></div>
 <div class="info-page" id="page-rules"><div class="info-inner">
@@ -757,6 +807,28 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
   </ul>
 </div></div>
 
+
+<div class="info-page" id="page-ideas"><div class="info-inner">
+  <button class="ip-back" onclick="hidePage('ideas')">&#8592; Назад</button>
+  <h1 class="ip-title">Ваші <span>ідеї</span></h1>
+  <p style="color:var(--text2);font-size:14px;margin-bottom:28px;max-width:540px;line-height:1.7">Маєш ідею як покращити Marketplace UG? Поділись — ми читаємо кожну пропозицію і беремо найкращі в роботу!</p>
+  <div style="max-width:520px">
+    <div class="fgroup"><label class="flabel">Заголовок ідеї *</label><input class="finput" id="ideaTitle" placeholder="Коротко опиши ідею..." autocomplete="off"/></div>
+    <div class="fgroup"><label class="flabel">Категорія</label>
+      <select class="finput" id="ideaCat" style="background:var(--bg)">
+        <option value="feature">Нова функція</option>
+        <option value="ui">Покращення інтерфейсу</option>
+        <option value="pixdger">Pixджер</option>
+        <option value="catalog">Каталог оголошень</option>
+        <option value="admin">Адмін інструменти</option>
+        <option value="other">Інше</option>
+      </select>
+    </div>
+    <div class="fgroup"><label class="flabel">Детальний опис *</label><textarea class="finput" id="ideaDesc" rows="5" placeholder="Розкажи детально: що саме, як це мало б працювати, навіщо це потрібно..."></textarea></div>
+    <button class="btn-submit" onclick="submitIdea()">Надіслати ідею</button>
+  </div>
+</div></div>
+
 <div class="toast" id="toast"></div>
 <div id="notifStack"></div>
 <div id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg" src="" alt=""/></div>
@@ -764,7 +836,7 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 <!-- CUSTOM CONFIRM MODAL -->
 <div id="confirmModal">
   <div class="confirm-box">
-    <div class="confirm-icon" id="confirmIcon">⚠️</div>
+    <div class="confirm-icon" id="confirmIcon">!</div>
     <div class="confirm-title" id="confirmTitle">Ти впевнений?</div>
     <div class="confirm-text" id="confirmText">Цю дію не можна скасувати.</div>
     <div class="confirm-actions">
@@ -777,18 +849,18 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 <!-- REPORT MODAL -->
 <div class="overlay" id="reportOverlay">
   <div class="modal">
-    <button class="mclose" onclick="closeReport()">✕</button>
+    <button class="mclose" onclick="closeReport()">&#xd7;</button>
     <div class="mtitle">Поскаржитись</div>
     <p class="msub" id="reportAdTitle">На оголошення</p>
     <div id="reportOptions">
-      <div class="report-option" onclick="selectReport(this,'18+')"><span class="report-option-icon">🔞</span><span class="report-option-text">18+ / Дорослий контент</span></div>
-      <div class="report-option" onclick="selectReport(this,'spam')"><span class="report-option-icon">📢</span><span class="report-option-text">Спам або дублікат</span></div>
-      <div class="report-option" onclick="selectReport(this,'fake')"><span class="report-option-icon">🚫</span><span class="report-option-text">Шахрайство / Фейк</span></div>
-      <div class="report-option" onclick="selectReport(this,'price')"><span class="report-option-icon">💸</span><span class="report-option-text">Неправдива ціна</span></div>
-      <div class="report-option" onclick="selectReport(this,'currency')"><span class="report-option-icon">⛔</span><span class="report-option-text">Продаж VIP/ігрової валюти (заборонено)</span></div>
-      <div class="report-option" onclick="selectReport(this,'wrong_cat')"><span class="report-option-icon">📂</span><span class="report-option-text">Неправильна категорія</span></div>
-      <div class="report-option" onclick="selectReport(this,'offensive')"><span class="report-option-icon">😡</span><span class="report-option-text">Образливий вміст</span></div>
-      <div class="report-option" onclick="selectReport(this,'other')"><span class="report-option-icon">💬</span><span class="report-option-text">Інше</span></div>
+      <div class="report-option" onclick="selectReport(this,'18+')"><span class="report-option-icon roi-18">18+</span><span class="report-option-text">18+ / Дорослий контент</span></div>
+      <div class="report-option" onclick="selectReport(this,'spam')"><span class="report-option-icon roi-spam">SP</span><span class="report-option-text">Спам або дублікат</span></div>
+      <div class="report-option" onclick="selectReport(this,'fake')"><span class="report-option-icon roi-fake">!</span><span class="report-option-text">Шахрайство / Фейк</span></div>
+      <div class="report-option" onclick="selectReport(this,'price')"><span class="report-option-icon roi-price">$</span><span class="report-option-text">Неправдива ціна</span></div>
+      <div class="report-option" onclick="selectReport(this,'currency')"><span class="report-option-icon roi-ban">X</span><span class="report-option-text">Продаж VIP/ігрової валюти (заборонено)</span></div>
+      <div class="report-option" onclick="selectReport(this,'wrong_cat')"><span class="report-option-icon roi-cat">CAT</span><span class="report-option-text">Неправильна категорія</span></div>
+      <div class="report-option" onclick="selectReport(this,'offensive')"><span class="report-option-icon roi-off">!</span><span class="report-option-text">Образливий вміст</span></div>
+      <div class="report-option" onclick="selectReport(this,'other')"><span class="report-option-icon roi-other">?</span><span class="report-option-text">Інше</span></div>
     </div>
     <div class="fgroup" id="reportOtherGroup" style="display:none;margin-top:10px">
       <label class="flabel">Опишіть проблему</label>
@@ -846,7 +918,7 @@ onAuthStateChanged(auth,async user=>{
     CU=null;CUD=null;window._CU=null;window._CUD=null;
     stopGlobalChatListener();
     document.getElementById('topbarActions').innerHTML=`<button class="tb-btn tb-btn-ghost" onclick="openAuth('login')">Увійти</button><button class="tb-btn tb-btn-purple" onclick="openAuth('register')">Реєстрація</button>`;
-    document.getElementById('sidebarUser').innerHTML=`<button class="nav-item" onclick="openAuth('login')" style="margin-bottom:6px"><span class="ni">🔑</span> Увійти</button><button class="nav-item" onclick="openAuth('register')"><span class="ni">✨</span> Реєстрація</button>`;
+    document.getElementById('sidebarUser').innerHTML=`<button class="nav-item" onclick="openAuth('login')" style="margin-bottom:6px"><span class="ni-dot"></span> Увійти</button><button class="nav-item" onclick="openAuth('register')"><span class="ni-dot"></span> Реєстрація</button>`;
     loadListings();
   }
 });
@@ -889,7 +961,7 @@ function showNotifPopup(name,text,chatId){
   const stack=document.getElementById('notifStack');
   const el=document.createElement('div');
   el.className='notif-popup';
-  el.innerHTML=`<div class="notif-av">${name[0].toUpperCase()}</div><div class="notif-body"><div class="notif-name">💬 ${name}</div><div class="notif-text">${text}</div><div class="notif-time">Зараз</div></div><button class="notif-close" onclick="dismissNotif(this.parentElement)">✕</button>`;
+  el.innerHTML=`<div class="notif-av">${name[0].toUpperCase()}</div><div class="notif-body"><div class="notif-name">${name}</div><div class="notif-text">${text}</div><div class="notif-time">Зараз</div></div><button class="notif-close" onclick="dismissNotif(this.parentElement)">&#xd7;</button>`;
   el.addEventListener('click',e=>{if(e.target.classList.contains('notif-close'))return;dismissNotif(el);openMsgPanel();});
   stack.appendChild(el);
   setTimeout(()=>dismissNotif(el),7000);
@@ -902,7 +974,7 @@ function updateUI(user,data){
   const isAdmin=data?.role==='admin';
   document.getElementById('topbarActions').innerHTML=`
     <div class="tb-user-area">
-      ${isAdmin?`<button class="admin-chip" onclick="openAdmin()">⚡ ADMIN</button>`:''}
+      ${isAdmin?`<button class="admin-chip" onclick="openAdmin()">ADMIN</button>`:''}
       <div class="tb-avatar" onclick="openProfile()">${init}</div>
       <span class="tb-username" onclick="openProfile()">${dn}</span>
       <button class="tb-logout" onclick="doLogout()">Вийти</button>
@@ -932,16 +1004,16 @@ window.saveCompleteProfile=async()=>{
   CUD=await loadUser(CU.uid);
   document.getElementById('completeOverlay').classList.remove('open');
   updateUI(CU,CUD);fillSupport(CUD);
-  showToast(`Вітаємо, ${game}! 🎮`,'ok');
+  showToast(`Вітаємо, ${game}!`,'ok');
 };
 
 window.doRegister=async()=>{
   const nick=document.getElementById('rNick').value.trim(),game=document.getElementById('rGame').value.trim(),gameId=document.getElementById('rGameId').value.trim(),email=document.getElementById('rEmail').value.trim(),pass=document.getElementById('rPass').value,discord=document.getElementById('rDiscord').value.trim(),tg=document.getElementById('rTG').value.trim();
   if(!nick||!game||!gameId||!email||!pass)return showToast("Заповни обов'язкові поля",'err');
-  try{const c=await createUserWithEmailAndPassword(auth,email,pass);await updateProfile(c.user,{displayName:nick});await saveUser(c.user.uid,{nick,game,gameId,email,discord,telegram:tg,role:'user',ads:0,banned:false,banSettings:{}});showToast(`Вітаємо, ${game}! 🎮`,'ok');}catch(e){showToast(fbE(e.code),'err');}
+  try{const c=await createUserWithEmailAndPassword(auth,email,pass);await updateProfile(c.user,{displayName:nick});await saveUser(c.user.uid,{nick,game,gameId,email,discord,telegram:tg,role:'user',ads:0,banned:false,banSettings:{}});showToast(`Вітаємо, ${game}!`,'ok');}catch(e){showToast(fbE(e.code),'err');}
 };
 window.doLogin=async()=>{
-  try{await signInWithEmailAndPassword(auth,document.getElementById('lEmail').value.trim(),document.getElementById('lPass').value);showToast('Вхід успішний! 🎮','ok');}catch(e){showToast('Невірний email або пароль','err');}
+  try{await signInWithEmailAndPassword(auth,document.getElementById('lEmail').value.trim(),document.getElementById('lPass').value);showToast('Вхід успішний!','ok');}catch(e){showToast('Невірний email або пароль','err');}
 };
 window.doGoogle=async()=>{
   try{const r=await signInWithPopup(auth,gp);const s=await getDoc(doc(db,"users",r.user.uid));if(!s.exists())await saveUser(r.user.uid,{nick:r.user.displayName||'',game:'',gameId:'',email:r.user.email,discord:'',telegram:'',role:'user',ads:0,banned:false,banSettings:{}});showToast('Вхід через Google успішний!','ok');}catch(e){showToast(fbE(e.code),'err');}
@@ -965,11 +1037,11 @@ window.openProfile=()=>{
     <button class="btn-submit" style="margin-bottom:14px" onclick="saveProfile()">Зберегти зміни</button>
     <div class="sp-divider"></div>
     <div class="sp-sec">Дії</div>
-    <button class="sp-btn purple" onclick="closeProfile();openAd()">📢 Подати оголошення</button>
-    <button class="sp-btn" onclick="closeProfile();openMsgPanel()">💬 Pixджер</button>
-    ${d.role==='admin'?`<button class="sp-btn" style="border-color:var(--warn);color:var(--warn)" onclick="closeProfile();openAdmin()">⚡ Адмін панель</button>`:''}
+    <button class="sp-btn purple" onclick="closeProfile();openAd()">Подати оголошення</button>
+    <button class="sp-btn" onclick="closeProfile();openMsgPanel()">Pixджер</button>
+    ${d.role==='admin'?`<button class="sp-btn" style="border-color:var(--warn);color:var(--warn)" onclick="closeProfile();openAdmin()">Адмін панель</button>`:''}
     <div class="sp-divider"></div>
-    <button class="sp-btn" style="border-color:var(--danger);color:var(--danger)" onclick="doLogout();closeProfile()">🚪 Вийти</button>`;
+    <button class="sp-btn" style="border-color:var(--danger);color:var(--danger)" onclick="doLogout();closeProfile()">Вийти</button>`;
   document.getElementById('profilePanel').classList.add('open');
 };
 window.closeProfile=()=>document.getElementById('profilePanel').classList.remove('open');
@@ -980,7 +1052,7 @@ window.saveProfile=async()=>{
   CUD={...CUD,game,gameId,discord,telegram:tg};
   window._CUD=CUD;
   updateUI(CU,CUD);fillSupport(CUD);
-  showToast('Збережено ✅','ok');
+  showToast('Збережено','ok');
 };
 
 // AD
@@ -1025,7 +1097,7 @@ window.submitAd=async()=>{
     await addDoc(collection(db,'listings'),{uid:CU.uid,seller:CUD?.game||CUD?.nick||CU.displayName||'?',discord:CUD?.discord||'',type,cat,title,desc,price:parseInt(price),condition,carBrand,photos:cp,createdAt:serverTimestamp(),active:true});
     await saveUser(CU.uid,{ads:(CUD?.ads||0)+1});
     CUD={...CUD,ads:(CUD?.ads||0)+1};
-    closeAd();showToast('Оголошення опубліковано! 🎉','ok');loadListings();
+    closeAd();showToast('Оголошення опубліковано!','ok');loadListings();
   }catch(e){showToast('Помилка: '+e.message,'err');}finally{btn.textContent='Опублікувати оголошення';btn.disabled=false;}
 };
 function compressImg(src,maxW,q){return new Promise(res=>{const img=new Image();img.onload=()=>{const s=Math.min(1,maxW/img.width),w=img.width*s,h=img.height*s,c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);res(c.toDataURL('image/jpeg',q));};img.src=src;});}
@@ -1069,7 +1141,7 @@ window.editAd=async(id)=>{
       await updateDoc(doc(db,'listings',id),{title,desc,price:parseInt(price),condition,carBrand,photos:cp,updatedAt:serverTimestamp()});
       // Reset button back
       btn.textContent='Опублікувати оголошення';btn.onclick=null;
-      closeAd();showToast('Оголошення оновлено ✅','ok');loadListings();
+      closeAd();showToast('Оголошення оновлено','ok');loadListings();
     }catch(e){showToast('Помилка: '+e.message,'err');}finally{btn.disabled=false;}
   };
   closePD();
@@ -1077,7 +1149,7 @@ window.editAd=async(id)=>{
 };
 window.deleteMyAd=async(id)=>{
   if(!CU)return;
-  showConfirm({icon:'🗑',title:'Видалити оголошення?',text:'Оголошення буде видалено і більше не з\'явиться в каталозі.',okText:'Видалити',okClass:'danger',onOk:async()=>{
+  showConfirm({icon:'X',title:'Видалити оголошення?',text:'Оголошення буде видалено і більше не з\'явиться в каталозі.',okText:'Видалити',okClass:'danger',onOk:async()=>{
     try{await updateDoc(doc(db,'listings',id),{active:false});showToast('Оголошення видалено','ok');closePD();loadListings();}catch(e){showToast('Помилка','err');}
   }});
 };
@@ -1102,7 +1174,7 @@ async function showChatList(){
     const sn=await getDocs(query(chatsRef,orderBy('updatedAt','desc')));
     const wrap=content.querySelector('.chat-list-wrap');
     if(sn.empty){
-      wrap.innerHTML=`<div style="padding:14px 20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);font-family:'DM Mono',monospace;border-bottom:1px solid var(--border)">Твої чати</div><div style="padding:24px 20px;font-size:13px;color:var(--text3)">Напиши продавцю через оголошення щоб розпочати чат 💬</div>`;
+      wrap.innerHTML=`<div style="padding:14px 20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);font-family:'DM Mono',monospace;border-bottom:1px solid var(--border)">Твої чати</div><div style="padding:24px 20px;font-size:13px;color:var(--text3)">Напиши продавцю через оголошення щоб розпочати чат</div>`;
       return;
     }
     const items=sn.docs.map(d=>{
@@ -1194,7 +1266,7 @@ window.sendPhoto=async(e,chatId,targetName,adTitle)=>{
     r.onload=async ev=>{
       const compressed=await compressImg(ev.target.result,600,0.75);
       await addDoc(collection(db,`chats/${chatId}/messages`),{uid:CU.uid,sender:CUD?.game||CU.displayName||'?',text:'',photo:compressed,ts:serverTimestamp()});
-      await updateChatMeta(chatId,targetName,adTitle,'📷 Фото');
+      await updateChatMeta(chatId,targetName,adTitle,'Фото');
     };
     r.readAsDataURL(file);
   }catch(err){showToast('Помилка відправки фото','err');}
@@ -1227,11 +1299,112 @@ window.openLightbox=src=>{document.getElementById('lightboxImg').src=src;documen
 // ADMIN
 window.openAdmin=async()=>{if(CUD?.role!=='admin')return showToast('Немає доступу','err');document.getElementById('adminPanel').classList.add('open');await loadAdminData();};
 window.closeAdmin=()=>document.getElementById('adminPanel').classList.remove('open');
-async function loadAdminData(){try{const us=await getDocs(collection(db,'users'));allUsers=us.docs.map(d=>({uid:d.id,...d.data()}));document.getElementById('as-users').textContent=allUsers.length;document.getElementById('as-ads').textContent=allListings.length;document.getElementById('as-banned').textContent=allUsers.filter(u=>u.banned||u.banSettings?.ban_all).length;renderUserTable(allUsers);renderAdminListings();}catch(e){showToast('Помилка','err');}}
+async function loadAdminData(){
+  try{
+    const us=await getDocs(collection(db,'users'));
+    allUsers=us.docs.map(d=>({uid:d.id,...d.data()}));
+    const repsSnap=await getDocs(query(collection(db,'reports'),orderBy('createdAt','desc')));
+    const supsSnap=await getDocs(query(collection(db,'supportTickets'),orderBy('createdAt','desc')));
+    const ideasSnap=await getDocs(query(collection(db,'ideas'),orderBy('createdAt','desc')));
+    const reps=repsSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const sups=supsSnap.docs.map(d=>({id:d.id,...d.data()}));
+    const ideas=ideasSnap.docs.map(d=>({id:d.id,...d.data()}));
+    document.getElementById('as-users').textContent=allUsers.length;
+    document.getElementById('as-ads').textContent=allListings.length;
+    document.getElementById('as-banned').textContent=allUsers.filter(u=>u.banned||u.banSettings?.ban_all).length;
+    const repEl=document.getElementById('as-reports');if(repEl)repEl.textContent=reps.length;
+    const ideaEl=document.getElementById('as-ideas');if(ideaEl)ideaEl.textContent=ideas.length;
+    const repBadge=document.getElementById('reportsBadge');if(repBadge){repBadge.textContent=reps.length;repBadge.style.display=reps.length?'inline':'none';}
+    renderUserTable(allUsers);
+    renderAdminListings();
+    renderAdminReports(reps);
+    renderAdminSupport(sups);
+    renderAdminIdeas(ideas);
+  }catch(e){showToast('Помилка завантаження','err');}
+}
 function renderUserTable(users){const w=document.getElementById('userTableWrap');if(!users.length){w.innerHTML='<div style="color:var(--text3);padding:16px">Немає</div>';return;}w.innerHTML=`<table class="user-table"><thead><tr><th>Нік в грі</th><th>ID в грі</th><th>Email</th><th>Discord</th><th>Роль</th><th>Оголошень</th><th>Дії</th></tr></thead><tbody>${users.map(u=>{const b=u.banned||u.banSettings?.ban_all;const isAdm=u.role==='admin';return`<tr><td><strong>${u.game||u.nick||'—'}</strong></td><td style="color:var(--text3);font-size:12px">${u.gameId||'—'}</td><td style="font-size:12px;color:var(--text3)">${u.email||'—'}</td><td style="font-size:12px;color:var(--text3)">${u.discord||'—'}</td><td><span class="role-chip ${isAdm?'role-admin':b?'role-banned':'role-user'}">${isAdm?'ADMIN':b?'БАН':'USER'}</span></td><td style="text-align:center">${u.ads||0}</td><td><div class="table-actions"><button class="ta-btn red" onclick="openBan('${u.uid}','${(u.game||u.nick||'').replace(/'/g,'')}')">Блокувати</button>${b?`<button class="ta-btn green" onclick="unbanUser('${u.uid}')">Розблок</button>`:''}${isAdm?`<button class="ta-btn red" onclick="removeAdmin('${u.uid}')">Зняти адміна</button>`:`<button class="ta-btn yellow" onclick="makeAdmin('${u.uid}')">Адмін</button>`}</div></td></tr>`;}).join('')}</tbody></table>`;}
+const REPORT_LABELS={'18+':'18+ Контент','spam':'Спам/Дублікат','fake':'Шахрайство/Фейк','price':'Неправдива ціна','currency':'Ігрова валюта','wrong_cat':'Неправильна категорія','offensive':'Образливий вміст','other':'Інше'};
+function renderAdminReports(items){
+  const w=document.getElementById('adminReportsWrap');if(!w)return;
+  if(!items.length){w.innerHTML='<div class="admin-empty">Скарг немає</div>';return;}
+  w.innerHTML=items.map(r=>{
+    const ad=allListings.find(l=>l.id===r.adId);
+    const ts=r.createdAt?.toDate?r.createdAt.toDate().toLocaleDateString('uk'):'';
+    const label=REPORT_LABELS[r.reason]||r.reason;
+    return`<div class="admin-card">
+      <div class="admin-card-head">
+        <div style="flex:1">
+          <div class="admin-card-title">Скарга: ${label}</div>
+          <div class="admin-card-meta">Оголошення: ${ad?`"${ad.title}"`:r.adId} &middot; ${ts}</div>
+          ${r.text?`<div class="admin-card-text">${r.text}</div>`:''}
+        </div>
+        <span class="admin-card-badge badge-report">СКАРГА</span>
+      </div>
+      <div class="admin-card-actions">
+        ${ad?`<button class="ta-btn red" onclick="adminDeleteAd('${r.adId}')">Видалити оголошення</button>`:''}
+        <button class="ta-btn green" onclick="dismissReport('${r.id}')">Відхилити</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+const SUP_LABELS={account:'Акаунт',seller:'Скарга на продавця',tech:'Технічна помилка',deal:'Угода',other:'Інше'};
+function renderAdminSupport(items){
+  const w=document.getElementById('adminSupportWrap');if(!w)return;
+  if(!items.length){w.innerHTML='<div class="admin-empty">Заявок немає</div>';return;}
+  w.innerHTML=items.map(s=>{
+    const ts=s.createdAt?.toDate?s.createdAt.toDate().toLocaleDateString('uk'):'';
+    const done=s.status==='done';
+    return`<div class="admin-card">
+      <div class="admin-card-head">
+        <div style="flex:1">
+          <div class="admin-card-title">${SUP_LABELS[s.topic]||s.topic||'Заявка'}</div>
+          <div class="admin-card-meta">${s.game||'?'} &middot; Discord: ${s.discord||'—'} &middot; ${ts}</div>
+          <div class="admin-card-text">${s.desc||'—'}</div>
+        </div>
+        <span class="admin-card-badge ${done?'badge-done':'badge-new'}">${done?'ВИКОНАНО':'НОВА'}</span>
+      </div>
+      <div class="admin-card-actions">
+        ${!done?`<button class="ta-btn green" onclick="markSupportDone('${s.id}')">Виконано</button>`:''}
+        <button class="ta-btn red" onclick="deleteAdminDoc('supportTickets','${s.id}')">Видалити</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+const IDEA_CATS={feature:'Нова функція',ui:'Інтерфейс',pixdger:'Pixджер',catalog:'Каталог',admin:'Адмін',other:'Інше'};
+function renderAdminIdeas(items){
+  const w=document.getElementById('adminIdeasWrap');if(!w)return;
+  if(!items.length){w.innerHTML='<div class="admin-empty">Ідей немає</div>';return;}
+  w.innerHTML=items.map(idea=>{
+    const ts=idea.createdAt?.toDate?idea.createdAt.toDate().toLocaleDateString('uk'):'';
+    const adopted=idea.status==='adopted';
+    return`<div class="admin-card">
+      <div class="admin-card-head">
+        <div style="flex:1">
+          <div class="admin-card-title">${idea.title||'Без назви'}</div>
+          <div class="admin-card-meta">${IDEA_CATS[idea.cat]||'—'} &middot; ${idea.game||'?'} &middot; ${ts}</div>
+          <div class="admin-card-text">${idea.desc||'—'}</div>
+        </div>
+        <span class="admin-card-badge ${adopted?'badge-done':'badge-idea'}">${adopted?'ПРИЙНЯТО':'НОВА'}</span>
+      </div>
+      <div class="admin-card-actions">
+        ${!adopted?`<button class="ta-btn green" onclick="adoptIdea('${idea.id}')">Прийняти</button>`:''}
+        <button class="ta-btn red" onclick="deleteAdminDoc('ideas','${idea.id}')">Видалити</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+window.dismissReport=async id=>{try{await deleteDoc(doc(db,'reports',id));showToast('Скаргу відхилено','ok');await loadAdminData();}catch(e){}};
+window.markSupportDone=async id=>{try{await updateDoc(doc(db,'supportTickets',id),{status:'done'});showToast('Позначено','ok');await loadAdminData();}catch(e){}};
+window.adoptIdea=async id=>{try{await updateDoc(doc(db,'ideas',id),{status:'adopted'});showToast('Ідею прийнято!','ok');await loadAdminData();}catch(e){}};
+window.deleteAdminDoc=async(col,id)=>{
+  showConfirm({icon:'!',title:'Видалити?',text:'Цю дію не можна скасувати.',okText:'Видалити',okClass:'danger',onOk:async()=>{
+    try{await deleteDoc(doc(db,col,id));showToast('Видалено','ok');await loadAdminData();}catch(e){}
+  }});
+};
+
 function renderAdminListings(){const w=document.getElementById('adminListingsWrap');if(!allListings.length){w.innerHTML='<div style="color:var(--text3);padding:16px">Немає</div>';return;}w.innerHTML=`<table class="user-table"><thead><tr><th>Назва</th><th>Категорія</th><th>Продавець</th><th>Ціна</th><th>Тип</th><th>Дії</th></tr></thead><tbody>${allListings.map(l=>`<tr><td><strong>${l.title}</strong></td><td>${l.cat}</td><td>${l.seller}</td><td>${(l.price||0).toLocaleString('uk-UA')} грн</td><td><span class="role-chip role-user">${l.type==='sell'?'ПРОДАЖ':'КУПУЮ'}</span></td><td><button class="ta-btn red" onclick="adminDeleteAd('${l.id}')">Видалити</button><button class="ta-btn yellow" onclick="adminViewProfile('${l.uid||''}','${(l.seller||'').replace(/'/g,'')}')">Профіль</button></td></tr>`).join('')}</tbody></table>`;}
 window.adminDeleteAd=async id=>{
-  showConfirm({icon:'⛔',title:'Видалити оголошення?',text:'Адміністративне видалення. Оголошення буде приховано від усіх користувачів.',okText:'Видалити',okClass:'danger',onOk:async()=>{
+  showConfirm({icon:'!',title:'Видалити оголошення?',text:'Адміністративне видалення. Оголошення буде приховано від усіх користувачів.',okText:'Видалити',okClass:'danger',onOk:async()=>{
     try{await updateDoc(doc(db,'listings',id),{active:false});showToast('Видалено','ok');await loadListings();await loadAdminData();}catch(e){}
   }});
 };
@@ -1244,12 +1417,12 @@ window.adminViewProfile=async(uid,name)=>{
   const dn=u.game||u.nick||name||'?';
   const isBanned=u.banned||u.banSettings?.ban_all;
   // Show profile in a quick modal via toast area
-  showToast(`👤 ${dn} · ID:${u.gameId||'?'} · Discord:${u.discord||'—'}${isBanned?' · ⛔ Заблокований':''}`,'info');
+  showToast(`${dn} · ID:${u.gameId||'?'} · Discord:${u.discord||'—'}${isBanned?' · [ЗАБЛОКОВАНИЙ]':''}`,'info');
   // Also open ban dialog for convenience
   openBan(uid,dn);
 };
 window.filterAdminUsers=q=>{renderUserTable(allUsers.filter(u=>(u.game||u.nick||'').toLowerCase().includes(q.toLowerCase())||(u.email||'').toLowerCase().includes(q.toLowerCase())));};
-window.adminNav=(btn,s)=>{document.querySelectorAll('.admin-nav-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.admin-section').forEach(x=>x.classList.remove('active'));document.getElementById(`sec-${s}`).classList.add('active');};
+window.adminNav=async(btn,s)=>{document.querySelectorAll('.admin-nav-item').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.admin-section').forEach(x=>x.classList.remove('active'));document.getElementById(`sec-${s}`).classList.add('active');if(['reports','support','ideas'].includes(s))await loadAdminData();};
 
 let banUid=null;
 window.openBan=(uid,name)=>{banUid=uid;document.getElementById('banTargetName').textContent=`Гравець: ${name}`;document.getElementById('banReason').value='';document.getElementById('ban_ads').checked=true;document.getElementById('ban_msg').checked=false;document.getElementById('ban_all').checked=false;document.getElementById('banOverlay').classList.add('open');};
@@ -1257,12 +1430,12 @@ window.closeBan=()=>{document.getElementById('banOverlay').classList.remove('ope
 window.applyBan=async()=>{if(!banUid)return;const bs={ban_ads:document.getElementById('ban_ads').checked,ban_msg:document.getElementById('ban_msg').checked,ban_all:document.getElementById('ban_all').checked};const reason=document.getElementById('banReason').value.trim();try{await saveUser(banUid,{banned:bs.ban_all,banSettings:bs,banReason:reason});closeBan();showToast('Блокування застосовано','ok');await loadAdminData();}catch(e){showToast('Помилка','err');}};
 window.unbanUser=async uid=>{try{await saveUser(uid,{banned:false,banSettings:{},banReason:''});showToast('Розблоковано','ok');await loadAdminData();}catch(e){}};
 window.makeAdmin=async uid=>{
-  showConfirm({icon:'⚡',title:'Зробити адміном?',text:'Гравець отримає повний доступ до адміністративних функцій.',okText:'Підтвердити',okClass:'ok',onOk:async()=>{
-    try{await saveUser(uid,{role:'admin'});showToast('Адміна видано ✅','ok');await loadAdminData();}catch(e){}
+  showConfirm({icon:'*',title:'Зробити адміном?',text:'Гравець отримає повний доступ до адміністративних функцій.',okText:'Підтвердити',okClass:'ok',onOk:async()=>{
+    try{await saveUser(uid,{role:'admin'});showToast('Адміна видано','ok');await loadAdminData();}catch(e){}
   }});
 };
 window.removeAdmin=async uid=>{
-  showConfirm({icon:'⚠️',title:'Зняти права адміна?',text:'Гравець втратить доступ до адмін-панелі.',okText:'Зняти',okClass:'danger',onOk:async()=>{
+  showConfirm({icon:'!',title:'Зняти права адміна?',text:'Гравець втратить доступ до адмін-панелі.',okText:'Зняти',okClass:'danger',onOk:async()=>{
     try{await saveUser(uid,{role:'user'});showToast('Права адміна знято','ok');await loadAdminData();}catch(e){}
   }});
 };
@@ -1305,7 +1478,36 @@ window.submitReport=async()=>{
   if(reportSelected==='other'&&!text)return showToast('Опишіть проблему','err');
   try{
     await addDoc(collection(db,'reports'),{adId:reportAdId,reason:reportSelected,text,uid:CU.uid,createdAt:serverTimestamp()});
-    closeReport();showToast('Скаргу надіслано. Дякуємо! 👍','ok');
+    closeReport();showToast('Скаргу надіслано. Дякуємо!','ok');
+  }catch(e){showToast('Помилка. Спробуй ще.','err');}
+};
+
+// SUBMIT SUPPORT TICKET
+window.submitSupport=async()=>{
+  if(!CU)return showToast('Спочатку увійди','err');
+  const topic=document.getElementById('supTopic')?.value;
+  const desc=document.getElementById('supDesc')?.value.trim();
+  if(!topic||!desc)return showToast('Заповни всі поля','err');
+  try{
+    await addDoc(collection(db,'supportTickets'),{uid:CU.uid,game:CUD?.game||'?',discord:CUD?.discord||'',topic,desc,status:'new',createdAt:serverTimestamp()});
+    document.getElementById('supTopic').value='';
+    document.getElementById('supDesc').value='';
+    showToast('Заявку надіслано! Очікуй відповіді.','ok');
+  }catch(e){showToast('Помилка. Спробуй ще.','err');}
+};
+
+// SUBMIT IDEA
+window.submitIdea=async()=>{
+  if(!CU)return showToast('Спочатку увійди','err');
+  const title=document.getElementById('ideaTitle')?.value.trim();
+  const cat=document.getElementById('ideaCat')?.value;
+  const desc=document.getElementById('ideaDesc')?.value.trim();
+  if(!title||!desc)return showToast('Заповни заголовок і опис','err');
+  try{
+    await addDoc(collection(db,'ideas'),{uid:CU.uid,game:CUD?.game||'?',title,cat,desc,status:'new',createdAt:serverTimestamp()});
+    document.getElementById('ideaTitle').value='';
+    document.getElementById('ideaDesc').value='';
+    showToast('Ідею надіслано! Дякуємо!','ok');
   }catch(e){showToast('Помилка. Спробуй ще.','err');}
 };
 
@@ -1313,8 +1515,16 @@ loadListings();
 </script>
 
 <script>
+// BLOCK RIGHT CLICK & DEVTOOLS
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C','K'].includes(e.key)) || (e.ctrlKey && e.key === 'U')) {
+    e.preventDefault();
+  }
+});
+
 // CONFIRM MODAL
-window.showConfirm=({icon='⚠️',title='Ти впевнений?',text='',okText='Підтвердити',okClass='danger',cancelText='Скасувати',onOk})=>{
+window.showConfirm=({icon='!',title='Ти впевнений?',text='',okText='Підтвердити',okClass='danger',cancelText='Скасувати',onOk})=>{
   document.getElementById('confirmIcon').textContent=icon;
   document.getElementById('confirmTitle').textContent=title;
   document.getElementById('confirmText').textContent=text;
@@ -1369,14 +1579,14 @@ window.renderListings=function(){
   document.getElementById('listCount').textContent=`${data.length} оголошень`;
   if(!data.length){
     const emptyMsg=curFilter==='favs'?'Немає обраних оголошень':'Оголошень ще немає';
-    grid.innerHTML=`<div class="empty"><div class="empty-icon">${curFilter==='favs'?'⭐':'🔍'}</div><div class="empty-title">${emptyMsg}</div><div class="empty-sub">${curFilter==='favs'?'Натисни ⭐ на оголошенні щоб додати в обране':'Будь першим! Подай оголошення'}</div></div>`;
+    grid.innerHTML=`<div class="empty"><div class="empty-icon" style="font-size:32px;color:var(--border2)">${curFilter==='favs'?'&#9733;':'?'}</div><div class="empty-title">${emptyMsg}</div><div class="empty-sub">${curFilter==='favs'?'Натисни зірочку щоб додати в обране':'Будь першим! Подай оголошення'}</div></div>`;
     return;
   }
   const favs=JSON.parse(localStorage.getItem('ug_favs')||'[]');
   grid.innerHTML=data.map((l,i)=>`
     <div class="lcard" onclick="openProduct('${l.id}')" style="animation-delay:${Math.min(i,8)*0.04}s">
       <div class="lcard-photo">
-        ${l.photos&&l.photos.length?`<img src="${l.photos[0]}" alt=""/>`:`<div class="lcard-photo-ph">📷</div>`}
+        ${l.photos&&l.photos.length?`<img src="${l.photos[0]}" alt=""/>`:`<div class="lcard-photo-ph"></div>`}
         ${l.badge?`<div class="lcard-photo-badge ${l.badge}">${l.badge==='hot'?'HOT':l.badge==='new'?'NEW':'SALE'}</div>`:''}
         ${l.carBrand?`<div class="lcard-photo-badge sale" style="right:10px;left:auto">${l.carBrand}</div>`:''}
         <button class="lcard-fav${favs.includes(l.id)?' active':''}" onclick="toggleFav('${l.id}',event)" title="${favs.includes(l.id)?'Прибрати з обраного':'Додати в обране'}">${favs.includes(l.id)?'★':'☆'}</button>
@@ -1419,7 +1629,7 @@ window.openProduct=id=>{
   document.getElementById('pdCard').innerHTML=`
     <div class="pd-left">
       <button class="pd-close-btn" onclick="closePD()">←</button>
-      ${photos.length?`<img id="pdMainImg" src="${photos[0]}" alt="" onclick="openLightbox('${photos[0]}')" style="cursor:zoom-in"/>`:`<div class="pd-left-ph">📷</div>`}
+      ${photos.length?`<img id="pdMainImg" src="${photos[0]}" alt="" onclick="openLightbox('${photos[0]}')" style="cursor:zoom-in"/>`:`<div class="pd-left-ph"></div>`}
       ${thumbs}
     </div>
     <div class="pd-right">
