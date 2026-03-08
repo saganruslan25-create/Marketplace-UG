@@ -47,12 +47,13 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .splash-track{width:200px;height:2px;background:var(--border);border-radius:10px;overflow:hidden;}
 .splash-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--purple2));width:0;animation:fill 3.3s ease forwards;border-radius:10px;}
 @keyframes fill{to{width:100%}}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 
 /* LAYOUT */
 .app-layout{display:flex;min-height:100vh;}
 
 /* SIDEBAR */
-.sidebar{width:240px;flex-shrink:0;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:300;overflow-y:auto;}
+.sidebar{width:240px;flex-shrink:0;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:300;overflow-y:auto;transition:transform .32s cubic-bezier(.4,0,.2,1);}
 .sidebar-logo{padding:24px 20px 20px;border-bottom:1px solid var(--border);}
 .logo-mark{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-1px;color:var(--text);}
 .logo-mark span{color:var(--purple);}
@@ -98,7 +99,8 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .admin-chip{background:var(--warn);color:#fff;font-size:10px;font-family:'DM Mono',monospace;letter-spacing:1px;padding:3px 9px;border-radius:20px;cursor:pointer;border:none;font-weight:500;}
 
 /* SECTION TABS */
-.section-tabs{display:flex;align-items:center;padding:0 28px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:190;}
+.section-tabs{display:flex;align-items:center;padding:0 28px;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:190;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.section-tabs::-webkit-scrollbar{display:none;}
 .stab{padding:14px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;background:none;border:none;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
 .stab:hover{color:var(--text);}
 .stab.active{color:var(--purple);border-bottom-color:var(--purple);}
@@ -378,11 +380,27 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 .lcard-photo{position:relative;}
 
 /* REPORT MODAL */
-.report-option{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:var(--radius-sm);cursor:pointer;transition:all .18s;border:1.5px solid var(--border);margin-bottom:8px;background:var(--bg);}
+.report-modal{background:var(--white);border-radius:20px;padding:28px;max-width:480px;width:100%;position:relative;box-shadow:var(--shadow2);max-height:90vh;overflow-y:auto;}
+.report-modal-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px;}
+.report-modal-sub{font-size:13px;color:var(--text3);margin-bottom:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.report-option{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--radius-sm);cursor:pointer;transition:all .18s;border:1.5px solid var(--border);background:var(--white);}
 .report-option:hover{border-color:var(--purple);background:var(--purpleLight);}
-.report-option.selected{border-color:var(--purple);background:var(--purpleLight);}
-.report-option-icon{font-size:18px;flex-shrink:0;}
-.report-option-text{font-size:13px;font-weight:500;color:var(--text2);}
+.report-option.selected{border-color:var(--purple);background:var(--purpleLight);box-shadow:0 0 0 3px rgba(108,43,217,.1);}
+.report-option-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'DM Mono',monospace;flex-shrink:0;}
+.report-option-text{font-size:12px;font-weight:600;color:var(--text2);line-height:1.3;}
+.roi-18{background:#fff0f0;color:#e53e3e;}
+.roi-spam{background:#fff8ed;color:#c47d10;}
+.roi-fake{background:#fff0f0;color:#e53e3e;}
+.roi-price{background:#f0fff7;color:#2d9d5c;}
+.roi-ban{background:#f5f0ff;color:#6c2bd9;}
+.roi-cat{background:#eff8ff;color:#3b82f6;}
+.roi-off{background:#fff0f0;color:#e53e3e;}
+.roi-other{background:var(--bg2);color:var(--text3);}
+@media(max-width:900px){
+  .report-grid{grid-template-columns:1fr;}
+  .report-modal{border-radius:22px 22px 0 0;max-height:92vh;}
+}
 
 /* NAV ICONS — text-based instead of emoji for cleaner look */
 .ni{font-size:15px;flex-shrink:0;width:20px;text-align:center;display:inline-flex;align-items:center;justify-content:center;}
@@ -461,6 +479,8 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 .pd-action-btn{flex:1;padding:10px;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:var(--bg);color:var(--text);transition:all .2s;}
 .pd-action-btn.edit:hover{border-color:var(--purple);color:var(--purple);background:var(--purpleLight);}
 .pd-action-btn.del:hover{border-color:var(--danger);color:var(--danger);background:#fff5f5;}
+.pd-report-btn{width:100%;margin-top:8px;padding:10px;background:none;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:500;color:var(--text3);cursor:pointer;transition:all .2s;}
+.pd-report-btn:hover{border-color:var(--danger);color:var(--danger);background:#fff5f5;}
 /* CHAT LIST real items */
 .chat-item-unread .chat-name{font-weight:700;}
 /* CAR BRAND SELECT in Ad form */
@@ -475,15 +495,7 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 .ni-star::after{content:'★';}
 .nav-item.active .ni-star{color:var(--purple);}
 /* Report option icons */
-.report-option-icon{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;font-family:'DM Mono',monospace;font-size:10px;font-weight:700;flex-shrink:0;}
-.roi-18{background:#fff5f5;color:var(--danger);}
-.roi-spam{background:#fff9e6;color:var(--warn);}
-.roi-fake{background:#fff5f5;color:var(--danger);}
-.roi-price{background:#e6fff0;color:var(--success);}
-.roi-ban{background:#f0eaff;color:var(--purple);}
-.roi-cat{background:#e6f3ff;color:#3b82f6;font-size:8px;}
-.roi-off{background:#fff5f5;color:var(--danger);}
-.roi-other{background:var(--bg2);color:var(--text3);}
+
 /* Admin card styles */
 .admin-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:12px;}
 .admin-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px;}
@@ -511,123 +523,138 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:299;backdrop-filter:blur(2px);}
 .sidebar-overlay.open{display:block;}
 
-@media(max-width:768px){
-  /* Show hamburger */
+@media(max-width:900px){
+  /* Sidebar hidden, hamburger shown */
   .mob-menu-btn{display:flex;}
+  .sidebar{transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);z-index:500;width:260px;}
+  .sidebar.mob-open{transform:translateX(0);box-shadow:4px 0 32px rgba(0,0,0,.18);}
   .sidebar-overlay.open{display:block;}
-
-  /* Sidebar hidden by default, slides in */
-  .sidebar{transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);z-index:500;}
-  .sidebar.mob-open{transform:translateX(0);}
-
-  /* Main takes full width */
   .main{margin-left:0;}
 
-  /* Topbar adjustments */
-  .topbar{padding:0 12px 0 62px;height:56px;}
-  .topbar-search{max-width:none;flex:1;}
-  .topbar-search input{height:34px;font-size:13px;}
+  /* TOPBAR */
+  .topbar{padding:0 10px 0 58px;height:54px;gap:10px;}
+  .topbar-search{flex:1;max-width:none;}
+  .topbar-search input{height:36px;font-size:13px;padding:0 14px 0 36px;}
   .tb-btn-ghost{display:none;}
-  .tb-btn-purple{height:34px;padding:0 14px;font-size:12px;}
-  .tb-username{display:none;}
+  .tb-btn-purple{height:34px;padding:0 12px;font-size:12px;border-radius:16px;}
+  .tb-username{font-size:12px;}
   .tb-logout{padding:3px 8px;font-size:11px;}
-  .admin-chip{font-size:9px;padding:2px 7px;}
+  .admin-chip{font-size:9px;padding:2px 6px;}
+  .tb-user-area{gap:6px;}
 
-  /* Section tabs */
-  .section-tabs{padding:0 12px;}
-  .stab{padding:12px 12px;font-size:12px;}
+  /* SECTION TABS */
+  .section-tabs{padding:0 8px;top:54px;flex-wrap:nowrap;}
+  .stab{padding:10px 10px;font-size:12px;}
 
-  /* Filter row */
-  .filter-row{padding:10px 12px;gap:6px;}
-  .fchip{padding:5px 10px;font-size:11px;}
-  .adv-btn{font-size:11px;padding:5px 10px;}
+  /* FILTER ROW */
+  .filter-row{padding:8px 10px;gap:6px;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;}
+  .filter-row::-webkit-scrollbar{display:none;}
+  .fchip{padding:5px 12px;font-size:11.5px;white-space:nowrap;flex-shrink:0;}
+  .adv-btn{flex-shrink:0;}
 
-  /* Content */
-  .content{padding:16px 12px;}
-  .content-title{font-size:20px;}
+  /* CONTENT */
+  .content{padding:14px 10px 80px;}
+  .stab{padding:10px 8px;font-size:12px;white-space:nowrap;flex-shrink:0;}
+  .content-title{font-size:18px;}
+  .content-header{margin-bottom:14px;}
 
-  /* Listing grid - 1 column on small, 2 on medium */
-  .listing-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
-
-  /* Cards */
-  .lcard-title{font-size:13px;}
-  .lcard-price{font-size:15px;}
+  /* LISTING GRID */
+  .listing-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .lcard-photo{height:150px;}
+  .lcard-photo img{height:150px;}
+  .lcard-body{padding:10px 11px 12px;}
+  .lcard-title{font-size:13px;line-height:1.3;-webkit-line-clamp:2;}
   .lcard-desc{display:none;}
+  .lcard-price{font-size:15px;}
+  .lcard-cat{font-size:10px;}
+  .lcard-foot{margin-top:8px;}
+  .lcard-seller{font-size:11px;}
 
-  /* Product detail - full screen */
-  .pd-overlay{padding:0;}
-  .pd-card{flex-direction:column;border-radius:0;max-height:100vh;width:100%;overflow-y:auto;}
-  .pd-left{width:100%;max-height:260px;min-height:200px;}
-  .pd-left img{height:260px;border-radius:0;}
-  .pd-right{padding:16px;overflow-y:visible;}
-  .pd-close-btn{top:10px;left:10px;}
+  /* PRODUCT DETAIL — fullscreen */
+  .pd-overlay{padding:0;align-items:stretch;}
+  .pd-card{flex-direction:column;border-radius:0;width:100%;max-height:100vh;height:100%;overflow-y:auto;max-width:100%;}
+  .pd-left{width:100%;min-height:240px;max-height:55vw;border-radius:0;position:relative;flex-shrink:0;}
+  .pd-left img,.pd-left-ph{height:100%;border-radius:0;object-fit:cover;}
+  .pd-close-btn{top:10px;left:10px;width:36px;height:36px;font-size:20px;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);}
+  .pd-right{padding:16px;flex:1;overflow-y:visible;}
   .pd-title{font-size:20px;}
-  .pd-price-big{font-size:24px;}
+  .pd-price-big{font-size:26px;}
 
-  /* Modals - full screen */
+  /* MODALS — bottom sheet */
   .overlay{padding:0;align-items:flex-end;}
-  .modal{border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;width:100%;}
-  .modal-wide{border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;width:100%;}
-  .complete-modal{border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;width:100%;}
-  .ban-modal{border-radius:20px 20px 0 0;width:100%;margin:0;}
-  .confirm-box{border-radius:20px 20px 0 0;width:100%;margin:0;}
+  .modal,.modal-wide,.complete-modal{border-radius:22px 22px 0 0;max-height:94vh;overflow-y:auto;width:100%;max-width:100%;animation:slideUp .3s cubic-bezier(.4,0,.2,1);}
+  .ban-modal,.confirm-box{border-radius:22px 22px 0 0;width:100%;max-width:100%;margin:0;animation:slideUp .3s cubic-bezier(.4,0,.2,1);}
+  .mclose{top:16px;right:16px;}
+  /* Modal drag handle */
+  .modal::before,.modal-wide::before,.complete-modal::before,.ban-modal::before,.confirm-box::before{content:'';display:block;width:40px;height:4px;background:var(--border2);border-radius:2px;margin:12px auto 4px;flex-shrink:0;}
 
-  /* Report overlay full screen bottom */
-  #reportOverlay .modal{max-height:90vh;}
+  /* SIDE PANELS */
+  .side-panel{width:100%;border-left:none;border-radius:22px 22px 0 0;top:auto;bottom:0;height:90vh;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);}
+  .side-panel.open{transform:translateY(0);}
+  .msg-panel{width:100%;border-left:none;border-radius:22px 22px 0 0;top:auto;bottom:0;height:90vh;transform:translateY(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);}
+  .msg-panel.open{transform:translateY(0);}
 
-  /* Side panels full width */
-  .side-panel{width:100%;border-left:none;border-top:1.5px solid var(--border);}
-  .msg-panel{width:100%;border-left:none;}
+  /* ADMIN PANEL */
+  .admin-panel{overflow:hidden;}
+  .admin-body{flex-direction:column;overflow:hidden;}
+  .admin-sidebar{width:100%;display:flex;overflow-x:auto;gap:4px;padding:8px 12px;border-right:none;border-bottom:1px solid var(--border);flex-shrink:0;-webkit-overflow-scrolling:touch;}
+  .admin-sidebar::-webkit-scrollbar{display:none;}
+  .admin-nav-item{white-space:nowrap;flex-shrink:0;width:auto;padding:7px 14px;font-size:12px;}
+  .admin-content{overflow-y:auto;flex:1;}
+  .admin-head{padding:10px 14px;flex-wrap:wrap;gap:6px;}
+  .admin-head-title{font-size:13px;}
+  .admin-stats{grid-template-columns:repeat(3,1fr);gap:10px;}
+  .astat{padding:12px 10px;}
+  .astat-num{font-size:22px;}
+  .user-table{font-size:11px;display:block;overflow-x:auto;}
 
-  /* Admin panel */
-  .admin-panel{overflow-y:auto;}
-  .admin-body{flex-direction:column;}
-  .admin-sidebar{width:100%;display:flex;flex-wrap:wrap;gap:4px;padding:10px;border-right:none;border-bottom:1px solid var(--border);}
-  .admin-nav-item{width:auto;flex:none;padding:7px 12px;font-size:12px;}
-  .admin-content{overflow-x:auto;}
-  .admin-head{padding:12px 16px;flex-wrap:wrap;gap:8px;}
-  .admin-head-title{font-size:14px;}
-  .admin-stats{grid-template-columns:repeat(3,1fr);}
-  .user-table{font-size:11px;}
-  .user-table th,.user-table td{padding:6px 8px;}
-
-  /* Adv filter panel */
+  /* ADV FILTER PANEL */
   .adv-panel{padding-top:0;align-items:flex-end;}
-  .adv-box{border-radius:20px 20px 0 0;max-height:80vh;overflow-y:auto;width:100%;}
+  .adv-box{border-radius:22px 22px 0 0;max-height:85vh;overflow-y:auto;width:100%;animation:slideUp .3s ease;}
 
-  /* Info pages */
-  .info-inner{padding:20px 16px;}
-  .ip-title{font-size:28px;}
+  /* INFO PAGES */
+  .info-inner{padding:16px 14px 80px;}
+  .ip-title{font-size:26px;}
   .ip-grid{grid-template-columns:1fr;}
 
-  /* Notification stack */
-  #notifStack{bottom:70px;right:12px;left:12px;}
-  .notif-popup{min-width:0;width:100%;}
+  /* LIGHTBOX */
+  #lightbox img{max-width:100vw;max-height:85vh;border-radius:8px;}
 
-  /* Toast */
-  .toast{right:12px;left:12px;bottom:16px;text-align:center;}
+  /* TOAST */
+  .toast{right:10px;left:10px;bottom:68px;text-align:center;max-width:none;}
 
-  /* Chat */
-  .chat-input-row{padding:8px;}
-  .chat-input{font-size:14px;}
+  /* NOTIFICATIONS */
+  #notifStack{bottom:68px;right:10px;left:10px;}
+  .notif-popup{width:100%;min-width:0;}
 
-  /* Profile panel */
-  .sp-head{padding:14px 16px;}
-  .sp-body{padding:16px;}
+  /* CONFIRM MODAL */
+  #confirmModal{padding:0;align-items:flex-end;}
+  #confirmModal .confirm-box{border-radius:22px 22px 0 0;width:100%;margin:0;}
 
-  /* Frow - stack on mobile */
+  /* FORMS */
   .frow{flex-direction:column;gap:0;}
+  .fgroup{margin-bottom:14px;}
+  .finput{font-size:15px;}
+  .btn-submit{font-size:14px;padding:13px;}
 
-  /* Lightbox */
-  #lightbox img{max-width:98vw;max-height:80vh;}
+  /* CHAT */
+  .chat-input-row{padding:8px 10px;}
+  .chat-input{font-size:15px;}
+  .msg-bbl{max-width:85%;}
+
+  /* PROFILE PANEL */
+  .sp-head{padding:14px 16px;}
+  .sp-body{padding:14px 16px;}
 }
 
 @media(max-width:480px){
   .listing-grid{grid-template-columns:1fr;}
-  .topbar{padding-right:10px;}
+  .topbar{padding-left:54px;padding-right:8px;}
   .tb-btn-purple{font-size:11px;padding:0 10px;height:32px;}
-  .lcard-price{font-size:14px;}
-  .content-title{font-size:18px;}
+  .tb-avatar{width:30px;height:30px;font-size:12px;}
+  .content-title{font-size:17px;}
+  .lcard-photo{height:180px;}
+  .lcard-photo img{height:180px;}
 }
 /* MOBILE BOTTOM NAV */
 .mob-bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:58px;background:var(--white);border-top:1.5px solid var(--border);z-index:400;padding:0;box-shadow:0 -4px 20px rgba(0,0,0,.07);}
@@ -638,11 +665,8 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 .mbn-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;}
 .mbn-badge{position:absolute;top:8px;right:calc(50% - 14px);width:7px;height:7px;background:var(--purple);border-radius:50%;display:none;}
 .mbn-badge.show{display:block;}
-@media(max-width:768px){
+@media(max-width:900px){
   .mob-bottom-nav{display:flex;}
-  .content{padding-bottom:74px;}
-  .toast{bottom:70px;}
-  #notifStack{bottom:70px;}
 }
 </style>
 </head>
@@ -701,7 +725,12 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 <header class="topbar" id="topbar">
   <div class="topbar-search">
     <svg class="si" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="search" placeholder="Пошук оголошень..." id="searchInput" oninput="searchListings(this.value)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+    <input type="text" placeholder="Пошук оголошень..." id="searchInput" 
+      oninput="searchListings(this.value)"
+      onfocus="this.removeAttribute('readonly')"
+      autocomplete="new-password"
+      autocorrect="off" autocapitalize="off" spellcheck="false"
+      readonly name="marketplace_search" role="searchbox"/>
   </div>
   <div class="topbar-actions" id="topbarActions">
     <button class="tb-btn tb-btn-ghost" onclick="openAuth('login')">Увійти</button>
@@ -999,26 +1028,52 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 </div>
 
 <!-- REPORT MODAL -->
-<div class="overlay" id="reportOverlay">
-  <div class="modal">
-    <button class="mclose" onclick="closeReport()">&#xd7;</button>
-    <div class="mtitle">Поскаржитись</div>
-    <p class="msub" id="reportAdTitle">На оголошення</p>
-    <div id="reportOptions">
-      <div class="report-option" onclick="selectReport(this,'18+')"><span class="report-option-icon roi-18">18+</span><span class="report-option-text">18+ / Дорослий контент</span></div>
-      <div class="report-option" onclick="selectReport(this,'spam')"><span class="report-option-icon roi-spam">SP</span><span class="report-option-text">Спам або дублікат</span></div>
-      <div class="report-option" onclick="selectReport(this,'fake')"><span class="report-option-icon roi-fake">!</span><span class="report-option-text">Шахрайство / Фейк</span></div>
-      <div class="report-option" onclick="selectReport(this,'price')"><span class="report-option-icon roi-price">$</span><span class="report-option-text">Неправдива ціна</span></div>
-      <div class="report-option" onclick="selectReport(this,'currency')"><span class="report-option-icon roi-ban">X</span><span class="report-option-text">Продаж VIP/ігрової валюти (заборонено)</span></div>
-      <div class="report-option" onclick="selectReport(this,'wrong_cat')"><span class="report-option-icon roi-cat">CAT</span><span class="report-option-text">Неправильна категорія</span></div>
-      <div class="report-option" onclick="selectReport(this,'offensive')"><span class="report-option-icon roi-off">!</span><span class="report-option-text">Образливий вміст</span></div>
-      <div class="report-option" onclick="selectReport(this,'other')"><span class="report-option-icon roi-other">?</span><span class="report-option-text">Інше</span></div>
+<div class="overlay" id="reportOverlay" onclick="if(event.target===this)closeReport()">
+  <div class="report-modal">
+    <button class="mclose" onclick="closeReport()" style="top:18px;right:18px">&#xd7;</button>
+    <div class="report-modal-title">Поскаржитись на оголошення</div>
+    <div class="report-modal-sub" id="reportAdTitle">Оголошення</div>
+    <div class="report-grid" id="reportOptions">
+      <div class="report-option" onclick="selectReport(this,'fraud')">
+        <div class="report-option-icon roi-fake">!</div>
+        <div class="report-option-text">Шахрайство / Фейк</div>
+      </div>
+      <div class="report-option" onclick="selectReport(this,'currency')">
+        <div class="report-option-icon roi-ban">VIP</div>
+        <div class="report-option-text">Продаж ігрової валюти</div>
+      </div>
+      <div class="report-option" onclick="selectReport(this,'price')">
+        <div class="report-option-icon roi-price">UAH</div>
+        <div class="report-option-text">Неправдива ціна</div>
+      </div>
+      <div class="report-option" onclick="selectReport(this,'spam')">
+        <div class="report-option-icon roi-spam">SP</div>
+        <div class="report-option-text">Спам або дублікат</div>
+      </div>
+      <div class="report-option" onclick="selectReport(this,'wrong_cat')">
+        <div class="report-option-icon roi-cat">CAT</div>
+        <div class="report-option-text">Неправильна категорія</div>
+      </div>
+      <div class="report-option" onclick="selectReport(this,'offensive')">
+        <div class="report-option-icon roi-off">18+</div>
+        <div class="report-option-text">Образливий вміст</div>
+      </div>
+      <div class="report-option" onclick="selectReport(this,'wrong_info')">
+        <div class="report-option-icon roi-18">i</div>
+        <div class="report-option-text">Неправдива інформація</div>
+      </div>
+      <div class="report-option" onclick="selectReport(this,'other')">
+        <div class="report-option-icon roi-other">?</div>
+        <div class="report-option-text">Інше</div>
+      </div>
     </div>
-    <div class="fgroup" id="reportOtherGroup" style="display:none;margin-top:10px">
-      <label class="flabel">Опишіть проблему</label>
-      <textarea class="finput" id="reportOtherText" rows="3" placeholder="Детально..."></textarea>
+    <div class="fgroup" id="reportOtherGroup" style="display:none;margin-bottom:16px">
+      <label class="flabel">Опишіть проблему *</label>
+      <textarea class="finput" id="reportOtherText" rows="3" placeholder="Розкажи детально що сталось..."></textarea>
     </div>
-    <button class="btn-submit" style="margin-top:14px" onclick="submitReport()">Надіслати скаргу</button>
+    <div id="reportSelectedInfo" style="display:none;margin-bottom:14px;padding:10px 14px;background:var(--purpleLight);border-radius:var(--radius-sm);font-size:13px;color:var(--purple);font-weight:600"></div>
+    <button class="btn-submit" id="reportSubmitBtn" onclick="submitReport()" disabled style="opacity:.5;cursor:not-allowed">Надіслати скаргу</button>
+    <p style="text-align:center;font-size:11px;color:var(--text3);margin-top:10px">Розгляд займає до 24 годин. Дякуємо за допомогу!</p>
   </div>
 </div>
 
@@ -1517,7 +1572,7 @@ function renderAdminReports(items){
   w.innerHTML=items.map(r=>{
     const ad=allListings.find(l=>l.id===r.adId);
     const ts=r.createdAt?.toDate?r.createdAt.toDate().toLocaleDateString('uk'):'';
-    const label=REPORT_LABELS[r.reason]||r.reason;
+    const label=r.reasonLabel||REPORT_LABELS[r.reason]||r.reason;
     return`<div class="admin-card">
       <div class="admin-card-head">
         <div style="flex:1">
@@ -1643,30 +1698,70 @@ window.showFavorites=(btn)=>{
 updateFavCount();
 
 // REPORT
+const REPORT_LABELS_UI={
+  fraud:'Шахрайство / Фейк',
+  currency:'Продаж ігрової валюти',
+  price:'Неправдива ціна',
+  spam:'Спам або дублікат',
+  wrong_cat:'Неправильна категорія',
+  offensive:'Образливий вміст',
+  wrong_info:'Неправдива інформація',
+  other:'Інше'
+};
 let reportAdId=null,reportSelected=null;
 window.openReport=(id,title)=>{
   if(!CU)return showToast('Спочатку увійди','err');
   reportAdId=id;reportSelected=null;
-  document.getElementById('reportAdTitle').textContent=`"${title}"`;
+  const titleEl=document.getElementById('reportAdTitle');
+  if(titleEl)titleEl.textContent=title?`"${title}"`:'Оголошення';
   document.querySelectorAll('.report-option').forEach(o=>o.classList.remove('selected'));
-  document.getElementById('reportOtherGroup').style.display='none';
-  document.getElementById('reportOtherText').value='';
+  const og=document.getElementById('reportOtherGroup');if(og)og.style.display='none';
+  const ot=document.getElementById('reportOtherText');if(ot)ot.value='';
+  const si=document.getElementById('reportSelectedInfo');if(si)si.style.display='none';
+  const sb=document.getElementById('reportSubmitBtn');
+  if(sb){sb.disabled=true;sb.style.opacity='.5';sb.style.cursor='not-allowed';}
   document.getElementById('reportOverlay').classList.add('open');
 };
-window.closeReport=()=>{document.getElementById('reportOverlay').classList.remove('open');reportAdId=null;};
+window.closeReport=()=>{document.getElementById('reportOverlay').classList.remove('open');reportAdId=null;reportSelected=null;};
 window.selectReport=(el,type)=>{
   document.querySelectorAll('.report-option').forEach(o=>o.classList.remove('selected'));
-  el.classList.add('selected');reportSelected=type;
-  document.getElementById('reportOtherGroup').style.display=type==='other'?'block':'none';
+  el.classList.add('selected');
+  reportSelected=type;
+  const isOther=type==='other';
+  const og=document.getElementById('reportOtherGroup');
+  if(og)og.style.display=isOther?'block':'none';
+  const si=document.getElementById('reportSelectedInfo');
+  if(si){
+    si.style.display='block';
+    si.textContent='Обрано: '+(REPORT_LABELS_UI[type]||type);
+  }
+  const sb=document.getElementById('reportSubmitBtn');
+  if(sb){sb.disabled=false;sb.style.opacity='1';sb.style.cursor='pointer';}
 };
 window.submitReport=async()=>{
   if(!reportSelected)return showToast('Оберіть причину','err');
-  const text=reportSelected==='other'?document.getElementById('reportOtherText').value.trim():'';
-  if(reportSelected==='other'&&!text)return showToast('Опишіть проблему','err');
+  const isOther=reportSelected==='other';
+  const text=isOther?(document.getElementById('reportOtherText')?.value.trim()||''):'';
+  if(isOther&&!text)return showToast('Опишіть проблему','err');
+  const sb=document.getElementById('reportSubmitBtn');
+  if(sb){sb.disabled=true;sb.textContent='Відправляємо...';}
   try{
-    await addDoc(collection(db,'reports'),{adId:reportAdId,reason:reportSelected,text,uid:CU.uid,createdAt:serverTimestamp()});
-    closeReport();showToast('Скаргу надіслано. Дякуємо!','ok');
-  }catch(e){showToast('Помилка. Спробуй ще.','err');}
+    await addDoc(collection(db,'reports'),{
+      adId:reportAdId,
+      reason:reportSelected,
+      reasonLabel:REPORT_LABELS_UI[reportSelected]||reportSelected,
+      text,
+      uid:CU.uid,
+      game:CUD?.game||'?',
+      createdAt:serverTimestamp(),
+      status:'new'
+    });
+    closeReport();
+    showToast('Скаргу надіслано. Розглянемо протягом 24 год!','ok');
+  }catch(e){
+    showToast('Помилка. Спробуй ще.','err');
+    if(sb){sb.disabled=false;sb.textContent='Надіслати скаргу';}
+  }
 };
 
 // SUBMIT SUPPORT TICKET
@@ -1861,7 +1956,7 @@ window.openProduct=id=>{
       ${ownerActions}
       ${adminActions}
       ${!isOwner?`<button class="btn-pixdger" onclick="closePD();startChatWith('${p.uid}','${(p.seller||'').replace(/'/g,'')}','${(p.title||'').replace(/'/g,'')}')">Написати у Pixджер</button>`:''}
-      ${!isOwner?`<button onclick="openReport('${p.id}','${(p.title||'').replace(/'/g,'')}')" style="width:100%;margin-top:8px;padding:9px;background:none;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--text3);cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--danger)';this.style.color='var(--danger)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text3)'">Поскаржитись</button>`:''}
+      ${!isOwner?`<button class="pd-report-btn" onclick="openReport('${p.id}','${(p.title||'').replace(/'/g,'')}')" >Поскаржитись на оголошення</button>`:''}
     </div>`;
   document.getElementById('pdOverlay').classList.add('open');
 };
