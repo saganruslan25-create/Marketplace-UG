@@ -146,7 +146,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .empty-sub{color:var(--text3);font-size:14px;}
 
 /* PRODUCT DETAIL — full screen */
-.pd-overlay{position:fixed;inset:0;background:rgba(26,22,20,.6);backdrop-filter:blur(8px);z-index:800;display:none;align-items:center;justify-content:center;padding:24px;}
+.pd-overlay{position:fixed;inset:0;background:rgba(26,22,20,.6);backdrop-filter:blur(8px);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px;}
 .pd-overlay.open{display:flex;}
 .pd-card{background:var(--white);border-radius:20px;width:100%;max-width:900px;max-height:92vh;overflow:hidden;display:flex;animation:fadeUp .3s forwards;box-shadow:0 20px 60px rgba(0,0,0,.2);}
 .pd-left{flex:1;min-width:0;background:var(--bg2);position:relative;min-height:400px;display:flex;align-items:center;justify-content:center;}
@@ -176,7 +176,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .btn-pixdger:hover{background:var(--purple2);transform:translateY(-1px);}
 
 /* OVERLAYS generic */
-.overlay{position:fixed;inset:0;background:rgba(26,22,20,.6);backdrop-filter:blur(8px);z-index:800;display:none;align-items:center;justify-content:center;padding:20px;}
+.overlay{position:fixed;inset:0;background:rgba(26,22,20,.6);backdrop-filter:blur(8px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;}
 .overlay.open{display:flex;}
 .modal{background:var(--white);border-radius:20px;width:100%;max-width:480px;padding:36px;position:relative;animation:fadeUp .3s forwards;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);}
 .modal-wide{max-width:620px;}
@@ -355,7 +355,46 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 .rules-list li{padding:14px 0;border-bottom:1px solid var(--border);font-size:13.5px;color:var(--text2);line-height:1.6;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;}
 .rules-list li .ri{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--purple);}
 
-/* TOAST */
+/* CUSTOM CONFIRM MODAL */
+#confirmModal{position:fixed;inset:0;background:rgba(26,22,20,.65);backdrop-filter:blur(8px);z-index:20000;display:none;align-items:center;justify-content:center;padding:20px;}
+#confirmModal.open{display:flex;}
+.confirm-box{background:var(--white);border-radius:20px;padding:32px;max-width:400px;width:100%;animation:popIn .25s cubic-bezier(.34,1.56,.64,1);box-shadow:0 20px 60px rgba(0,0,0,.25);}
+.confirm-icon{font-size:36px;margin-bottom:12px;text-align:center;}
+.confirm-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:6px;text-align:center;}
+.confirm-text{font-size:13.5px;color:var(--text2);text-align:center;line-height:1.6;margin-bottom:22px;}
+.confirm-actions{display:flex;gap:10px;}
+.confirm-btn{flex:1;padding:11px;border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);transition:all .2s;}
+.confirm-btn.cancel{background:var(--bg);color:var(--text2);}
+.confirm-btn.cancel:hover{border-color:var(--border2);}
+.confirm-btn.danger{background:var(--danger);color:#fff;border-color:var(--danger);}
+.confirm-btn.danger:hover{background:#c53030;}
+.confirm-btn.ok{background:var(--purple);color:#fff;border-color:var(--purple);}
+.confirm-btn.ok:hover{background:var(--purple2);}
+
+/* FAVORITES STAR */
+.lcard-fav{position:absolute;top:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,.85);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;z-index:2;backdrop-filter:blur(4px);}
+.lcard-fav:hover{background:#fff;transform:scale(1.15);}
+.lcard-fav.active{background:#fff5;color:#f59e0b;}
+.lcard-photo{position:relative;}
+
+/* REPORT MODAL */
+.report-option{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:var(--radius-sm);cursor:pointer;transition:all .18s;border:1.5px solid var(--border);margin-bottom:8px;background:var(--bg);}
+.report-option:hover{border-color:var(--purple);background:var(--purpleLight);}
+.report-option.selected{border-color:var(--purple);background:var(--purpleLight);}
+.report-option-icon{font-size:18px;flex-shrink:0;}
+.report-option-text{font-size:13px;font-weight:500;color:var(--text2);}
+
+/* NAV ICONS — text-based instead of emoji for cleaner look */
+.ni{font-size:15px;flex-shrink:0;width:20px;text-align:center;display:inline-flex;align-items:center;justify-content:center;}
+
+/* Remove emoji flicker in chat bubbles (use text fallback) */
+.msg-bbl{font-family:'DM Sans',sans-serif;}
+
+/* No flicker on chat - use opacity transition only */
+.chat-messages .msg-bbl{animation:fadeUp .18s ease both;}
+
+/* Favorites nav button */
+#favCount{background:var(--purple);color:#fff;font-size:9px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;padding:0 4px;margin-left:auto;}
 .toast{position:fixed;bottom:28px;right:28px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:12px 18px;font-size:13.5px;font-weight:600;z-index:9999;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;max-width:300px;box-shadow:var(--shadow2);}
 .toast.show{opacity:1;transform:translateY(0);}
 .toast.ok{border-left:3px solid var(--success);}
@@ -461,6 +500,7 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
     <button class="nav-item" onclick="showPage('about')"><span class="ni">ℹ️</span> Про нас</button>
     <button class="nav-item" onclick="showPage('support')"><span class="ni">🛟</span> Підтримка</button>
     <button class="nav-item" onclick="showPage('rules')"><span class="ni">📋</span> Правила</button>
+    <button class="nav-item" onclick="showFavorites(this)"><span class="ni">⭐</span> Обране<span id="favCount" style="display:none">0</span></button>
   </nav>
   <div class="sidebar-bottom">
     <div id="sidebarUser">
@@ -477,7 +517,7 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 <header class="topbar" id="topbar">
   <div class="topbar-search">
     <svg class="si" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" placeholder="Пошук оголошень..." id="searchInput" oninput="searchListings(this.value)" autocomplete="off"/>
+    <input type="search" placeholder="Пошук оголошень..." id="searchInput" oninput="searchListings(this.value)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
   </div>
   <div class="topbar-actions" id="topbarActions">
     <button class="tb-btn tb-btn-ghost" onclick="openAuth('login')">Увійти</button>
@@ -721,6 +761,43 @@ textarea.finput{resize:vertical;font-family:'DM Sans',sans-serif;line-height:1.6
 <div id="notifStack"></div>
 <div id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg" src="" alt=""/></div>
 
+<!-- CUSTOM CONFIRM MODAL -->
+<div id="confirmModal">
+  <div class="confirm-box">
+    <div class="confirm-icon" id="confirmIcon">⚠️</div>
+    <div class="confirm-title" id="confirmTitle">Ти впевнений?</div>
+    <div class="confirm-text" id="confirmText">Цю дію не можна скасувати.</div>
+    <div class="confirm-actions">
+      <button class="confirm-btn cancel" id="confirmCancel" onclick="closeConfirm()">Скасувати</button>
+      <button class="confirm-btn danger" id="confirmOk">Підтвердити</button>
+    </div>
+  </div>
+</div>
+
+<!-- REPORT MODAL -->
+<div class="overlay" id="reportOverlay">
+  <div class="modal">
+    <button class="mclose" onclick="closeReport()">✕</button>
+    <div class="mtitle">Поскаржитись</div>
+    <p class="msub" id="reportAdTitle">На оголошення</p>
+    <div id="reportOptions">
+      <div class="report-option" onclick="selectReport(this,'18+')"><span class="report-option-icon">🔞</span><span class="report-option-text">18+ / Дорослий контент</span></div>
+      <div class="report-option" onclick="selectReport(this,'spam')"><span class="report-option-icon">📢</span><span class="report-option-text">Спам або дублікат</span></div>
+      <div class="report-option" onclick="selectReport(this,'fake')"><span class="report-option-icon">🚫</span><span class="report-option-text">Шахрайство / Фейк</span></div>
+      <div class="report-option" onclick="selectReport(this,'price')"><span class="report-option-icon">💸</span><span class="report-option-text">Неправдива ціна</span></div>
+      <div class="report-option" onclick="selectReport(this,'currency')"><span class="report-option-icon">⛔</span><span class="report-option-text">Продаж VIP/ігрової валюти (заборонено)</span></div>
+      <div class="report-option" onclick="selectReport(this,'wrong_cat')"><span class="report-option-icon">📂</span><span class="report-option-text">Неправильна категорія</span></div>
+      <div class="report-option" onclick="selectReport(this,'offensive')"><span class="report-option-icon">😡</span><span class="report-option-text">Образливий вміст</span></div>
+      <div class="report-option" onclick="selectReport(this,'other')"><span class="report-option-icon">💬</span><span class="report-option-text">Інше</span></div>
+    </div>
+    <div class="fgroup" id="reportOtherGroup" style="display:none;margin-top:10px">
+      <label class="flabel">Опишіть проблему</label>
+      <textarea class="finput" id="reportOtherText" rows="3" placeholder="Детально..."></textarea>
+    </div>
+    <button class="btn-submit" style="margin-top:14px" onclick="submitReport()">Надіслати скаргу</button>
+  </div>
+</div>
+
 <!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -909,7 +986,11 @@ window.saveProfile=async()=>{
 // AD
 let adPhotos=[];
 window.openAd=()=>{if(!CU)return openAuth('login');const bs=CUD?.banSettings||{};if(CUD?.banned||bs.ban_ads||bs.ban_all)return showToast('Тобі заборонено подавати оголошення','err');adPhotos=[];document.getElementById('photoRow').innerHTML='';document.getElementById('adOverlay').classList.add('open');};
-window.closeAd=()=>document.getElementById('adOverlay').classList.remove('open');
+window.closeAd=()=>{
+  const btn=document.getElementById('submitAdBtn');
+  if(btn){btn.textContent='Опублікувати оголошення';btn.onclick=null;}
+  document.getElementById('adOverlay').classList.remove('open');
+};
 window.handlePhotos=e=>{const f=Array.from(e.target.files),rem=5-adPhotos.length;f.slice(0,rem).forEach(file=>{const r=new FileReader();r.onload=ev=>{adPhotos.push(ev.target.result);renderPhotoPreview();};r.readAsDataURL(file);});if(f.length>rem)showToast('Максимум 5 фото','err');e.target.value='';};
 function renderPhotoPreview(){document.getElementById('photoRow').innerHTML=adPhotos.map((s,i)=>`<div class="photo-thumb-wrap"><img class="photo-thumb" src="${s}"/><button class="photo-del" onclick="removePhoto(${i})">×</button></div>`).join('');}
 window.removePhoto=i=>{adPhotos.splice(i,1);renderPhotoPreview();};
@@ -952,38 +1033,53 @@ function compressImg(src,maxW,q){return new Promise(res=>{const img=new Image();
 // EDIT AD (owner)
 window.editAd=async(id)=>{
   const p=(window.FB_LISTINGS||[]).find(l=>l.id===id);
-  if(!p||p.uid!==CU?.uid)return;
-  // Pre-fill ad form with existing data
+  if(!p||(p.uid!==CU?.uid&&CUD?.role!=='admin'))return;
+  // Reset ad form
+  const adOverlay=document.getElementById('adOverlay');
+  // Pre-fill ad form
   document.getElementById('adType').value=p.type||'sell';
   document.getElementById('adCat').value=p.cat||'';
-  updateSubCat();
+  if(window.updateSubCat)window.updateSubCat();
   document.getElementById('adTitle').value=p.title||'';
   document.getElementById('adDesc').value=p.desc||'';
   document.getElementById('adPrice').value=p.price||'';
   document.getElementById('adCondition').value=p.condition||'Новий';
-  if(p.carBrand){document.getElementById('adCarBrand').value=p.carBrand||'';}
-  adPhotos=p.photos||[];renderPhotoPreview();
+  const brandSel=document.getElementById('adCarBrand');
+  if(brandSel&&p.carBrand){
+    // Try to set known brand or set custom
+    const opt=Array.from(brandSel.options).find(o=>o.value===p.carBrand);
+    if(opt){brandSel.value=p.carBrand;}
+    else{brandSel.value='Інша марка...';document.getElementById('adCarBrandCustom').value=p.carBrand;document.getElementById('adCarBrandCustom').style.display='block';}
+  }
+  adPhotos=p.photos?[...p.photos]:[];
+  if(window.renderPhotoPreview)window.renderPhotoPreview();
   // Override submit button
   const btn=document.getElementById('submitAdBtn');
   btn.textContent='Зберегти зміни';
   btn.onclick=async()=>{
     if(!CU)return;
     const title=document.getElementById('adTitle').value.trim(),desc=document.getElementById('adDesc').value.trim(),price=document.getElementById('adPrice').value,condition=document.getElementById('adCondition').value;
+    const cat=document.getElementById('adCat').value;
+    let carBrand=p.carBrand||'';
+    if(cat==='авто'){const sel=document.getElementById('adCarBrand').value;carBrand=sel==='Інша марка...'?document.getElementById('adCarBrandCustom').value.trim():sel;}
     if(!title||!desc||!price)return showToast('Заповни всі поля','err');
     btn.textContent='Зберігаємо...';btn.disabled=true;
     try{
       const cp=adPhotos.length?await Promise.all(adPhotos.map(s=>s.startsWith('data:')?compressImg(s,700,0.72):Promise.resolve(s))):[];
-      await updateDoc(doc(db,'listings',id),{title,desc,price:parseInt(price),condition,photos:cp,updatedAt:serverTimestamp()});
+      await updateDoc(doc(db,'listings',id),{title,desc,price:parseInt(price),condition,carBrand,photos:cp,updatedAt:serverTimestamp()});
+      // Reset button back
+      btn.textContent='Опублікувати оголошення';btn.onclick=null;
       closeAd();showToast('Оголошення оновлено ✅','ok');loadListings();
-    }catch(e){showToast('Помилка','err');}finally{btn.textContent='Зберегти зміни';btn.disabled=false;}
+    }catch(e){showToast('Помилка: '+e.message,'err');}finally{btn.disabled=false;}
   };
   closePD();
-  document.getElementById('adOverlay').classList.add('open');
+  adOverlay.classList.add('open');
 };
 window.deleteMyAd=async(id)=>{
   if(!CU)return;
-  if(!confirm('Видалити оголошення?'))return;
-  try{await updateDoc(doc(db,'listings',id),{active:false});showToast('Оголошення видалено','ok');closePD();loadListings();}catch(e){showToast('Помилка','err');}
+  showConfirm({icon:'🗑',title:'Видалити оголошення?',text:'Оголошення буде видалено і більше не з\'явиться в каталозі.',okText:'Видалити',okClass:'danger',onOk:async()=>{
+    try{await updateDoc(doc(db,'listings',id),{active:false});showToast('Оголошення видалено','ok');closePD();loadListings();}catch(e){showToast('Помилка','err');}
+  }});
 };
 
 // LISTINGS
@@ -1045,31 +1141,47 @@ window.startChatWith=(sellerUid,sellerName,adTitle)=>{
 window.openChatView=async(chatId,targetName,adTitle)=>{
   // Clear unread
   try{await setDoc(doc(db,'userChats',CU.uid,'chats',chatId),{unreadBy:null},{merge:true});}catch(e){}
-  // Listen for real-time messages
-  if(chatListeners[chatId]){chatListeners[chatId]();}
+  // Stop old listener for this chat
+  if(chatListeners[chatId]){chatListeners[chatId]();delete chatListeners[chatId];}
+  // Build UI once - no flicker
+  const safeTarget=(targetName||'?');
+  const safeTitle=(adTitle||'').replace(/'/g,"'");
+  const safeChatId=chatId.replace(/'/g,"");
   document.getElementById('msgContent').innerHTML=`<div class="chat-view">
-    <div class="chat-view-head"><button class="chat-back" onclick="showChatList()">←</button><div class="chat-av" style="width:32px;height:32px;font-size:13px">${targetName[0]}</div><div><div class="chat-view-name">${targetName}</div>${adTitle?`<div class="chat-view-sub">${adTitle}</div>`:''}</div></div>
-    <div class="chat-messages" id="chatMsgs"><div style="text-align:center;color:var(--text3);font-size:13px;padding:20px">⏳</div></div>
-    <div class="chat-input-row"><button class="chat-photo-btn" onclick="triggerChatPhoto('${chatId}','${targetName.replace(/'/g,'')}','${(adTitle||'').replace(/'/g,'')}')">📎</button><input type="file" id="chatPhotoInput_${chatId}" accept="image/*" style="display:none" onchange="sendPhoto(event,'${chatId}','${targetName.replace(/'/g,'')}','${(adTitle||'').replace(/'/g,'')}')"/><input class="chat-input" id="ci_${chatId}" placeholder="Написати..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMsg('${chatId}','${targetName.replace(/'/g,'')}','${(adTitle||'').replace(/'/g,'')}')"/><button class="chat-send" onclick="sendMsg('${chatId}','${targetName.replace(/'/g,'')}','${(adTitle||'').replace(/'/g,'')}')">➤</button></div>
+    <div class="chat-view-head"><button class="chat-back" onclick="window.showChatList()">&#8592;</button><div class="chat-av" style="width:32px;height:32px;font-size:13px">${safeTarget[0].toUpperCase()}</div><div><div class="chat-view-name">${safeTarget}</div>${adTitle?`<div class="chat-view-sub">${adTitle}</div>`:''}</div></div>
+    <div class="chat-messages" id="chatMsgs"></div>
+    <div class="chat-input-row">
+      <button class="chat-photo-btn" onclick="triggerChatPhoto('${safeChatId}','${safeTarget.replace(/'/g,'')}','${safeTitle}')">&#128206;</button>
+      <input type="file" id="chatPhotoInput_${safeChatId}" accept="image/*" style="display:none" onchange="sendPhoto(event,'${safeChatId}','${safeTarget.replace(/'/g,'')}','${safeTitle}')"/>
+      <input class="chat-input" id="ci_${safeChatId}" placeholder="Написати..." autocomplete="off" onkeydown="if(event.key==='Enter')sendMsg('${safeChatId}','${safeTarget.replace(/'/g,'')}','${safeTitle}')"/>
+      <button class="chat-send" onclick="sendMsg('${safeChatId}','${safeTarget.replace(/'/g,'')}','${safeTitle}')">&#10148;</button>
+    </div>
   </div>`;
-  // Subscribe to real-time messages
+  // Real-time — only update messages container, NO full rebuild to prevent flicker
   const msgsRef=query(collection(db,`chats/${chatId}/messages`),orderBy('ts'));
+  let firstLoad=true;
   chatListeners[chatId]=onSnapshot(msgsRef,snap=>{
-    const msgs=snap.docs.map(d=>d.data());
     const container=document.getElementById('chatMsgs');
     if(!container)return;
-    if(msgs.length===0){container.innerHTML=`<div style="text-align:center;color:var(--text3);font-size:13px;padding:20px">Початок розмови 👋</div>`;return;}
+    const msgs=snap.docs.map(d=>d.data());
+    if(msgs.length===0){
+      if(container.children.length===0)container.innerHTML=`<div style="text-align:center;color:var(--text3);font-size:13px;padding:20px">Початок розмови</div>`;
+      return;
+    }
+    const prevCount=container.querySelectorAll('.msg-bbl').length;
+    const wasBottom=container.scrollHeight-container.scrollTop-container.clientHeight<80;
     container.innerHTML=msgs.map(m=>{
       const time=m.ts?.toDate?m.ts.toDate().toLocaleTimeString('uk',{hour:'2-digit',minute:'2-digit'}):'';
       const isOut=m.uid===CU.uid;
       const imgHtml=m.photo?`<img src="${m.photo}" onclick="openLightbox('${m.photo}')" style="max-width:200px;max-height:160px;border-radius:8px;display:block;margin-top:6px;cursor:zoom-in;"/>`:'' ;
       const txtHtml=m.text?`<span>${m.text}</span>`:'';
-      return`<div class="msg-bbl ${isOut?'out':'in'}" style="animation:fadeUp .2s ease both">${txtHtml}${imgHtml}<div class="mt">${isOut?'Ти':targetName} · ${time}</div></div>`;
+      return`<div class="msg-bbl ${isOut?'out':'in'}">${txtHtml}${imgHtml}<div class="mt">${isOut?'Ти':safeTarget} &middot; ${time}</div></div>`;
     }).join('');
-    container.scrollTop=container.scrollHeight;
+    if(wasBottom||firstLoad){container.scrollTop=container.scrollHeight;}
+    firstLoad=false;
   });
 };
-
+window.showChatList=showChatList;
 window.triggerChatPhoto=(chatId,targetName,adTitle)=>{
   const inp=document.getElementById(`chatPhotoInput_${chatId}`);
   if(inp)inp.click();
@@ -1116,9 +1228,13 @@ window.openLightbox=src=>{document.getElementById('lightboxImg').src=src;documen
 window.openAdmin=async()=>{if(CUD?.role!=='admin')return showToast('Немає доступу','err');document.getElementById('adminPanel').classList.add('open');await loadAdminData();};
 window.closeAdmin=()=>document.getElementById('adminPanel').classList.remove('open');
 async function loadAdminData(){try{const us=await getDocs(collection(db,'users'));allUsers=us.docs.map(d=>({uid:d.id,...d.data()}));document.getElementById('as-users').textContent=allUsers.length;document.getElementById('as-ads').textContent=allListings.length;document.getElementById('as-banned').textContent=allUsers.filter(u=>u.banned||u.banSettings?.ban_all).length;renderUserTable(allUsers);renderAdminListings();}catch(e){showToast('Помилка','err');}}
-function renderUserTable(users){const w=document.getElementById('userTableWrap');if(!users.length){w.innerHTML='<div style="color:var(--text3);padding:16px">Немає</div>';return;}w.innerHTML=`<table class="user-table"><thead><tr><th>Нік в грі</th><th>ID в грі</th><th>Email</th><th>Discord</th><th>Роль</th><th>Оголошень</th><th>Дії</th></tr></thead><tbody>${users.map(u=>{const b=u.banned||u.banSettings?.ban_all;return`<tr><td><strong>${u.game||u.nick||'—'}</strong></td><td style="color:var(--text3);font-size:12px">${u.gameId||'—'}</td><td style="font-size:12px;color:var(--text3)">${u.email||'—'}</td><td style="font-size:12px;color:var(--text3)">${u.discord||'—'}</td><td><span class="role-chip ${u.role==='admin'?'role-admin':b?'role-banned':'role-user'}">${u.role==='admin'?'ADMIN':b?'БАН':'USER'}</span></td><td style="text-align:center">${u.ads||0}</td><td><div class="table-actions"><button class="ta-btn red" onclick="openBan('${u.uid}','${(u.game||u.nick||'').replace(/'/g,'')}')">Блокувати</button>${b?`<button class="ta-btn green" onclick="unbanUser('${u.uid}')">Розблок</button>`:''}<button class="ta-btn yellow" onclick="makeAdmin('${u.uid}')" ${u.role==='admin'?'disabled':''}>Адмін</button></div></td></tr>`;}).join('')}</tbody></table>`;}
+function renderUserTable(users){const w=document.getElementById('userTableWrap');if(!users.length){w.innerHTML='<div style="color:var(--text3);padding:16px">Немає</div>';return;}w.innerHTML=`<table class="user-table"><thead><tr><th>Нік в грі</th><th>ID в грі</th><th>Email</th><th>Discord</th><th>Роль</th><th>Оголошень</th><th>Дії</th></tr></thead><tbody>${users.map(u=>{const b=u.banned||u.banSettings?.ban_all;const isAdm=u.role==='admin';return`<tr><td><strong>${u.game||u.nick||'—'}</strong></td><td style="color:var(--text3);font-size:12px">${u.gameId||'—'}</td><td style="font-size:12px;color:var(--text3)">${u.email||'—'}</td><td style="font-size:12px;color:var(--text3)">${u.discord||'—'}</td><td><span class="role-chip ${isAdm?'role-admin':b?'role-banned':'role-user'}">${isAdm?'ADMIN':b?'БАН':'USER'}</span></td><td style="text-align:center">${u.ads||0}</td><td><div class="table-actions"><button class="ta-btn red" onclick="openBan('${u.uid}','${(u.game||u.nick||'').replace(/'/g,'')}')">Блокувати</button>${b?`<button class="ta-btn green" onclick="unbanUser('${u.uid}')">Розблок</button>`:''}${isAdm?`<button class="ta-btn red" onclick="removeAdmin('${u.uid}')">Зняти адміна</button>`:`<button class="ta-btn yellow" onclick="makeAdmin('${u.uid}')">Адмін</button>`}</div></td></tr>`;}).join('')}</tbody></table>`;}
 function renderAdminListings(){const w=document.getElementById('adminListingsWrap');if(!allListings.length){w.innerHTML='<div style="color:var(--text3);padding:16px">Немає</div>';return;}w.innerHTML=`<table class="user-table"><thead><tr><th>Назва</th><th>Категорія</th><th>Продавець</th><th>Ціна</th><th>Тип</th><th>Дії</th></tr></thead><tbody>${allListings.map(l=>`<tr><td><strong>${l.title}</strong></td><td>${l.cat}</td><td>${l.seller}</td><td>${(l.price||0).toLocaleString('uk-UA')} грн</td><td><span class="role-chip role-user">${l.type==='sell'?'ПРОДАЖ':'КУПУЮ'}</span></td><td><button class="ta-btn red" onclick="adminDeleteAd('${l.id}')">Видалити</button><button class="ta-btn yellow" onclick="adminViewProfile('${l.uid||''}','${(l.seller||'').replace(/'/g,'')}')">Профіль</button></td></tr>`).join('')}</tbody></table>`;}
-window.adminDeleteAd=async id=>{try{await updateDoc(doc(db,'listings',id),{active:false});showToast('Видалено','ok');await loadListings();await loadAdminData();}catch(e){}};
+window.adminDeleteAd=async id=>{
+  showConfirm({icon:'⛔',title:'Видалити оголошення?',text:'Адміністративне видалення. Оголошення буде приховано від усіх користувачів.',okText:'Видалити',okClass:'danger',onOk:async()=>{
+    try{await updateDoc(doc(db,'listings',id),{active:false});showToast('Видалено','ok');await loadListings();await loadAdminData();}catch(e){}
+  }});
+};
 // Alias for old references
 window.deleteAd=window.adminDeleteAd;
 window.adminViewProfile=async(uid,name)=>{
@@ -1140,13 +1256,77 @@ window.openBan=(uid,name)=>{banUid=uid;document.getElementById('banTargetName').
 window.closeBan=()=>{document.getElementById('banOverlay').classList.remove('open');banUid=null;};
 window.applyBan=async()=>{if(!banUid)return;const bs={ban_ads:document.getElementById('ban_ads').checked,ban_msg:document.getElementById('ban_msg').checked,ban_all:document.getElementById('ban_all').checked};const reason=document.getElementById('banReason').value.trim();try{await saveUser(banUid,{banned:bs.ban_all,banSettings:bs,banReason:reason});closeBan();showToast('Блокування застосовано','ok');await loadAdminData();}catch(e){showToast('Помилка','err');}};
 window.unbanUser=async uid=>{try{await saveUser(uid,{banned:false,banSettings:{},banReason:''});showToast('Розблоковано','ok');await loadAdminData();}catch(e){}};
-window.makeAdmin=async uid=>{try{await saveUser(uid,{role:'admin'});showToast('Адміна видано ✅','ok');await loadAdminData();}catch(e){}};
+window.makeAdmin=async uid=>{
+  showConfirm({icon:'⚡',title:'Зробити адміном?',text:'Гравець отримає повний доступ до адміністративних функцій.',okText:'Підтвердити',okClass:'ok',onOk:async()=>{
+    try{await saveUser(uid,{role:'admin'});showToast('Адміна видано ✅','ok');await loadAdminData();}catch(e){}
+  }});
+};
+window.removeAdmin=async uid=>{
+  showConfirm({icon:'⚠️',title:'Зняти права адміна?',text:'Гравець втратить доступ до адмін-панелі.',okText:'Зняти',okClass:'danger',onOk:async()=>{
+    try{await saveUser(uid,{role:'user'});showToast('Права адміна знято','ok');await loadAdminData();}catch(e){}
+  }});
+};
 window._makeAdmin=async uid=>{await saveUser(uid,{role:'admin'});showToast('Ти тепер адмін!','ok');};
+
+// FAVORITES
+let favorites=JSON.parse(localStorage.getItem('ug_favs')||'[]');
+function saveFavs(){localStorage.setItem('ug_favs',JSON.stringify(favorites));updateFavCount();}
+function updateFavCount(){const c=document.getElementById('favCount');if(!c)return;if(favorites.length>0){c.style.display='inline-flex';c.textContent=favorites.length;}else c.style.display='none';}
+window.toggleFav=(id,e)=>{e&&e.stopPropagation();const i=favorites.indexOf(id);if(i>-1){favorites.splice(i,1);}else{favorites.push(id);}saveFavs();renderListings();};
+window.isFav=id=>favorites.includes(id);
+window.showFavorites=(btn)=>{
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  curFilter='favs';
+  renderListings();
+};
+updateFavCount();
+
+// REPORT
+let reportAdId=null,reportSelected=null;
+window.openReport=(id,title)=>{
+  if(!CU)return showToast('Спочатку увійди','err');
+  reportAdId=id;reportSelected=null;
+  document.getElementById('reportAdTitle').textContent=`"${title}"`;
+  document.querySelectorAll('.report-option').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('reportOtherGroup').style.display='none';
+  document.getElementById('reportOtherText').value='';
+  document.getElementById('reportOverlay').classList.add('open');
+};
+window.closeReport=()=>{document.getElementById('reportOverlay').classList.remove('open');reportAdId=null;};
+window.selectReport=(el,type)=>{
+  document.querySelectorAll('.report-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');reportSelected=type;
+  document.getElementById('reportOtherGroup').style.display=type==='other'?'block':'none';
+};
+window.submitReport=async()=>{
+  if(!reportSelected)return showToast('Оберіть причину','err');
+  const text=reportSelected==='other'?document.getElementById('reportOtherText').value.trim():'';
+  if(reportSelected==='other'&&!text)return showToast('Опишіть проблему','err');
+  try{
+    await addDoc(collection(db,'reports'),{adId:reportAdId,reason:reportSelected,text,uid:CU.uid,createdAt:serverTimestamp()});
+    closeReport();showToast('Скаргу надіслано. Дякуємо! 👍','ok');
+  }catch(e){showToast('Помилка. Спробуй ще.','err');}
+};
 
 loadListings();
 </script>
 
 <script>
+// CONFIRM MODAL
+window.showConfirm=({icon='⚠️',title='Ти впевнений?',text='',okText='Підтвердити',okClass='danger',cancelText='Скасувати',onOk})=>{
+  document.getElementById('confirmIcon').textContent=icon;
+  document.getElementById('confirmTitle').textContent=title;
+  document.getElementById('confirmText').textContent=text;
+  const okBtn=document.getElementById('confirmOk');
+  okBtn.textContent=okText;
+  okBtn.className=`confirm-btn ${okClass}`;
+  okBtn.onclick=()=>{closeConfirm();if(onOk)onOk();};
+  document.getElementById('confirmCancel').textContent=cancelText;
+  document.getElementById('confirmModal').classList.add('open');
+};
+window.closeConfirm=()=>document.getElementById('confirmModal').classList.remove('open');
+
 setTimeout(()=>document.getElementById('splash').classList.add('hide'),3500);
 
 // NAV HIDE
@@ -1170,7 +1350,11 @@ function fmtPrice(p,type){
 window.renderListings=function(){
   const grid=document.getElementById('listingGrid');
   const labels={sell:'Продаж',buy:'Купую'};
-  const data=(window.FB_LISTINGS||[]).filter(l=>{
+  let data=(window.FB_LISTINGS||[]).filter(l=>{
+    if(curFilter==='favs'){
+      const favs=JSON.parse(localStorage.getItem('ug_favs')||'[]');
+      return favs.includes(l.id);
+    }
     if(l.type!==curSection)return false;
     if(curFilter!=='all'&&l.cat!==curFilter)return false;
     if(curSearch&&!l.title?.toLowerCase().includes(curSearch)&&!l.desc?.toLowerCase().includes(curSearch))return false;
@@ -1179,18 +1363,23 @@ window.renderListings=function(){
     if(priceMax!==Infinity&&p>priceMax)return false;
     return true;
   });
-  document.getElementById('sectionTitle').textContent=`${labels[curSection]||''} · ${curFilter==='all'?'Усі':curFilter}`;
+  const sectionLabel=curFilter==='favs'?'Обране':labels[curSection]||'';
+  const filterLabel=curFilter==='favs'?'':` · ${curFilter==='all'?'Усі':curFilter}`;
+  document.getElementById('sectionTitle').textContent=`${sectionLabel}${filterLabel}`;
   document.getElementById('listCount').textContent=`${data.length} оголошень`;
   if(!data.length){
-    grid.innerHTML=`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Оголошень ще немає</div><div class="empty-sub">Будь першим! Подай оголошення</div></div>`;
+    const emptyMsg=curFilter==='favs'?'Немає обраних оголошень':'Оголошень ще немає';
+    grid.innerHTML=`<div class="empty"><div class="empty-icon">${curFilter==='favs'?'⭐':'🔍'}</div><div class="empty-title">${emptyMsg}</div><div class="empty-sub">${curFilter==='favs'?'Натисни ⭐ на оголошенні щоб додати в обране':'Будь першим! Подай оголошення'}</div></div>`;
     return;
   }
+  const favs=JSON.parse(localStorage.getItem('ug_favs')||'[]');
   grid.innerHTML=data.map((l,i)=>`
     <div class="lcard" onclick="openProduct('${l.id}')" style="animation-delay:${Math.min(i,8)*0.04}s">
       <div class="lcard-photo">
         ${l.photos&&l.photos.length?`<img src="${l.photos[0]}" alt=""/>`:`<div class="lcard-photo-ph">📷</div>`}
-        ${l.badge?`<div class="lcard-photo-badge ${l.badge}">${l.badge==='hot'?'🔥 HOT':l.badge==='new'?'✦ NEW':'🏷 SALE'}</div>`:''}
+        ${l.badge?`<div class="lcard-photo-badge ${l.badge}">${l.badge==='hot'?'HOT':l.badge==='new'?'NEW':'SALE'}</div>`:''}
         ${l.carBrand?`<div class="lcard-photo-badge sale" style="right:10px;left:auto">${l.carBrand}</div>`:''}
+        <button class="lcard-fav${favs.includes(l.id)?' active':''}" onclick="toggleFav('${l.id}',event)" title="${favs.includes(l.id)?'Прибрати з обраного':'Додати в обране'}">${favs.includes(l.id)?'★':'☆'}</button>
       </div>
       <div class="lcard-body">
         <div class="lcard-cat">${l.cat}</div>
@@ -1212,26 +1401,32 @@ window.openProduct=id=>{
   const photos=p.photos||[];
   const isOwner=window._CU&&window._CU.uid===p.uid;
   const isAdmin=window._CUD?.role==='admin';
+  const favs=JSON.parse(localStorage.getItem('ug_favs')||'[]');
+  const isFaved=favs.includes(p.id);
   // Owner actions
   const ownerActions=isOwner?`
     <div class="pd-owner-actions">
-      <button class="pd-action-btn edit" onclick="editAd('${p.id}')">✏️ Редагувати</button>
-      <button class="pd-action-btn del" onclick="deleteMyAd('${p.id}')">🗑 Видалити</button>
+      <button class="pd-action-btn edit" onclick="editAd('${p.id}')">Редагувати</button>
+      <button class="pd-action-btn del" onclick="deleteMyAd('${p.id}')">Видалити</button>
     </div>`:'';
   // Admin actions
   const adminActions=(!isOwner&&isAdmin)?`
     <div class="pd-owner-actions" style="margin-top:8px">
-      <button class="pd-action-btn del" onclick="adminDeleteAd('${p.id}')">⛔ Видалити (адмін)</button>
-      <button class="pd-action-btn edit" style="border-color:var(--warn);color:var(--warn)" onclick="adminViewProfile('${p.uid||''}','${(p.seller||'').replace(/'/g,'')}')">👤 Профіль гравця</button>
+      <button class="pd-action-btn del" onclick="adminDeleteAd('${p.id}')">Видалити (адмін)</button>
+      <button class="pd-action-btn edit" style="border-color:var(--warn);color:var(--warn)" onclick="adminViewProfile('${p.uid||''}','${(p.seller||'').replace(/'/g,'')}')">Профіль гравця</button>
     </div>`:'';
+  const thumbs=photos.length>1?`<div style="display:flex;gap:6px;padding:10px;overflow-x:auto;background:var(--bg2)">${photos.map((ph,i)=>`<img src="${ph}" onclick="document.getElementById('pdMainImg').src='${ph}'" style="width:58px;height:58px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid ${i===0?'var(--purple)':'var(--border)'}"/>`).join('')}</div>`:'';
   document.getElementById('pdCard').innerHTML=`
     <div class="pd-left">
       <button class="pd-close-btn" onclick="closePD()">←</button>
-      ${photos.length?`<img src="${photos[0]}" alt="" onclick="openLightbox('${photos[0]}')" style="cursor:zoom-in"/>`:`<div class="pd-left-ph">📷</div>`}
-      ${photos.length>1?`<div style="display:flex;gap:6px;padding:10px;overflow-x:auto;background:var(--bg2)">${photos.map((ph,i)=>`<img src="${ph}" onclick="this.closest('.pd-left').querySelector('img').src='${ph}';openLightbox('${ph}')" style="width:60px;height:60px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid ${i===0?'var(--purple)':'var(--border)'}"/>`).join('')}</div>`:''}
+      ${photos.length?`<img id="pdMainImg" src="${photos[0]}" alt="" onclick="openLightbox('${photos[0]}')" style="cursor:zoom-in"/>`:`<div class="pd-left-ph">📷</div>`}
+      ${thumbs}
     </div>
     <div class="pd-right">
-      <div class="pd-cat-chip">${p.cat}${p.carBrand?' · '+p.carBrand:''}</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+        <div class="pd-cat-chip" style="margin-bottom:0">${p.cat}${p.carBrand?' · '+p.carBrand:''}</div>
+        <button onclick="toggleFav('${p.id}',event)" style="margin-left:auto;background:none;border:1.5px solid var(--border);border-radius:20px;padding:4px 12px;font-size:13px;cursor:pointer;color:${isFaved?'#f59e0b':'var(--text3)'};transition:all .2s" title="${isFaved?'Прибрати з обраного':'В обране'}">${isFaved?'★ В обраному':'☆ В обране'}</button>
+      </div>
       <div class="pd-title">${p.title}</div>
       <div class="pd-price-big">${fmtPrice(p.price,p.type)}</div>
       <div class="pd-price-sub">${p.condition||''}</div>
@@ -1249,10 +1444,10 @@ window.openProduct=id=>{
       ${p.discord?`<div class="pd-contact"><span>Discord:</span> ${p.discord}</div>`:''}
       ${ownerActions}
       ${adminActions}
-      ${!isOwner?`<button class="btn-pixdger" onclick="closePD();startChatWith('${p.uid}','${(p.seller||'').replace(/'/g,'')}','${(p.title||'').replace(/'/g,'')}')">💬 Написати у Pixджер</button>`:''}
+      ${!isOwner?`<button class="btn-pixdger" onclick="closePD();startChatWith('${p.uid}','${(p.seller||'').replace(/'/g,'')}','${(p.title||'').replace(/'/g,'')}')">Написати у Pixджер</button>`:''}
+      ${!isOwner?`<button onclick="openReport('${p.id}','${(p.title||'').replace(/'/g,'')}')" style="width:100%;margin-top:8px;padding:9px;background:none;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--text3);cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='var(--danger)';this.style.color='var(--danger)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text3)'">Поскаржитись</button>`:''}
     </div>`;
   document.getElementById('pdOverlay').classList.add('open');
-  // Expose CU/CUD to openProduct scope via globals
 };
 // Update CU/CUD refs accessible to openProduct
 window._CU=null;window._CUD=null;
